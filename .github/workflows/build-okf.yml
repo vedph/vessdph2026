@@ -1,1 +1,47 @@
+name: Build OKF bundle
 
+# Regenerate okf/ automatically whenever the programme data (or the generator)
+# changes, and commit the result back. Keeps the OKF bundle in sync with
+# data/program.js without anyone having to run the generator by hand.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/program.js'
+      - 'content/**'
+      - 'tools/build-okf.js'
+      - '.github/workflows/build-okf.yml'
+  workflow_dispatch: {}        # also allow running it manually from the Actions tab
+
+permissions:
+  contents: write              # needed to commit the regenerated bundle back
+
+concurrency:                   # never let two regenerations race
+  group: build-okf
+  cancel-in-progress: true
+
+jobs:
+  okf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regenerate OKF bundle
+        run: node tools/build-okf.js
+
+      - name: Commit if the bundle changed
+        run: |
+          if [ -n "$(git status --porcelain okf)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add okf
+            git commit -m "chore(okf): regenerate bundle from program.js [skip ci]"
+            git push
+          else
+            echo "OKF bundle already up to date — nothing to commit."
+          fi

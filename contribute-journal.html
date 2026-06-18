@@ -4,27 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contribute to the Journal — Venice Summer School in Digital and Public Humanities 2026</title>
-<meta name="description" content="Prepare a journal contribution package in your browser. Nothing is uploaded: you download a reviewed-before-publication package for the organisers.">
+<meta name="description" content="Log in and add an entry to the Venice Summer School journal: a note, a photo, a reflection. Photos are resized in your browser before being posted.">
 <meta name="theme-color" content="#b01e28">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex">
 <link rel="icon" href="icons/icon-192.png" sizes="192x192">
-<!-- Leaflet (map library) is vendored under assets/leaflet/ and loaded only if you choose to place a point on the map -->
 <link rel="stylesheet" href="assets/style.css">
 <style>
   .jc{max-width:46rem}
   .jc-lead{color:var(--muted);margin:0 0 1.4rem}
-  .jc-consent{background:var(--cf-red-wash);border:1px solid var(--rule);border-radius:.5rem;
-    padding:.9rem 1.1rem;margin:0 0 1.8rem;font-size:.9rem;line-height:1.55}
-  .jc-consent p{margin:0 0 .6rem}.jc-consent p:last-child{margin:0}
   .jc-field{margin:0 0 1.4rem}
   .jc-field>label,.jc-leg{display:block;font:600 .95rem/1.3 var(--sans);margin:0 0 .35rem}
   .jc-hint{color:var(--muted);font-size:.85rem;margin:0 0 .5rem}
   .jc-opt{font-weight:400;color:var(--muted);font-size:.85rem}
-  .jc-field input[type=text],.jc-field input[type=datetime-local],.jc-field textarea,.jc-field select{
+  .jc-field input[type=text],.jc-field input[type=password],.jc-field textarea,.jc-field select{
     width:100%;padding:.55rem .65rem;font:1rem/1.4 var(--sans);border:1px solid var(--rule);
     border-radius:.4rem;background:#fff;color:var(--ink);box-sizing:border-box}
-  .jc-field textarea{resize:vertical;min-height:4.5rem}
+  .jc-field textarea{resize:vertical;min-height:5.5rem}
   .jc-drop{border:1.5px dashed var(--rule);border-radius:.5rem;padding:1.4rem;text-align:center;
     color:var(--muted);cursor:pointer;background:var(--paper-2);font-size:.92rem}
   .jc-drop:hover,.jc-drop.drag{border-color:var(--cf-red);color:var(--cf-red);background:var(--cf-red-wash)}
@@ -38,16 +34,20 @@
   .ed-x:hover{border-color:var(--cf-red);color:var(--cf-red)}
   .jc-row{display:flex;gap:1.2rem;flex-wrap:wrap}
   .jc-row .jc-field{flex:1 1 14rem;margin-bottom:0}
-  .jc-checks{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.2rem 0 0}
-  .jc-checks label{font:400 .9rem/1.2 var(--sans);color:var(--ink);display:inline-flex;align-items:center;gap:.35rem}
-  .jc-inline{display:flex;align-items:center;gap:.45rem;font:400 .9rem/1.3 var(--sans);color:var(--ink);margin:.5rem 0 0}
-  #jc-pickmap{height:300px;width:100%;border:1px solid var(--rule-strong);border-radius:6px;overflow:hidden;margin:.5rem 0 0}
   .jc-coords{font:0.82rem var(--mono);color:var(--cf-red);margin:.5rem 0 0;min-height:1.1em}
   .jc-out{border-top:1px solid var(--rule);margin-top:2rem;padding-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
   .jc-status{flex-basis:100%;font-size:.9rem;margin:.6rem 0 0;min-height:1.2em}
   .jc-status.err{color:var(--cf-red)}
   .jc-status.ok{color:#1a7a3a;font-weight:600}
+  .jc-status.ok a{color:#1a7a3a}
   .jc-status.busy{color:var(--muted)}
+  .jc-login{background:var(--paper-2);border:1px solid var(--rule);border-radius:8px;padding:1.1rem 1.2rem;margin:0 0 1.8rem}
+  .jc-login .jc-row{margin:0 0 .4rem}
+  .jc-signed{font-size:.9rem;color:#1a7a3a;font-weight:600;margin:0 0 1.4rem}
+  .jc-consent-check{display:flex;gap:.5rem;align-items:flex-start;margin:.85rem 0 0;font:400 .88rem/1.45 var(--sans);color:var(--ink)}
+  .jc-consent-check input{margin-top:.2rem;flex:0 0 auto}
+  .btn.ghost{background:#fff;border:1px solid var(--rule);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--cf-red);color:var(--cf-red)}
 </style>
 </head>
 <body>
@@ -67,116 +67,92 @@
 
 <header class="masthead">
   <div class="wrap">
-    <p class="eyebrow kicker"><a href="journal.html">← Back to the journal</a></p>
-    <h1 class="title">Contribute to the journal<em>prepare a package</em></h1>
+    <p class="eyebrow kicker"><a href="journal.html">&larr; Back to the journal</a></p>
+    <h1 class="title">Contribute to the journal<em>post an entry</em></h1>
     <div class="title-rule"></div>
   </div>
 </header>
 
 <main id="main">
   <section class="jc wrap">
-    <p class="jc-lead">Prepare a contribution to the Journal. Everything happens in your browser:
-      your photo is resized and cleaned of metadata locally, and you get a small package to send
-      to the organisers. <strong>Nothing is uploaded or published from this page.</strong></p>
+    <p class="jc-lead">Add an entry to the Summer School journal. Log in with your personal username,
+      write your note, optionally add a photo or a location, and it appears on the journal right away.
+      Entries are public and shown under your name; you can remove your own entries any time from the
+      journal. Photos are resized in your browser and stripped of camera metadata before being sent.</p>
 
-    <div class="jc-consent">
-      <p>Journal contributions are reviewed before publication. Please submit only material that you
-        are willing to share with the Summer School community and, if approved, on the public website.
-        If a photo shows recognizable people, please make sure they have agreed to publication. You may
-        choose to be credited by name, by role, or anonymously.</p>
-      <p>Published contributions can be amended or removed on request by contacting the organisers.</p>
-    </div>
-
-    <div class="jc-field">
-      <label for="jc-type">Contribution type</label>
-      <p class="jc-hint">All types are welcome, and a photo is optional for every one of them.</p>
-      <select id="jc-type">
-        <option value="photo">Photo</option>
-        <option value="note">Text note</option>
-        <option value="reflection">Reflection</option>
-        <option value="resource">Resource / link</option>
-      </select>
-    </div>
-
-    <div class="jc-field">
-      <label for="jc-title">Title</label>
-      <input id="jc-title" type="text" maxlength="120" placeholder="e.g. Walk to Zattere">
-    </div>
-
-    <div class="jc-field">
-      <label for="jc-note">Field note <span class="jc-opt">(optional)</span></label>
-      <p class="jc-hint">A longer reflection, if you'd like.</p>
-      <textarea id="jc-note"></textarea>
-    </div>
-
-    <div class="jc-row">
-      <div class="jc-field">
-        <label for="jc-datetime">Date &amp; time</label>
-        <input id="jc-datetime" type="datetime-local">
+    <div class="jc-login" id="jc-login">
+      <p class="jc-leg">Log in to post</p>
+      <p class="jc-hint">Use the personal username and password you received from the organisers.</p>
+      <div class="jc-row">
+        <div class="jc-field"><label for="jc-u">Username</label>
+          <input id="jc-u" type="text" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+        <div class="jc-field"><label for="jc-p">Password</label>
+          <input id="jc-p" type="password" autocomplete="current-password"></div>
       </div>
+      <div class="jc-out" style="border:0;margin:0;padding:0">
+        <button type="button" class="btn solid" id="jc-login-btn">Log in</button>
+        <p class="jc-status" id="jc-login-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div id="jc-form" hidden>
+      <p class="jc-signed" id="jc-signed"></p>
+
       <div class="jc-field">
-        <label for="jc-role">Role</label>
-        <select id="jc-role">
-          <option value="participant">Participant</option>
-          <option value="faculty">Teacher</option>
-          <option value="organiser">Organiser</option>
+        <label for="jc-chapter">Which part of the journey?</label>
+        <select id="jc-chapter">
+          <option value="before">Before — getting ready</option>
+          <option value="onway">On our way — travelling to Venice</option>
+          <option value="school" selected>At the Summer school</option>
+          <option value="home">Heading home</option>
+          <option value="after">Afterwards</option>
         </select>
       </div>
-    </div>
 
-    <div class="jc-field">
-      <label for="jc-author">Author display name <span class="jc-opt">(optional)</span></label>
-      <input id="jc-author" type="text" maxlength="80" placeholder="How you'd like to be credited">
-      <label class="jc-inline"><input id="jc-anon" type="checkbox"> Credit me anonymously (by role only)</label>
-    </div>
-
-    <div class="jc-field">
-      <span class="jc-leg">Tags</span>
-      <div class="jc-checks">
-        <label><input type="checkbox" class="jc-tag" value="session"> session</label>
-        <label><input type="checkbox" class="jc-tag" value="fieldwork"> fieldwork</label>
-        <label><input type="checkbox" class="jc-tag" value="social"> social</label>
-        <label><input type="checkbox" class="jc-tag" value="reflection"> reflection</label>
-        <label><input type="checkbox" class="jc-tag" value="photo"> photo</label>
-        <label><input type="checkbox" class="jc-tag" value="resource"> resource</label>
+      <div class="jc-field" id="jc-session-field">
+        <label for="jc-session">Related session <span class="jc-opt">(optional)</span></label>
+        <p class="jc-hint">Attach this entry to a moment in the programme, or leave it as a general note.</p>
+        <select id="jc-session"><option value="">— a general note —</option></select>
       </div>
-    </div>
 
-    <div class="jc-field">
-      <label for="jc-session">Related session <span class="jc-opt">(optional)</span></label>
-      <select id="jc-session"><option value="">— none —</option></select>
-    </div>
+      <div class="jc-field">
+        <label for="jc-title">Title <span class="jc-opt">(optional)</span></label>
+        <input id="jc-title" type="text" maxlength="120" placeholder="e.g. Walk to the Zattere">
+      </div>
 
-    <div class="jc-field">
-      <label for="jc-place">Location <span class="jc-opt">(optional)</span></label>
-      <p class="jc-hint">Choose a known place, or pick a point on the map. A location is saved only if you choose one here.</p>
-      <select id="jc-place"><option value="">No location</option></select>
-      <div id="jc-pickwrap" hidden>
-        <div id="jc-pickmap"></div>
+      <div class="jc-field">
+        <label for="jc-note">Your note</label>
+        <p class="jc-hint">A short reflection, a field note, or a line about the photo.</p>
+        <textarea id="jc-note" maxlength="4000"></textarea>
+      </div>
+
+      <div class="jc-field">
+        <label>Photograph <span class="jc-opt">(optional)</span></label>
+        <p class="jc-hint">JPG, PNG or WebP. Resized to 1200&nbsp;px and re-encoded, so camera metadata (including GPS) is removed.</p>
+        <div id="jc-drop" class="jc-drop" tabindex="0" role="button" aria-label="Add a photo">
+          <input id="jc-file" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden>
+          <span>Drag a photo here, or <u>browse</u></span>
+        </div>
+        <div id="jc-preview" class="jc-preview" hidden></div>
+        <label class="jc-consent-check" id="jc-consent-wrap" hidden>
+          <input type="checkbox" id="jc-consent">
+          <span>Anyone recognizable in this photo has agreed to it being shown. I will not post photos of
+            other participants without their consent.</span>
+        </label>
+      </div>
+
+      <div class="jc-field">
+        <label>Location <span class="jc-opt">(optional)</span></label>
+        <p class="jc-hint">Add a point so the entry appears on the journal map. Your location is only used if you tap the button.</p>
+        <button type="button" class="btn ghost" id="jc-geo">&#128205; Use my current location</button>
         <p class="jc-coords" id="jc-coords"></p>
       </div>
-    </div>
 
-    <div class="jc-field">
-      <label>Photograph <span class="jc-opt">(optional — an entry doesn't need a photo)</span></label>
-      <p class="jc-hint">JPG, PNG or WebP. It is resized to 1600&nbsp;px, given a 480&nbsp;px thumbnail, and
-        re-encoded so that camera metadata (including GPS) is removed. Location is never read from the photo.</p>
-      <div id="jc-drop" class="jc-drop" tabindex="0" role="button" aria-label="Add a photo">
-        <input id="jc-file" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden>
-        <span>Drag a photo here, or <u>browse</u></span>
+      <div class="jc-out">
+        <button type="button" class="btn solid" id="jc-post">Post to the journal</button>
+        <button type="button" class="btn ghost" id="jc-logout2">Log out</button>
+        <p class="jc-status" id="jc-status" role="status" aria-live="polite"></p>
       </div>
-      <div id="jc-preview" class="jc-preview" hidden></div>
-    </div>
-
-    <div class="jc-field">
-      <label for="jc-caption">Caption <span class="jc-opt">(optional)</span></label>
-      <p class="jc-hint">A line about the photo, or about the moment.</p>
-      <input id="jc-caption" type="text" maxlength="280" placeholder="One line about the moment.">
-    </div>
-
-    <div class="jc-out">
-      <button type="button" class="btn solid" id="jc-build">⬇ Build my package</button>
-      <p class="jc-status" id="jc-status" role="status" aria-live="polite"></p>
     </div>
   </section>
 </main>
@@ -184,11 +160,11 @@
 <footer class="foot">
   <div class="wrap">
     <h3>Venice Centre for Digital and Public Humanities</h3>
-    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+    <p>Organised by the VeDPH at the Department of Humanities, Ca&rsquo; Foscari University of Venice,
        with the Department of Linguistics and Comparative Cultural Studies.</p>
-    <p class="foot-link"><a href="journal.html">← Back to the journal</a></p>
-    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
-      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+    <p class="foot-link"><a href="journal.html">&larr; Back to the journal</a></p>
+    <p class="addr">Ca&rsquo; Foscari University of Venice &middot; Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH &middot; Malcanton Marcor&agrave;, Dorsoduro 3484/D &middot; vedph@unive.it</p>
   </div>
 </footer>
 

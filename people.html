@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>People · Venice Summer School in Digital and Public Humanities 2026</title>
+<meta name="description" content="Teachers and invited specialists of the Venice Summer School in Digital and Public Humanities 2026, and aggregate figures on the cohort.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/eb-garamond-latin-400-italic.woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Ca' Foscari University of Venice — Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a class="on" aria-current="page" href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a href="colophon.html">Colophon</a>
+  </nav>
+</div></header>
+
+<header class="pagehead"><div class="wrap">
+  <p class="kicker">Teachers, invited specialists &amp; cohort</p>
+  <h1>People</h1>
+</div></header>
+
+<main id="main">
+  <section class="faculty wrap" id="faculty-section">
+    <div class="head">
+      <p class="area kicker">Teachers &amp; invited specialists</p>
+      <h2>Teachers</h2>
+    </div>
+    <div class="faculty-grid" id="faculty"></div>
+  </section>
+
+  <section class="support wrap" id="support-section">
+    <div class="head">
+      <p class="area kicker">Behind the programme</p>
+      <h2>Organising support</h2>
+    </div>
+    <div class="faculty-grid" id="support"></div>
+  </section>
+
+  <section class="cohort wrap" id="cohort-section">
+    <div class="head">
+      <p class="area kicker">Who is in the room</p>
+      <h2>The 2026 cohort</h2>
+    </div>
+    <div id="cohort"></div>
+  </section>
+
+  <section class="mapsec wrap" id="cm-map-section">
+    <div class="head">
+      <p class="area kicker">Community geography</p>
+      <h2>Where the community comes from</h2>
+    </div>
+    <p class="cm-note">This map shows an aggregated view of the universities and research institutions
+      represented in the Summer School community.</p>
+    <p class="map-note" id="cm-cartonote">The map uses CARTO tiles based on OpenStreetMap data.</p>
+    <p class="map-note cm-empty" id="cm-empty" hidden>Aggregated institutional data will appear here once available.</p>
+    <div class="mapwrap" id="cm-mapwrap" hidden><div id="cm-map" role="img" aria-label="Aggregated map of the institutions represented in the Summer School community"></div></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Venice Centre for Digital and Public Humanities</h3>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/program.js"></script>
+<script src="data/community-map.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

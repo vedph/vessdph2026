@@ -1,0 +1,20 @@
+# Cloudflare Worker config — EXAMPLE.
+# Copy to "wrangler.toml" and fill in, then deploy with:  wrangler deploy
+#
+# Do NOT put secrets in this file. Set them separately (they are stored
+# encrypted by Cloudflare and never appear in the repo):
+#   wrangler secret put FACULTY_UPLOAD_PASSWORD
+#   wrangler secret put GITHUB_TOKEN
+#
+# GITHUB_TOKEN must be a fine-grained Personal Access Token scoped to THIS
+# repository only, with "Contents: Read and write" and nothing else.
+
+name = "vssdph-materials"
+main = "submit-materials.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+GITHUB_OWNER  = "vedph"
+GITHUB_REPO   = "vessdph2026"
+GITHUB_BRANCH = "materials-submissions"   # this branch must already exist in the repo
+ALLOW_ORIGIN  = "https://vedph.github.io" # the public site origin allowed to call the function

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add your session materials — Venice Summer School in Digital and Public Humanities 2026</title>
+<meta name="description" content="For teachers: fill in your session's abstract, links and reading, and prepare a review package for the organisers.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .ed{max-width:46rem}
+  .ed-lead{color:var(--muted);margin:0 0 1.6rem}
+  .ed-pick{margin:0 0 1.4rem}
+  .ed-pick label,.ed-field>label{display:block;font:600 .95rem/1.3 var(--sans);margin:0 0 .4rem}
+  .ed-pick select{width:100%;padding:.6rem .7rem;font:1rem/1.3 var(--sans);
+    border:1px solid var(--rule);border-radius:.4rem;background:#fff;color:var(--ink)}
+  .ed-facts{background:var(--paper-2);border:1px solid var(--rule);border-radius:.5rem;
+    padding:.9rem 1rem;margin:0 0 1.6rem;font-size:.92rem}
+  .ed-facts dt{font:600 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);margin:.5rem 0 .15rem}
+  .ed-facts dt:first-child{margin-top:0}
+  .ed-facts dd{margin:0;color:var(--ink)}
+  .ed-choose{background:var(--cf-red-wash);border:1px solid var(--rule);border-radius:.5rem;
+    padding:.85rem 1rem;margin:0 0 1.6rem;font-size:.9rem;line-height:1.5}
+  .ed-choose:empty{display:none}
+  .ed-choose p{margin:0 0 .4rem}.ed-choose p:last-child{margin:0}
+  .ed-choose a{color:var(--cf-red);font-weight:600}
+  .ed-choose .ed-choose-see a{font-weight:500;font-size:.85rem}
+  .ed-field{margin:0 0 1.5rem}
+  .ed-hint{color:var(--muted);font-size:.85rem;margin:0 0 .5rem}
+  .ed-field textarea,.ed-row input{width:100%;padding:.55rem .65rem;font:1rem/1.4 var(--sans);
+    border:1px solid var(--rule);border-radius:.4rem;background:#fff;color:var(--ink);box-sizing:border-box}
+  .ed-field textarea{resize:vertical;min-height:5.5rem}
+  .ed-row{display:flex;gap:.5rem;margin:0 0 .5rem;align-items:center}
+  .ed-row .ed-lab{flex:0 0 12rem}
+  .ed-row .ed-x{flex:0 0 auto;border:1px solid var(--rule);background:#fff;color:var(--muted);
+    border-radius:.4rem;width:2rem;height:2rem;cursor:pointer;font-size:1rem;line-height:1}
+  .ed-row .ed-x:hover{border-color:var(--cf-red);color:var(--cf-red)}
+  @media (max-width:34rem){.ed-row{flex-wrap:wrap}.ed-row .ed-lab{flex-basis:100%}}
+  .ed-add{margin-top:.2rem;background:none;border:1px dashed var(--rule);color:var(--cf-red);
+    padding:.4rem .7rem;border-radius:.4rem;cursor:pointer;font:600 .85rem/1 var(--sans)}
+  .ed-add:hover{border-color:var(--cf-red)}
+  .ed-out{border-top:1px solid var(--rule);margin-top:2rem;padding-top:1.4rem;
+    display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  .ed-note{flex-basis:100%;color:var(--muted);font-size:.85rem;margin:.4rem 0 0}
+  .ed-out-note{flex-basis:100%;color:var(--muted);font-size:.85rem;line-height:1.5;margin:0 0 .2rem;order:-1}
+  .ed-note code{font:0.82rem var(--mono);background:var(--paper-2);padding:.1rem .35rem;border-radius:.25rem}
+  .ed-ok{color:var(--cf-red);font-weight:600}
+  .ed-opt{font-weight:400;color:var(--muted);font-size:.85rem}
+  .ed-drop{border:1.5px dashed var(--rule);border-radius:.5rem;padding:1.1rem;text-align:center;
+    color:var(--muted);cursor:pointer;background:var(--paper-2);font-size:.9rem}
+  .ed-drop:hover,.ed-drop.drag{border-color:var(--cf-red);color:var(--cf-red);background:var(--cf-red-wash)}
+  .ed-drop u{text-decoration:underline}
+  .ed-filelist{list-style:none;margin:.6rem 0 0;padding:0}
+  .ed-filelist li{display:flex;align-items:center;gap:.5rem;padding:.4rem .6rem;
+    border:1px solid var(--rule);border-radius:.4rem;margin:.35rem 0;font-size:.88rem;background:#fff}
+  .ed-filelist .fn{flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ed-filelist .fs{flex:0 0 auto;color:var(--muted);font:0.78rem var(--mono)}
+  .ed-consent{color:var(--muted);font-size:.85rem;line-height:1.5;margin:.8rem 0 0}
+  .ed-submit{border-top:1px solid var(--rule);margin-top:2rem;padding-top:1.4rem}
+  .ed-submit>label{display:block;font:600 .95rem/1.3 var(--sans);margin:0 0 .3rem}
+  .ed-submit input{width:100%;max-width:18rem;padding:.55rem .65rem;font:1rem/1.4 var(--sans);
+    border:1px solid var(--rule);border-radius:.4rem;background:#fff;color:var(--ink);box-sizing:border-box;margin:0 0 .9rem}
+  .ed-status{font-size:.9rem;margin:.7rem 0 0;min-height:1.2em}
+  .ed-status.err{color:var(--cf-red)}
+  .ed-status.ok{color:#1a7a3a;font-weight:600}
+  .ed-status.busy{color:var(--muted)}
+  .ed-rev{background:var(--cf-red-wash);border:1px solid var(--cf-red);border-radius:.5rem;
+    padding:.7rem .95rem;margin:0 0 1.5rem;font-size:.88rem;line-height:1.5;color:var(--ink)}
+  .ed-rev strong{color:var(--cf-red)}
+  .ed-srow{border:1px solid var(--rule);border-radius:.45rem;padding:.6rem .7rem;background:#fff;
+    margin:0 0 .6rem;position:relative}
+  .ed-srow input{width:100%;padding:.45rem .55rem;font:.92rem/1.3 var(--sans);border:1px solid var(--rule);
+    border-radius:.35rem;background:#fff;color:var(--ink);box-sizing:border-box;margin:0 0 .4rem}
+  .ed-srow .ed-pair{display:flex;gap:.4rem}
+  .ed-srow .ed-pair input{flex:1 1 0}
+  .ed-srow input:last-of-type{margin-bottom:0}
+  .ed-srow .ed-cite{padding-right:6rem}
+  .ed-rowctl{position:absolute;top:.5rem;right:.5rem;display:inline-flex;gap:.3rem}
+  .ed-rowctl button{width:1.75rem;height:1.75rem;border:1px solid var(--rule);background:#fff;color:var(--muted);
+    border-radius:.35rem;cursor:pointer;line-height:1;padding:0;font-size:.78rem;display:inline-flex;align-items:center;justify-content:center}
+  .ed-rowctl button:hover{border-color:var(--cf-red);color:var(--cf-red)}
+  .ed-rowctl .ed-x{font-size:.95rem}
+  .ed-clear{display:flex;align-items:center;gap:.4rem;margin:.5rem 0 0;color:var(--muted);font-size:.84rem}
+  .ed-clear input{width:auto;margin:0}
+  textarea.ed-cleared{opacity:.5;background:var(--paper-2)}
+  @media (max-width:34rem){.ed-srow .ed-pair{flex-wrap:wrap}.ed-srow .ed-pair input{flex-basis:100%}}
+  .ed-fl{display:flex;align-items:center;gap:.5rem;padding:.45rem .6rem;border:1px solid var(--rule);
+    border-radius:.4rem;margin:.35rem 0;font-size:.88rem;background:#fff;flex-wrap:wrap}
+  .ed-fl.gone{opacity:.5}
+  .ed-fl .fn{flex:1 1 9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ed-fl .fs,.ed-fl .ftag{flex:0 0 auto;color:var(--muted);font:.74rem var(--mono)}
+  .ed-fl .fctl{flex:0 0 auto;display:inline-flex;gap:.35rem}
+  .ed-fl .fb{border:1px solid var(--rule);background:#fff;color:var(--muted);border-radius:.35rem;
+    padding:.32rem .6rem;cursor:pointer;font:600 .72rem var(--sans)}
+  .ed-fl .fb.on{border-color:var(--cf-red);color:var(--cf-red);background:var(--cf-red-wash)}
+  .ed-fl .fb:hover{border-color:var(--cf-red)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Ca' Foscari University of Venice — Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a href="colophon.html">Colophon</a>
+  </nav>
+</div></header>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow kicker"><a href="programme.html">← Back to the programme</a></p>
+    <h1 class="title">Add your session materials<em>for teachers</em></h1>
+    <div class="title-rule"></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="ed wrap">
+    <p class="ed-lead">Pick your session. If materials are already published for it, the form loads the
+      current version so you can refine it rather than start over. Edit the abstract, add or remove
+      readings, resources and files, then build a <strong>proposed revision</strong> for the organisers
+      to review. Nothing is published directly from this page; changes appear after organiser review.</p>
+
+    <div class="ed-pick">
+      <label for="ed-session">Your session</label>
+      <select id="ed-session"><option value="">Loading…</option></select>
+    </div>
+
+    <div id="ed-form" hidden>
+      <dl class="ed-facts" id="ed-facts"></dl>
+      <div id="ed-choose" class="ed-choose"></div>
+
+      <div class="ed-rev" id="ed-rev" hidden>
+        <strong>Proposed revision.</strong> You are preparing a proposed revision of the published materials
+        for this session. Changes will appear publicly only after organiser review.
+      </div>
+
+      <div class="ed-field">
+        <label for="ed-abstract">Abstract</label>
+        <p class="ed-hint">A short description of your session (2–4 sentences).</p>
+        <textarea id="ed-abstract"></textarea>
+        <label class="ed-clear" id="ed-clear-abstract-row" hidden>
+          <input type="checkbox" id="ed-clear-abstract"> Clear the abstract (remove it from the published page)
+        </label>
+      </div>
+
+      <div class="ed-field">
+        <label for="ed-bio">Bio note <span class="ed-opt">(optional)</span></label>
+        <p class="ed-hint">A sentence or two about you, if you'd like it shown on the session page.</p>
+        <textarea id="ed-bio"></textarea>
+        <label class="ed-clear" id="ed-clear-bio-row" hidden>
+          <input type="checkbox" id="ed-clear-bio"> Clear the bio note (remove it from the published page)
+        </label>
+      </div>
+
+      <div class="ed-field">
+        <label>External resources <span class="ed-opt">(optional)</span></label>
+        <p class="ed-hint">Links shown under your session — each with a label and web address, plus optional type and notes.</p>
+        <div id="ed-resources"></div>
+        <button type="button" class="ed-add" data-add="resource">+ Add resource</button>
+      </div>
+
+      <div class="ed-field">
+        <label>Recommended reading <span class="ed-opt">(optional)</span></label>
+        <p class="ed-hint">One reference per entry. DOI and URL are optional and become links.</p>
+        <div id="ed-biblio"></div>
+        <button type="button" class="ed-add" data-add="biblio">+ Add bibliography item</button>
+      </div>
+
+      <div class="ed-field" id="ed-files-section" hidden>
+        <label>Files</label>
+        <p class="ed-hint">Slides, PDFs, notes or images to attach to your page. Allowed: PDF, MD, TXT,
+          JPG, PNG, WebP — up to 10&nbsp;MB each. Images are resized and stripped of metadata automatically.
+          Existing files default to <strong>Keep</strong>; use Replace or Remove to change them.
+          For video or very large files, host them elsewhere and add a resource link above.</p>
+        <div id="ed-drop" class="ed-drop" tabindex="0" role="button" aria-label="Add files">
+          <input id="ed-file" type="file" multiple accept=".pdf,.md,.txt,.jpg,.jpeg,.png,.webp" hidden>
+          <span class="ed-drop-t">Drag files here, or <u>browse</u></span>
+        </div>
+        <input id="ed-file-replace" type="file" accept=".pdf,.md,.txt,.jpg,.jpeg,.png,.webp" hidden>
+        <ul id="ed-filelist" class="ed-filelist"></ul>
+      </div>
+
+      <div class="ed-field">
+        <label for="ed-changes">Summary of changes <span class="ed-opt">(for the organiser)</span></label>
+        <p class="ed-hint">A line on what you changed — e.g. "Added slides and updated the bibliography."</p>
+        <textarea id="ed-changes" style="min-height:3.2rem"></textarea>
+      </div>
+
+      <div class="ed-submit" id="ed-submit-box" hidden>
+        <label for="ed-pass">Teacher password</label>
+        <p class="ed-hint">You'll receive this from the organisers. It's checked on the server and is
+          never stored on this page.</p>
+        <input id="ed-pass" type="password" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <div>
+          <button type="button" class="btn solid" id="ed-submit">Submit for review</button>
+        </div>
+        <p class="ed-consent">Your materials are reviewed before publication. Please submit only
+          content you're willing to share publicly on the Summer School website. Published materials
+          can be amended or removed on request by contacting the organisers.</p>
+        <p class="ed-status" id="ed-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="ed-out">
+        <button type="button" class="btn" id="ed-download">⬇ Download review package</button>
+        <button type="button" class="btn ghost" id="ed-copy">Copy as text</button>
+        <p class="ed-out-note" id="ed-out-note"></p>
+        <p class="ed-note" id="ed-note"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Venice Centre for Digital and Public Humanities</h3>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/program.js"></script>
+<script src="assets/editor.js"></script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

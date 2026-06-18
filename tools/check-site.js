@@ -110,22 +110,6 @@ if (SCHOOL && SCHOOL.people) {
     W(`Journal entry ${tag} has an unparseable datetime: ${e.datetime}`);
 });
 
-/* ---- community map (data/community-map.js, optional; aggregated counts only) ---- */
-let COMMUNITY = [];
-try { COMMUNITY = loadGlobal('data/community-map.js', 'COMMUNITY_MAP') || []; }
-catch (e) { /* optional file — ignore if absent */ }
-(COMMUNITY || []).forEach((e, i) => {
-  const tag = e && e.institution ? e.institution : `#${i}`;
-  if (!e || !e.institution || !String(e.institution).trim())
-    E(`Community map entry ${tag} must have an institution`);
-  if (!e || typeof e.lat !== 'number' || isNaN(e.lat) || typeof e.lng !== 'number' || isNaN(e.lng))
-    E(`Community map entry ${tag} must have numeric lat and lng`);
-  if (!e || typeof e.count !== 'number' || !Number.isInteger(e.count) || e.count <= 0)
-    E(`Community map entry ${tag} must have a positive integer count`);
-  if (e && e.city != null && typeof e.city !== 'string') E(`Community map entry ${tag} city must be a string`);
-  if (e && e.country != null && typeof e.country !== 'string') E(`Community map entry ${tag} country must be a string`);
-});
-
 /* ---- content/<id>.json files: id validity, JSON validity, local refs ---- */
 const contentDir = path.join(ROOT, 'content');
 if (fs.existsSync(contentDir)) {
@@ -265,7 +249,7 @@ walk(ROOT);
 /* ---- report ---- */
 const C = process.stdout.isTTY ? { r: '\x1b[31m', y: '\x1b[33m', g: '\x1b[32m', d: '\x1b[2m', x: '\x1b[0m' } : { r: '', y: '', g: '', d: '', x: '' };
 console.log(`\nVenice Summer School — site checks`);
-console.log(`${C.d}sessions: ${sessionIds.size} · people: ${SCHOOL ? Object.keys(SCHOOL.people || {}).length : '?'} · venues: ${SCHOOL ? Object.keys(SCHOOL.venues || {}).length : '?'} · journal entries: ${(JOURNAL || []).length} · community map: ${(COMMUNITY || []).length}${C.x}\n`);
+console.log(`${C.d}sessions: ${sessionIds.size} · people: ${SCHOOL ? Object.keys(SCHOOL.people || {}).length : '?'} · venues: ${SCHOOL ? Object.keys(SCHOOL.venues || {}).length : '?'} · journal entries: ${(JOURNAL || []).length}${C.x}\n`);
 if (warns.length) { console.log(`${C.y}WARNINGS (${warns.length}):${C.x}`); warns.forEach((m) => console.log(`  ${C.y}!${C.x} ${m}`)); console.log(''); }
 if (errors.length) { console.log(`${C.r}ERRORS (${errors.length}):${C.x}`); errors.forEach((m) => console.log(`  ${C.r}✗${C.x} ${m}`)); console.log(''); }
 if (!errors.length) console.log(`${C.g}✓ no errors${C.x}${warns.length ? `  ${C.d}(${warns.length} warning${warns.length > 1 ? 's' : ''})${C.x}` : ''}\n`);

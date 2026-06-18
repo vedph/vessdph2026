@@ -9,9 +9,13 @@
   var S = window.SCHOOL || {};
   function $(id) { return document.getElementById(id); }
 
-  var creds = null;                  // {username, password}, in memory only
+  var creds = null;                  // {username, password}
   var photo = null;                  // {base64, ext, w, h}
   var geo = null;                    // {lat, lng}
+  var STORE_KEY = "vss_journal_auth"; // shared with the journal page (browser session)
+  function saveAuth(name, role) { try { sessionStorage.setItem(STORE_KEY, JSON.stringify({ username: creds.username, password: creds.password, name: name, role: role })); } catch (e) {} }
+  function clearAuth() { try { sessionStorage.removeItem(STORE_KEY); } catch (e) {} }
+  function showForm(name) { $("jc-login").hidden = true; $("jc-form").hidden = false; $("jc-signed").textContent = "Signed in as " + name + "."; syncChapter(); }
 
   /* ---- populate session dropdown from the programme ---- */
   (function fillSessions() {
@@ -51,17 +55,15 @@
         if (res.ok && res.j && res.j.ok) {
           creds = { username: u, password: p };
           st.textContent = ""; st.className = "jc-status";
-          $("jc-login").hidden = true;
-          $("jc-form").hidden = false;
-          $("jc-signed").textContent = "Signed in as " + res.j.name + ".";
-          syncChapter();
+          saveAuth(res.j.name, res.j.role);
+          showForm(res.j.name);
         } else { st.textContent = (res.j && res.j.error) || "Login failed."; st.className = "jc-status err"; }
       }).catch(function () { st.textContent = "Could not reach the server."; st.className = "jc-status err"; });
   }
   var lb = $("jc-login-btn"); if (lb) lb.addEventListener("click", login);
   var pIn = $("jc-p"); if (pIn) pIn.addEventListener("keydown", function (e) { if (e.key === "Enter") login(); });
   var lo = $("jc-logout2"); if (lo) lo.addEventListener("click", function () {
-    creds = null; $("jc-form").hidden = true; $("jc-login").hidden = false;
+    creds = null; clearAuth(); $("jc-form").hidden = true; $("jc-login").hidden = false;
     var s = $("jc-login-status"); if (s) { s.textContent = ""; s.className = "jc-status"; }
   });
 
@@ -104,19 +106,63 @@
     drop.addEventListener("drop", function (e) { if (e.dataTransfer && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
   }
 
-  /* ---- location (optional) ---- */
+  /* ---- location: pick a point on a map (optional) ---- */
+  var leafletLoading = null;
+  function loadLeaflet() {
+    if (window.L) return Promise.resolve();
+    if (leafletLoading) return leafletLoading;
+    leafletLoading = new Promise(function (resolve, reject) {
+      var css = document.createElement("link"); css.rel = "stylesheet"; css.href = "assets/leaflet/leaflet.css"; document.head.appendChild(css);
+      var js = document.createElement("script"); js.src = "assets/leaflet/leaflet.js"; js.async = true;
+      js.onload = function () { resolve(); }; js.onerror = function () { leafletLoading = null; reject(new Error("leaflet")); };
+      document.head.appendChild(js);
+    });
+    return leafletLoading;
+  }
+  var pickMap = null, pickMarker = null;
+  function showCoords() { var o = $("jc-coords"); if (o) o.textContent = geo ? (geo.lat + ", " + geo.lng) : ""; }
+  function setPoint(lat, lng) {
+    geo = { lat: +(+lat).toFixed(5), lng: +(+lng).toFixed(5) };
+    if (pickMap) {
+      if (!pickMarker) {
+        pickMarker = L.marker([geo.lat, geo.lng], { draggable: true }).addTo(pickMap);
+        pickMarker.on("dragend", function () { var ll = pickMarker.getLatLng(); geo = { lat: +ll.lat.toFixed(5), lng: +ll.lng.toFixed(5) }; showCoords(); });
+      } else pickMarker.setLatLng([geo.lat, geo.lng]);
+    }
+    showCoords();
+  }
+  function clearLocation() {
+    geo = null;
+    if (pickMarker && pickMap) { pickMap.removeLayer(pickMarker); pickMarker = null; }
+    showCoords();
+  }
+  var locToggle = $("jc-loc-toggle");
+  if (locToggle) locToggle.addEventListener("click", function () {
+    var box = $("jc-loc"); box.hidden = false; locToggle.hidden = true;
+    loadLeaflet().then(function () {
+      if (pickMap) { setTimeout(function () { pickMap.invalidateSize(); }, 150); return; }
+      pickMap = L.map("jc-pickmap", { scrollWheelZoom: false }).setView([45.4372, 12.3346], 13);
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        maxZoom: 19, subdomains: "abcd",
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(pickMap);
+      pickMap.on("click", function (e) { setPoint(e.latlng.lat, e.latlng.lng); });
+      setTimeout(function () { pickMap.invalidateSize(); }, 200);
+    }).catch(function () { var o = $("jc-coords"); if (o) o.textContent = "The map could not be loaded."; });
+  });
   var geoBtn = $("jc-geo");
   if (geoBtn) geoBtn.addEventListener("click", function () {
     var out = $("jc-coords");
-    if (!navigator.geolocation) { out.textContent = "Location isn't available in this browser."; return; }
-    out.textContent = "Getting your location…";
+    if (!navigator.geolocation) { if (out) out.textContent = "Location isn't available in this browser."; return; }
+    if (out) out.textContent = "Getting your location\u2026";
     navigator.geolocation.getCurrentPosition(function (pos) {
-      geo = { lat: +pos.coords.latitude.toFixed(5), lng: +pos.coords.longitude.toFixed(5) };
-      out.innerHTML = "Location added: " + geo.lat + ", " + geo.lng +
-        ' · <button type="button" class="jc-clear-geo" style="background:none;border:0;color:var(--cf-red);cursor:pointer;font:inherit;text-decoration:underline">remove</button>';
-      out.querySelector(".jc-clear-geo").addEventListener("click", function () { geo = null; out.textContent = ""; });
-    }, function () { out.textContent = "Could not get your location."; });
+      var la = pos.coords.latitude, ln = pos.coords.longitude;
+      if (pickMap) pickMap.setView([la, ln], 15);
+      setPoint(la, ln);
+    }, function () { if (out) out.textContent = "Could not get your location."; });
   });
+  var locClear = $("jc-loc-clear");
+  if (locClear) locClear.addEventListener("click", clearLocation);
 
   /* ---- post ---- */
   function post() {
@@ -146,10 +192,14 @@
         if (res.ok && res.j && res.j.ok) {
           st.innerHTML = 'Posted! <a href="journal.html">See it on the journal →</a>';
           st.className = "jc-status ok";
-          $("jc-title").value = ""; $("jc-note").value = ""; clearPhoto(); geo = null;
-          var co = $("jc-coords"); if (co) co.textContent = "";
+          $("jc-title").value = ""; $("jc-note").value = ""; clearPhoto(); clearLocation();
         } else { st.textContent = (res.j && res.j.error) || "Could not post. Please try again."; st.className = "jc-status err"; }
       }).catch(function () { btn.disabled = false; st.textContent = "Could not reach the server."; st.className = "jc-status err"; });
   }
   var pb = $("jc-post"); if (pb) pb.addEventListener("click", post);
+
+  /* ---- restore a remembered session (e.g. after posting and coming back) ---- */
+  (function restore() {
+    try { var s = sessionStorage.getItem(STORE_KEY); if (s) { var a = JSON.parse(s); creds = { username: a.username, password: a.password }; showForm(a.name); } } catch (e) {}
+  })();
 })();

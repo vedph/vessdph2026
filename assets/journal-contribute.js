@@ -121,11 +121,18 @@
   }
   var pickMap = null, pickMarker = null;
   function showCoords() { var o = $("jc-coords"); if (o) o.textContent = geo ? (geo.lat + ", " + geo.lng) : ""; }
+  function pinIcon() {
+    return L.divIcon({
+      className: "jc-pin",
+      html: '<svg width="28" height="40" viewBox="0 0 28 40" xmlns="http://www.w3.org/2000/svg"><path d="M14 1C6.8 1 1 6.8 1 14c0 9.6 13 24.4 13 24.4S27 23.6 27 14C27 6.8 21.2 1 14 1z" fill="#b01e28" stroke="#fff" stroke-width="2"/><circle cx="14" cy="14" r="4.5" fill="#fff"/></svg>',
+      iconSize: [28, 40], iconAnchor: [14, 39], popupAnchor: [0, -36]
+    });
+  }
   function setPoint(lat, lng) {
     geo = { lat: +(+lat).toFixed(5), lng: +(+lng).toFixed(5) };
     if (pickMap) {
       if (!pickMarker) {
-        pickMarker = L.marker([geo.lat, geo.lng], { draggable: true }).addTo(pickMap);
+        pickMarker = L.marker([geo.lat, geo.lng], { draggable: true, icon: pinIcon() }).addTo(pickMap);
         pickMarker.on("dragend", function () { var ll = pickMarker.getLatLng(); geo = { lat: +ll.lat.toFixed(5), lng: +ll.lng.toFixed(5) }; showCoords(); });
       } else pickMarker.setLatLng([geo.lat, geo.lng]);
     }

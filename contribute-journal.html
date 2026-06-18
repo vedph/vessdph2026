@@ -35,6 +35,11 @@
   .jc-row{display:flex;gap:1.2rem;flex-wrap:wrap}
   .jc-row .jc-field{flex:1 1 14rem;margin-bottom:0}
   .jc-coords{font:0.82rem var(--mono);color:var(--cf-red);margin:.5rem 0 0;min-height:1.1em}
+  #jc-pickmap{height:300px;width:100%;border:1px solid var(--rule-strong);border-radius:6px;overflow:hidden;margin:.6rem 0 0}
+  .jc-pin{background:transparent;border:0;line-height:0}
+  .jc-pin svg{display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+  .jc-loc-tools{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:.55rem 0 0}
+  .btn.small{padding:.35rem .75rem;font-size:.85rem}
   .jc-out{border-top:1px solid var(--rule);margin-top:2rem;padding-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
   .jc-status{flex-basis:100%;font-size:.9rem;margin:.6rem 0 0;min-height:1.2em}
   .jc-status.err{color:var(--cf-red)}
@@ -143,9 +148,16 @@
 
       <div class="jc-field">
         <label>Location <span class="jc-opt">(optional)</span></label>
-        <p class="jc-hint">Add a point so the entry appears on the journal map. Your location is only used if you tap the button.</p>
-        <button type="button" class="btn ghost" id="jc-geo">&#128205; Use my current location</button>
-        <p class="jc-coords" id="jc-coords"></p>
+        <p class="jc-hint">Place a pin anywhere on the map so the entry shows on the journal map &mdash; not only where you are. Click to drop the pin, drag it to fine-tune.</p>
+        <button type="button" class="btn ghost" id="jc-loc-toggle">&#128205; Add a location on the map</button>
+        <div id="jc-loc" hidden>
+          <div id="jc-pickmap"></div>
+          <div class="jc-loc-tools">
+            <button type="button" class="btn ghost small" id="jc-geo">Use my current location</button>
+            <button type="button" class="btn ghost small" id="jc-loc-clear">Clear pin</button>
+            <span class="jc-coords" id="jc-coords"></span>
+          </div>
+        </div>
       </div>
 
       <div class="jc-out">

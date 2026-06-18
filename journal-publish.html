@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Journal — publish helper (organiser only)</title>
+<style>
+  :root{
+    --ink:#1d1f22; --ink-soft:#3a3d42; --paper:#ffffff; --paper-2:#f7f6f4; --paper-3:#efece7;
+    --rule:#e5e4e0; --rule-strong:#cdccc7; --accent:#8b1d33; --ok:#1d6b3a; --warn:#8a5a00; --err:#9a1f2b;
+    --sans: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+    --serif:"EB Garamond", Georgia, "Times New Roman", serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:780px;margin:0 auto;padding:2rem max(1.2rem,env(safe-area-inset-left)) 4rem}
+  h1{font-family:var(--serif);font-weight:600;font-size:2rem;line-height:1.1;margin:0 0 .2rem}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin:2.2rem 0 .6rem;
+    padding-top:1.1rem;border-top:1px solid var(--rule)}
+  p{margin:.5rem 0;color:var(--ink-soft)}
+  .lead{color:var(--ink-soft);max-width:60ch}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--paper-3);
+    padding:.08em .35em;border-radius:4px;font-size:.88em}
+  .pill{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:.12rem .55rem;vertical-align:middle}
+  .note{font-size:.92rem}
+  .status{margin:.8rem 0;padding:.6rem .8rem;border-radius:8px;font-size:.92rem;background:var(--paper-2);border:1px solid var(--rule)}
+  .status.ok{background:#eef6f0;border-color:#cfe6d6;color:var(--ok)}
+  .status.warn{background:#fbf5e6;border-color:#ecdcae;color:var(--warn)}
+  .status.err{background:#fbecec;border-color:#eccccc;color:var(--err)}
+  #drop{margin:1rem 0;border:2px dashed var(--rule-strong);border-radius:12px;padding:1.6rem 1rem;
+    text-align:center;color:var(--ink-soft);background:var(--paper-2);cursor:pointer;transition:border-color .15s,background .15s}
+  #drop.drag{border-color:var(--accent);background:#fbf2f4}
+  #drop b{color:var(--ink)}
+  .btn{font:inherit;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);
+    border-radius:8px;padding:.5rem .9rem;cursor:pointer}
+  .btn.ghost{color:var(--accent);background:#fff}
+  .btn.small{padding:.32rem .6rem;font-size:.86rem}
+  .btn:disabled{opacity:.5;cursor:default}
+  .row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.6rem 0}
+  textarea{width:100%;min-height:320px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;
+    line-height:1.45;border:1px solid var(--rule-strong);border-radius:10px;padding:.8rem;background:var(--paper-2);color:var(--ink);white-space:pre}
+  .card{border:1px solid var(--rule);border-radius:10px;padding:.8rem 1rem;margin:.7rem 0;background:#fff}
+  .card h3{font-family:var(--sans);font-size:1rem;margin:0 0 .25rem}
+  .card .meta{font-size:.86rem;color:var(--ink-soft);margin:.1rem 0}
+  .card .consent{font-size:.86rem;color:var(--warn);margin:.4rem 0 .2rem}
+  .card .x{float:right;border:none;background:none;color:var(--ink-soft);font-size:1.1rem;cursor:pointer;line-height:1}
+  .folder{font-size:.86rem;color:var(--ink-soft);margin:.5rem 0 0}
+  .empty{color:var(--ink-soft);font-style:italic}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Journal — publish helper <span class="pill">organiser only</span></h1>
+  <p class="lead">Turns an <b>approved</b> contribution <code>.zip</code> into the exact files to commit.
+  Runs entirely in your browser — nothing is uploaded. Use this only <b>after</b> you have reviewed the
+  entry's text and any photo for content and for the consent of anyone recognisable.</p>
+
+  <div id="base-status" class="status">Loading current entries…</div>
+
+  <div id="drop" tabindex="0" role="button" aria-label="Add files">
+    <p style="margin:.2rem 0"><b>Drop approved <code>.zip</code> file(s) here</b>, or tap to choose.</p>
+    <p class="note" style="margin:.2rem 0">You can drop several at once. To merge with what's already published when the
+      list above didn't load, also drop your current <code>data/journal.js</code>.</p>
+  </div>
+  <input type="file" id="file" multiple accept=".zip,.js,application/zip" hidden>
+  <div id="flash"></div>
+
+  <div id="entries"></div>
+
+  <h2>1 · Replace <code>data/journal.js</code></h2>
+  <p class="note">Copy this and paste it as the <b>entire</b> contents of <code>data/journal.js</code> (replace everything).</p>
+  <div class="row">
+    <button class="btn" id="copy" disabled>Copy</button>
+    <button class="btn ghost" id="dljs" disabled>Download data/journal.js</button>
+  </div>
+  <textarea id="out" readonly spellcheck="false" placeholder="Add a .zip above to generate the file…"></textarea>
+
+  <h2>2 · Upload the image files</h2>
+  <p class="note">Download each entry's photo and thumbnail below, then upload them <b>all into one folder</b>:
+    <code>assets/journal/photos/</code>. (The thumbnail keeps a <code>.thumb.jpg</code> name, so both fit in the same folder.)</p>
+  <div id="images"><p class="empty">No images yet.</p></div>
+
+  <h2>3 · Commit</h2>
+  <p class="note">Commit the edited <code>data/journal.js</code> together with the image files. After about a minute the
+    entry appears on <a href="journal.html">the Journal</a> (and on its map if it has coordinates). Only entries with
+    <code>status:"approved"</code> are ever shown.</p>
+</main>
+
+<script>
+/* ===PURE-START===  (logic below is also unit-tested in Node; keep browser-only APIs out of here) */
+function readU16(b,o){ return b[o] | (b[o+1]<<8); }
+function readU32(b,o){ return (b[o] | (b[o+1]<<8) | (b[o+2]<<16) | (b[o+3]<<24)) >>> 0; }
+
+/* Parse a STORE (uncompressed) ZIP — the format produced by journal-contribute.js.
+   Walks local file headers (sig 0x04034b50, 30-byte fixed header, flags 0, sizes present). */
+function parseZipStore(buf){
+  var out = [], i = 0, n = buf.length, dec = new TextDecoder();
+  while (i + 4 <= n){
+    var sig = readU32(buf, i);
+    if (sig !== 0x04034b50) break;            // central directory / EOCD → stop
+    var compSize = readU32(buf, i+18);
+    var nameLen  = readU16(buf, i+26);
+    var extraLen = readU16(buf, i+28);
+    var nameStart = i + 30;
+    var dataStart = nameStart + nameLen + extraLen;
+    var name  = dec.decode(buf.subarray(nameStart, nameStart + nameLen));
+    var bytes = buf.subarray(dataStart, dataStart + compSize);
+    out.push({ name: name, bytes: bytes });
+    i = dataStart + compSize;
+  }
+  return out;
+}
+
+function baseName(p){ return String(p).split("/").pop(); }
+
+/* From the parsed files, pull out entry.json and the (optional) photo + thumbnail. */
+function extractSubmission(files){
+  var ej = files.find(function(f){ return /(^|\/)entry\.json$/.test(f.name); });
+  if(!ej) return { error: "no entry.json inside — is this a Journal package?" };
+  var entry;
+  try { entry = JSON.parse(new TextDecoder().decode(ej.bytes)); }
+  catch(e){ return { error: "entry.json is not valid JSON." }; }
+  if(!entry || !entry.id) return { error: "entry.json has no id." };
+
+  var imgs = files.filter(function(f){ return /\.(jpe?g|png)$/i.test(f.name); });
+  var image = null, thumb = null;
+  if(entry.image) image = files.find(function(f){ return f.name === entry.image; }) || null;
+  if(entry.thumb) thumb = files.find(function(f){ return f.name === entry.thumb; }) || null;
+  if(!image) image = imgs.find(function(f){ return /\/photos\//.test(f.name); }) || null;
+  if(!thumb) thumb = imgs.find(function(f){ return /\/thumbs\//.test(f.name); }) || null;
+  // last resort: if exactly one image present, treat it as the full photo
+  if(!image && !thumb && imgs.length === 1) image = imgs[0];
+
+  return {
+    entry: entry,
+    imageBytes: image ? image.bytes : null,
+    thumbBytes: thumb ? thumb.bytes : null
+  };
+}
+
+/* Rewrite the photo/thumb paths to a single flat folder, and guarantee status. */
+function normalizeEntry(entry){
+  var e = {}; for(var k in entry){ if(Object.prototype.hasOwnProperty.call(entry,k)) e[k]=entry[k]; }
+  if(e.image) e.image = "assets/journal/photos/" + e.id + ".jpg";
+  if(e.thumb) e.thumb = "assets/journal/photos/" + e.id + ".thumb.jpg";
+  e.status = "approved";
+  return e;
+}
+
+/* Merge existing + new entries: new replaces same id; newest first (matches journal.js). */
+function mergeEntries(base, news){
+  var byId = {}, order = [];
+  function put(e){ if(e && e.id){ if(!(e.id in byId)) order.push(e.id); byId[e.id] = e; } }
+  (base || []).forEach(put);
+  (news || []).forEach(put);
+  var arr = order.map(function(id){ return byId[id]; });
+  arr.sort(function(a,b){ return String(b.datetime||"").localeCompare(String(a.datetime||"")); });
+  return arr;
+}
+
+function serializeJournalJs(entries, header){
+  return String(header).replace(/\s+$/,"") + "\n\n" +
+    "window.JOURNAL = " + JSON.stringify(entries, null, 2) + ";\n";
+}
+
+var DEFAULT_HEADER =
+"/* journal.js \u2014 APPROVED journal & field-note entries shown on journal.html.\n" +
+"   Only entries with status:\"approved\" are rendered. This file is generated by\n" +
+"   journal-publish.html after the organiser has reviewed each entry for content\n" +
+"   and for the consent of anyone recognisable. Do NOT commit unreviewed media. */";
+
+function parseJournalCode(code){
+  try { var win = {}; (new Function("window", code))(win); return Array.isArray(win.JOURNAL) ? win.JOURNAL : []; }
+  catch(e){ return null; }
+}
+/* ===PURE-END=== */
+
+(function(){
+  "use strict";
+  if (typeof document === "undefined") return; // running under the Node test harness
+
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { baseEntries: [], baseHeader: DEFAULT_HEADER, subs: [] };
+
+  function setBaseStatus(msg, cls){ var s=$("base-status"); s.textContent=msg; s.className="status"+(cls?(" "+cls):""); }
+  function flash(msg, cls){ var f=$("flash"); var d=document.createElement("div"); d.className="status"+(cls?(" "+cls):"");
+    d.textContent=msg; f.appendChild(d); setTimeout(function(){ d.remove(); }, 6000); }
+
+  function dlBytes(bytes, fname, mime){
+    var blob = new Blob([bytes], { type: mime || "application/octet-stream" });
+    var url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = fname; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){
+    return ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" })[c]; }); }
+
+  function recompute(){
+    var merged = mergeEntries(state.baseEntries, state.subs.map(function(s){ return s.entry; }));
+    var text = serializeJournalJs(merged, state.baseHeader);
+    $("out").value = text;
+    var has = state.subs.length > 0;
+    $("copy").disabled = false; $("dljs").disabled = false;
+    renderEntries(); renderImages();
+  }
+
+  function renderEntries(){
+    var box = $("entries"); box.innerHTML = "";
+    if(!state.subs.length) return;
+    state.subs.forEach(function(s, idx){
+      var e = s.entry;
+      var card = document.createElement("div"); card.className = "card";
+      var when = String(e.datetime||"").replace("T"," ").slice(0,16);
+      var who = (e.attribution === "named" ? (e.authorDisplay || "named") : "anonymous");
+      var photo = s.imageBytes ? "photo + thumbnail" : "no photo";
+      card.innerHTML =
+        '<button class="x" title="Remove" data-i="'+idx+'">\u00d7</button>' +
+        '<h3>'+esc(e.title || e.id)+'</h3>' +
+        '<p class="meta">'+esc(when)+' · '+esc(e.role||"participant")+' · '+esc(who)+' · '+esc(photo)+
+          (e.lat!=null ? ' · has location' : '')+'</p>' +
+        (e.caption ? '<p class="meta">'+esc(e.caption)+'</p>' : '') +
+        '<p class="consent">Reviewed for content and consent before publishing? This goes live publicly.</p>';
+      box.appendChild(card);
+    });
+    Array.prototype.forEach.call(box.querySelectorAll(".x"), function(btn){
+      btn.addEventListener("click", function(){
+        var i = +btn.getAttribute("data-i"); state.subs.splice(i,1); recompute();
+      });
+    });
+  }
+
+  function renderImages(){
+    var box = $("images"); box.innerHTML = "";
+    var withImg = state.subs.filter(function(s){ return s.imageBytes; });
+    if(!withImg.length){ box.innerHTML = '<p class="empty">No images to upload'+(state.subs.length?" (these entries are text only).":".")+'</p>'; return; }
+    withImg.forEach(function(s){
+      var e = s.entry, wrap = document.createElement("div"); wrap.className = "card";
+      wrap.innerHTML = '<h3>'+esc(e.id)+'</h3>';
+      var row = document.createElement("div"); row.className = "row";
+      var bImg = document.createElement("button"); bImg.className="btn small"; bImg.textContent="Download photo ("+e.id+".jpg)";
+      bImg.addEventListener("click", function(){ dlBytes(s.imageBytes, e.id+".jpg", "image/jpeg"); });
+      row.appendChild(bImg);
+      if(s.thumbBytes){
+        var bTh = document.createElement("button"); bTh.className="btn small ghost"; bTh.textContent="Download thumbnail ("+e.id+".thumb.jpg)";
+        bTh.addEventListener("click", function(){ dlBytes(s.thumbBytes, e.id+".thumb.jpg", "image/jpeg"); });
+        row.appendChild(bTh);
+      }
+      wrap.appendChild(row);
+      var f = document.createElement("p"); f.className="folder";
+      f.innerHTML = "Put "+(s.thumbBytes?"both files":"this file")+" in <code>assets/journal/photos/</code> (paths already match the entry above).";
+      wrap.appendChild(f);
+      box.appendChild(wrap);
+    });
+  }
+
+  function applyBaseText(txt, srcLabel){
+    var entries = parseJournalCode(txt);
+    if(entries === null){ setBaseStatus("That file didn't parse as a journal.js (no window.JOURNAL found).", "err"); return; }
+    state.baseEntries = entries;
+    var idx = txt.indexOf("window.JOURNAL");
+    if(idx > 0){ var h = txt.slice(0, idx).replace(/\s+$/,""); if(h) state.baseHeader = h; }
+    var n = entries.length;
+    setBaseStatus("Loaded "+n+" current entr"+(n===1?"y":"ies")+" from "+srcLabel+".", "ok");
+    recompute();
+  }
+
+  async function loadBaseFromSite(){
+    try{
+      var res = await fetch("data/journal.js", { cache: "no-store" });
+      if(!res.ok) throw new Error("http "+res.status);
+      var txt = await res.text();
+      applyBaseText(txt, "the published site");
+    }catch(e){
+      setBaseStatus("Couldn't read the live data/journal.js \u2014 open this tool from the published site, or drop your current data/journal.js below. Assuming an empty journal for now.", "warn");
+      state.baseEntries = []; recompute();
+    }
+  }
+
+  async function classifyAndRead(file){
+    var name = file.name || "";
+    var isZip = /\.zip$/i.test(name), isJs = /\.js$/i.test(name);
+    if(!isZip && !isJs){
+      var head = new Uint8Array(await file.slice(0,4).arrayBuffer());
+      if(head[0]===0x50 && head[1]===0x4b) isZip = true; else isJs = true;
+    }
+    return { name: name, isZip: isZip };
+  }
+
+  async function handleFiles(list){
+    for(var idx=0; idx<list.length; idx++){
+      var file = list[idx];
+      try{
+        var c = await classifyAndRead(file);
+        if(c.isZip){
+          var buf = new Uint8Array(await file.arrayBuffer());
+          var files = parseZipStore(buf);
+          if(!files.length){ flash(c.name+": couldn't read the .zip (unexpected format).", "err"); continue; }
+          var sub = extractSubmission(files);
+          if(sub.error){ flash(c.name+": "+sub.error, "err"); continue; }
+          sub.entry = normalizeEntry(sub.entry);
+          state.subs = state.subs.filter(function(s){ return s.entry.id !== sub.entry.id; });
+          state.subs.push(sub);
+          flash("Added \u201c"+(sub.entry.title||sub.entry.id)+"\u201d.", "ok");
+        } else {
+          var txt = await file.text();
+          applyBaseText(txt, c.name);
+        }
+      }catch(err){ flash((file.name||"file")+": "+(err && err.message ? err.message : "could not read"), "err"); }
+    }
+    recompute();
+  }
+
+  // wire up
+  var drop = $("drop"), fileInput = $("file");
+  drop.addEventListener("click", function(){ fileInput.click(); });
+  drop.addEventListener("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); fileInput.click(); } });
+  fileInput.addEventListener("change", function(){ if(fileInput.files && fileInput.files.length){ handleFiles(fileInput.files); fileInput.value=""; } });
+  ["dragenter","dragover"].forEach(function(t){ drop.addEventListener(t, function(ev){ ev.preventDefault(); drop.classList.add("drag"); }); });
+  ["dragleave","drop"].forEach(function(t){ drop.addEventListener(t, function(ev){ ev.preventDefault(); drop.classList.remove("drag"); }); });
+  drop.addEventListener("drop", function(ev){ var dt=ev.dataTransfer; if(dt && dt.files && dt.files.length){ handleFiles(dt.files); } });
+
+  $("copy").addEventListener("click", function(){
+    var ta = $("out");
+    function done(){ var b=$("copy"); var t=b.textContent; b.textContent="Copied ✓"; setTimeout(function(){ b.textContent=t; }, 1400); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(ta.value).then(done, function(){ ta.select(); document.execCommand && document.execCommand("copy"); done(); });
+    } else { ta.select(); document.execCommand && document.execCommand("copy"); done(); }
+  });
+  $("dljs").addEventListener("click", function(){
+    dlBytes(new TextEncoder().encode($("out").value), "journal.js", "text/javascript");
+  });
+
+  loadBaseFromSite();
+})();
+</script>
+</body>
+</html>

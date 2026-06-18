@@ -518,7 +518,7 @@ The outputs of both systems were manually reviewed, tested against the local sou
 
 ## Credits
 
-The site was developed for the Venice Centre for Digital and Public Humanities under the responsibility of **Emmanuela Carbé**.
+The site was developed for the Venice Centre for Digital and Public Humanities under the responsibility of Emmanuela Carbé.
 
 The programme itself — including sessions, speakers and scholarly content — is the work of the Venice Centre for Digital and Public Humanities and its contributors.
 

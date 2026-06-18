@@ -202,7 +202,7 @@ window.SCHOOL = {
       date: "2026-07-06",
       label: "Day One",
       area: "Area 1 \u00b7 Digital Archaeology and Public Archaeology",
-      theme: "Absence, Mediation, and (Re-)Construction of Cultural Heritage",
+      theme: "Absence, Mediation, and (Re-\u2060)Construction of Cultural Heritage",
       intro:
         "A one-day strand on how cultural heritage is shaped through absence, " +
         "narrative, and selective visibility. It opens with Marco Polo — globally " +

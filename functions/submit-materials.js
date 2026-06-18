@@ -9,9 +9,9 @@
 
    Receives a submission from contribute.html, verifies the shared faculty
    password SERVER-SIDE, validates and sanitises everything, then writes the
-   content + any files to a *moderation branch* in the repository via the
-   GitHub REST API. New material is always saved as status:"pending"; the
-   public site never shows it until the organiser merges the branch.
+   content + any files to the repository via the GitHub REST API. Material is
+   saved as status:"published" on the configured branch and goes live on the
+   site directly; the shared password is the only gate (no separate review).
 
    SECRETS — set these in the deployment environment, NEVER in the repo or in
    client JavaScript:
@@ -21,14 +21,14 @@
    CONFIG (env vars, not secret):
      GITHUB_OWNER              e.g. "vedph"
      GITHUB_REPO               e.g. "vessdph2026"
-     GITHUB_BRANCH             e.g. "materials-submissions"   (must already exist)
+     GITHUB_BRANCH             e.g. "main"   (the live branch; submissions publish here)
      ALLOW_ORIGIN              e.g. "https://vedph.github.io" (the public site)
 
    INPUT — the client POSTs a proposed-revision package:
      { password, session, mode, changesSummary,
        content: { abstract, bioNote, bibliography[], resources[], files[] } }
-   (a flat legacy body is also accepted). The package is written as a PROPOSED
-   revision with status:"pending" and is never auto-published.
+   (a flat legacy body is also accepted). The package is written with
+   status:"published" and goes live immediately on the configured branch.
 
    This file is written as a Cloudflare Worker (export default { fetch }).
    To deploy on Netlify Functions or Cloudflare Pages Functions, keep
@@ -222,15 +222,15 @@ async function handleSubmit(body, env) {
       return { status: 400, payload: { ok: false, error: `File too large: ${safeName}` } };
     }
     const path = `materials/${session}/${safeName}`;
-    const ok = await putFile(base, path, b64, `Faculty submission (pending): ${path}`, branch, ghHeaders);
+    const ok = await putFile(base, path, b64, `Faculty submission: ${path}`, branch, ghHeaders);
     if (!ok) return { status: 502, payload: { ok: false, error: `Could not store ${safeName}.` } };
     fileEntries.push({ label: cleanText((f && f.label) || safeName, 200), href: path, type: ext });
   }
 
-  // 5. write content/<session>.json with status:"pending" (a PROPOSED revision; never auto-published)
+  // 5. write content/<session>.json with status:"published" (goes live on the configured branch)
   const payload = {
     session,
-    status: "pending",
+    status: "published",
     ...(abstract ? { abstract } : {}),
     ...(bioNote ? { bioNote } : {}),
     ...(bibliography.length ? { bibliography } : {}),
@@ -247,11 +247,11 @@ async function handleSubmit(body, env) {
   const contentPath = `content/${session}.json`;
   const ok = await putFile(
     base, contentPath, utf8ToBase64(JSON.stringify(payload, null, 2) + "\n"),
-    `Faculty proposed revision (pending): ${session}`, branch, ghHeaders
+    `Faculty materials update: ${session}`, branch, ghHeaders
   );
   if (!ok) return { status: 502, payload: { ok: false, error: "Could not store the submission." } };
 
-  return { status: 200, payload: { ok: true, message: "Proposed revision submitted for review." } };
+  return { status: 200, payload: { ok: true, message: "Your session materials are now live." } };
 }
 
 /* ---------- Cloudflare Worker wrapper ----------

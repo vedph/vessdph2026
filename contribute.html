@@ -197,10 +197,12 @@
       </div>
 
       <div class="ed-submit" id="ed-submit-box" hidden>
-        <label for="ed-pass">Teacher password</label>
-        <p class="ed-hint">You'll receive this from the organisers. It's checked on the server and is
+        <label for="ed-user">Username</label>
+        <p class="ed-hint">Your personal login from the organisers. It's checked on the server and is
           never stored on this page.</p>
-        <input id="ed-pass" type="password" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <input id="ed-user" type="text" autocomplete="username" autocapitalize="off" spellcheck="false">
+        <label for="ed-pass" style="margin-top:1rem">Password</label>
+        <input id="ed-pass" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false">
         <div>
           <button type="button" class="btn solid" id="ed-submit">Submit &amp; publish</button>
         </div>

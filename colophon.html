@@ -84,7 +84,7 @@
       collects short reflections, field notes and photographs contributed during the week, with optional
       geolocation; the community map shows an aggregated, counts-only view of the institutions represented,
       without naming individuals. Teachers can also add or update their own session content — abstract, links and
-      reading — through a password-protected form; submissions are published directly to the site.</p>
+      reading — through a password-protected form. These submissions are handled by a small serverless function (a <a href="https://workers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Worker</a>) that checks the password, validates the input, and commits the materials to the repository through the <a href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub REST API</a>; from there they publish like any other change. The site itself stays static — this function is the only server-side component.</p>
 
     <h2>Accessibility and offline use</h2>
     <p>The site supports keyboard navigation and reduced-motion preferences, and degrades gracefully:

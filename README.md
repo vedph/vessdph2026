@@ -159,16 +159,19 @@ also validates the structure; `tools/check-site.js` checks the same model in CI.
 abstract, bio note, structured resources and bibliography, and files — without relying on unstructured email
 exchanges.
 
+**Live page:** https://vedph.github.io/vessdph2026/contribute.html — open it directly; it is
+intentionally **not** linked in the site navigation. A teacher picks their session and enters the
+shared password.
+
 ### Proposed-revision workflow
 
 When a faculty member opens the page for a session, it loads the core metadata from
 `data/program.js` and then tries to load the currently published
 `content/YYYY-MM-DD-HHMM.json`. **If a published file exists, the form pre-loads it** and a
-banner makes clear the faculty member is preparing a *proposed revision*, not publishing
-directly. They can edit the abstract and bio note, add bibliography and resource rows,
+banner makes clear the faculty member is updating already-published materials. They can edit the abstract and bio note, add bibliography and resource rows,
 reorder them with **Move up / Move down**, remove them, and **Keep / Replace / Remove** each
-existing file (default **Keep**). New items are added to the revision. Nothing is published
-from this page; changes appear only after review by a project maintainer.
+existing file (default **Keep**). New items are added. When submitted through the online
+flow (below), the changes publish to the site directly; the shared password is the gate.
 
 **Preventing accidental deletion.** Because the form is pre-loaded, list rows and files
 change only on an explicit action (the row's ×, or a file's Replace/Remove), and existing
@@ -193,7 +196,7 @@ The page produces a **proposed-revision package** (download: `<session>.revision
   "session": "2026-07-09-1400",
   "mode": "revision",
   "basedOn": "published",
-  "status": "pending",
+  "status": "published",
   "changesSummary": "Added slides and updated bibliography.",
   "content": {
     "abstract": "Revised abstract.",
@@ -221,8 +224,9 @@ It works in two modes:
   how the page behaves until the serverless function below is deployed.
 - **Online submission (optional).** With a small serverless function deployed and its public
   URL set in `assets/editor.js` (`SUBMIT_ENDPOINT`), faculty enter a shared password and
-  submit directly. The function treats the package as a proposed revision, embeds any new
-  file bytes, and writes it as **pending** on the submissions branch — it never auto-publishes.
+  submit directly. The function validates the package, embeds any new
+  file bytes, and writes it as **published** to the configured branch (e.g. `main`) — it goes
+  live immediately; the shared password is the only gate.
 
 ### Shared faculty password
 
@@ -244,8 +248,8 @@ Pages Functions with a thin wrapper change). On each submission it:
 4. validates files — allowed extensions only (`pdf, md, txt, jpg, jpeg, png, webp`),
    10 MB max each, max 12, with sanitised filenames;
 5. writes any files to `materials/<session>/` and the metadata to
-   `content/<session>.json` with `"status": "pending"`, on the submissions branch,
-   via the GitHub REST Contents API;
+   `content/<session>.json` with `"status": "published"`, on the branch named in
+   `GITHUB_BRANCH` (e.g. `main`), via the GitHub REST Contents API;
 6. returns a clear success/failure message.
 
 The function also checks the session id against a hardcoded **`KNOWN_SESSIONS`** allowlist
@@ -263,7 +267,7 @@ FACULTY_UPLOAD_PASSWORD   # secret: the shared faculty password
 GITHUB_TOKEN              # secret: fine-grained PAT, THIS repo only, Contents: R/W
 GITHUB_OWNER              # e.g. vedph
 GITHUB_REPO               # e.g. vessdph2026
-GITHUB_BRANCH             # e.g. materials-submissions
+GITHUB_BRANCH             # e.g. main  (the live branch — submissions publish here)
 ALLOW_ORIGIN              # e.g. https://vedph.github.io
 ```
 
@@ -273,34 +277,34 @@ For Cloudflare: put the non-secret vars in `wrangler.toml` (see
 then `wrangler deploy`. Finally set the resulting Worker URL as `SUBMIT_ENDPOINT` in
 `assets/editor.js`.
 
-### Where submissions go, and how to approve them
+### Where submissions go
 
-Submissions are committed to a dedicated **`materials-submissions`** branch, so the
-live site (served from `main`) never shows them until reviewed and merged by a maintainer. **This branch must be
-created once, manually, before the function can write to it** (the Contents API cannot
-write to a non-existent branch).
+Submissions are committed straight to the branch named in `GITHUB_BRANCH` (set it to `main`
+for live publishing) as `"status": "published"`, so they appear on the site within about a
+minute — there is **no separate review or merge step**. The safeguards are the shared
+password, the `KNOWN_SESSIONS` allowlist, the file-type and size limits, and the input
+sanitising in the function.
 
-To approve: review the branch on GitHub, then merge it into `main` (a pull request is
-the simplest path). On merge, remove the `"status": "pending"` line from the session's
-`content/<session>.json` (or set it to `"approved"`) so the material becomes visible.
-As a safety net, even if a pending file reaches `main` by mistake, the session page and
-the OKF builder ignore anything still marked `"pending"`.
+**Want moderation instead?** Point `GITHUB_BRANCH` at a non-live branch (created once,
+manually — the Contents API cannot write to a missing branch) and merge it into `main`
+by hand after review; that restores the older review-and-merge flow. As a safety net, the
+session page and the OKF builder ignore any file still marked `"status": "pending"`, even
+if one reaches `main` by mistake.
 
 ### Testing
 
 The **client** can be tested locally with `python3 -m http.server` and the offline
 download flow (no backend). The **online flow** can only be tested once the function is
-deployed and `SUBMIT_ENDPOINT` is set: submit a session, confirm a pending commit lands
-on `materials-submissions`, merge it, clear the status, and verify the session page
-renders it. There is no way to test the live GitHub write without a real token and a
+deployed and `SUBMIT_ENDPOINT` is set: submit a session, confirm a `published` commit
+lands on the configured branch, and verify the session page renders it. There is no way to test the live GitHub write without a real token and a
 deployed function.
 
 ### Known limitations
 
-- The repository is public, so a committed "pending" file is technically reachable by
-  its raw URL even before approval — `status` controls *display*, not file existence.
-  For faculty academic materials this is low-risk; do not use this flow for sensitive
-  files.
+- Online submissions publish immediately and the repository is public, so anything sent
+  through this flow is live and reachable at once — there is **no pre-publication review**.
+  Use it only for materials you are happy to publish, keep the shared password restricted,
+  and do not use this flow for sensitive files.
 - Files are committed into Git, so they remain in history; keep them small and prefer
   external hosting for large assets. Removal on request requires editing the repo (and
   history rewriting to fully purge).
@@ -360,7 +364,13 @@ fails, the page falls back to downloading the JSON and images separately. Safe i
    `data/journal.js`.
 4. Commit and push. The entry then appears on `journal.html`.
 
-`README.txt` inside each package restates these steps.
+A small in-browser helper, **`journal-publish.html`** (organiser-only, `noindex`, not linked in
+the navigation), automates steps 2–3: drop the approved `.zip` into it and it produces the
+complete `data/journal.js` to paste and the renamed image files to upload into a single
+`assets/journal/photos/` folder (the thumbnail keeps a `.thumb.jpg` suffix so it sits in the same
+folder). Your review of content and consent in step 1 stays manual.
+
+`README.txt` inside each package restates the manual steps.
 
 ### Where things are stored
 
@@ -438,7 +448,10 @@ http://localhost:8080/
 
 The `okf/` directory contains a generated Open Knowledge Format representation of the programme.
 
-After editing `data/program.js` or session content files, regenerate it with:
+This is normally **automatic**: `.github/workflows/build-okf.yml` regenerates the bundle and
+commits it back on every push to `main` that touches `data/program.js`, `content/`, or the
+generator. To rebuild it locally — after editing `data/program.js` or session content files —
+run:
 
 ```bash
 node tools/build-okf.js
@@ -466,8 +479,8 @@ The `.nojekyll` file is included so that GitHub Pages serves the static files wi
 
 Before publishing, follow **`RELEASE.md`** (syntax/site checks, OKF regeneration, service
 worker version, map/offline/calendar checks, content and rights review, deploy and live
-verification). The CI workflow `.github/workflows/checks.yml` runs the syntax and site checks
-on every push to `main`.
+verification). On every push to `main`, `.github/workflows/build-okf.yml` rebuilds the OKF
+bundle automatically (see *Regenerating the Open Knowledge Format bundle*).
 
 ## Rights
 

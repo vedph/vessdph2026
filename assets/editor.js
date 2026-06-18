@@ -474,17 +474,19 @@
   function submitPayload(){
     var env = envelope();
     env.content.files = submitFiles();              // embed base64 for new files
+    env.username = (($("ed-user")||{}).value || "").trim().toLowerCase();
     env.password = (($("ed-pass")||{}).value || "");
     return env;
   }
   function submit(){
     if(!current) return;
     if(!SUBMIT_ENDPOINT){ setStatus("Online submission isn\u2019t set up yet \u2014 please use Download below.", "err"); return; }
+    var user = (($("ed-user")||{}).value || "").trim();
     var pass = ($("ed-pass")||{}).value || "";
-    if(!pass){ setStatus("Enter the faculty password to submit.", "err"); return; }
+    if(!user || !pass){ setStatus("Enter your username and password to submit.", "err"); return; }
     var btn = $("ed-submit"); if(btn) btn.disabled = true;
     setStatus("Submitting\u2026", "busy");
-    fetch(SUBMIT_ENDPOINT, {
+    fetch(SUBMIT_ENDPOINT.replace(/\/+$/,"") + "/materials", {
       method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(submitPayload())
     }).then(function(r){ return r.json().then(function(j){ return { ok:r.ok, j:j }; },
                                              function(){ return { ok:r.ok, j:null }; }); })

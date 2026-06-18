@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Venice Summer School in Digital and Public Humanities · 6–10 July 2026</title>
+<meta name="description" content="Advanced training in the theories, technologies and methods of the digital and public humanities, on the heritage of Venice. Ca' Foscari University of Venice, 6–10 July 2026.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Venice Summer School in Digital and Public Humanities">
+<meta property="og:description" content="Advanced training in digital and public humanities, on the cultural heritage of Venice. 6–10 July 2026, Ca' Foscari.">
+<meta property="og:url" content="https://vedph.github.io/vessdph2026/">
+<meta property="og:image" content="https://vedph.github.io/vessdph2026/assets/cover.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preload" as="image" href="assets/cover.jpg">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/eb-garamond-latin-600-normal.woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Ca' Foscari University of Venice — Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a class="on" aria-current="page" href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a href="colophon.html">Colophon</a>
+  </nav>
+</div></header>
+
+<!-- ============================ COVER ============================ -->
+<section class="cover">
+  <img class="cover-img" src="assets/cover.jpg" alt="Two people sitting on a wall by a Venetian canal, watching boats pass on the water">
+  <div class="cover-scrim"></div>
+  <div class="cover-inner wrap">
+    <p class="cover-kick kicker">Ca’ Foscari University of Venice · 6–10 July 2026</p>
+    <h1 class="cover-title">Venice Summer School<em>in Digital and Public Humanities</em></h1>
+    <div class="cover-cta">
+      <a class="btn solid" href="programme.html">See the programme →</a>
+      <a class="btn ghost-light" href="#wheel-section">The week at a glance ↓</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
+  <!-- ============================ AT A GLANCE (wheel) ============================ -->
+  <section class="wheel-sec" id="wheel-section">
+    <div class="wrap">
+      <p class="area kicker">The week at a glance</p>
+      <div class="wheel-wrap">
+        <div id="wheel"></div>
+        <div id="wheel-panel" class="wheel-panel" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ NAVIGATE ============================ -->
+  <section class="navcards wrap">
+    <p class="kicker">Explore</p>
+    <div class="navcards-grid">
+      <a class="navcard" href="programme.html">
+        <h3>Programme</h3>
+        <p>The full five-day schedule — search it, filter by type, add sessions to your calendar, find the venues on the map.</p>
+        <span class="go">Open the programme →</span>
+      </a>
+      <a class="navcard" href="people.html">
+        <h3>People</h3>
+        <p>The teachers and invited specialists, and a few figures on the 2026 cohort.</p>
+        <span class="go">Meet the teachers →</span>
+      </a>
+      <a class="navcard" href="https://www.unive.it/data/33113/2/113737" target="_blank" rel="noopener">
+        <h3>Registration &amp; info</h3>
+        <p>Practical information about taking part, on the Ca’ Foscari website.</p>
+        <span class="go">Ca’ Foscari ↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Venice Centre for Digital and Public Humanities</h3>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/program.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

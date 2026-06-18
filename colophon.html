@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colophon — Venice Summer School in Digital and Public Humanities 2026</title>
+<meta name="description" content="How this site was made: author, method and technologies.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Ca' Foscari University of Venice — Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a class="on" aria-current="page" href="colophon.html">Colophon</a>
+  </nav>
+</div></header>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow kicker"><a href="programme.html">← Back to the programme</a></p>
+    <h1 class="title">Colophon<em>how this site was made</em></h1>
+    <div class="title-rule"></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="colo wrap">
+    <p class="colo-lead">This site was developed for the Venice Centre for Digital and Public
+      Humanities under the responsibility of Emmanuela Carbé, using a static,
+      version-controlled workflow. AI coding assistants were used for pair programming, code review
+      and debugging; all programme data, textual content, structural decisions and final
+      implementation were manually reviewed before publication.</p>
+
+    <p>The programme itself — its sessions, speakers and scholarly content — is the work of the
+      Venice Centre for Digital and Public Humanities and its contributors.</p>
+
+    <p>Further details on the AI-assisted development workflow are available in the
+      <a href="https://github.com/vedph/vessdph2026/blob/main/README.md" target="_blank" rel="noopener">project README</a>.</p>
+
+    <h2>Method</h2>
+    <p>The programme is built from a single structured data file, which acts as its source of
+      truth. From this file are generated the schedule, the dedicated session pages, venue
+      information, calendar files, open data and machine-readable metadata, reducing the risk of
+      inconsistencies across the site. The Journal and the aggregated community map are driven by
+      their own small data files. The work was carried out iteratively and reviewed at each stage.</p>
+
+    <h2>Technical structure</h2>
+    <p>The site is a buildless static website: no framework, no build step, only HTML, CSS and vanilla
+      JavaScript, hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.
+      The programme — its schedule, the dedicated per-session pages (<code>session.html?s=…</code>), the
+      teacher listing and the aggregate figures — is rendered client-side from a canonical object in
+      <code>data/program.js</code>. The Journal and the community map are rendered from their own data
+      files, <code>data/journal.js</code> and <code>data/community-map.js</code>.</p>
+    <p>Typography uses <a href="https://fonts.google.com/specimen/EB+Garamond" target="_blank" rel="noopener">EB Garamond</a>
+      and <a href="https://www.ibm.com/plex/" target="_blank" rel="noopener">IBM Plex Mono</a>, self-hosted under
+      the <a href="https://openfontlicense.org/" target="_blank" rel="noopener">SIL Open Font License</a>.
+      The visual identity follows the Ca’ Foscari institutional palette and logo system.</p>
+    <p>The venue list is available without external requests. Three interactive maps — the venue map on the
+      programme page, the aggregated community map on the people page, and the Journal map — share the same
+      self-hosted <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a> library with
+      <a href="https://carto.com/basemaps/" target="_blank" rel="noopener">CARTO</a> tiles based on
+      <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> data,
+      and each one opens automatically when its page loads. Calendar files are generated in iCalendar format,
+      both for individual sessions and for the full week. The programme is also available as JSON, embedded as
+      <a href="https://json-ld.org/" target="_blank" rel="noopener">JSON-LD</a> structured data, and published
+      as an <a href="https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf" target="_blank" rel="noopener">Open
+      Knowledge Format</a> bundle — a directory of cross-linked markdown concepts, in the repository’s
+      <a href="https://github.com/vedph/vessdph2026/tree/main/okf" target="_blank" rel="noopener"><code>/okf/</code></a> folder.
+      This bundle is kept up to date automatically: whenever the programme data or session materials change in
+      the repository, a <a href="https://github.com/vedph/vessdph2026/actions" target="_blank" rel="noopener">GitHub
+      Action</a> rebuilds it and commits the result back, so the JSON, JSON-LD and OKF formats always match the
+      site with no manual step.</p>
+    <p>Two further sections extend the programme. The <a href="journal.html">Journal &amp; Field Notes</a> page
+      collects short reflections, field notes and photographs contributed during the week, with optional
+      geolocation; the community map shows an aggregated, counts-only view of the institutions represented,
+      without naming individuals. Teachers can also prepare a structured revision of their session content and
+      submit it for review — nothing is published until it has been reviewed and merged.</p>
+
+    <h2>Accessibility and offline use</h2>
+    <p>The site supports keyboard navigation and reduced-motion preferences, and degrades gracefully:
+      when a map cannot load, the underlying information stays accessible — the venue list, the Journal
+      timeline and the institutional figures remain readable without it. The site can also be installed as
+      a Progressive Web App and cached for offline reading.</p>
+
+    <h2>Credits and licences</h2>
+    <p>Fonts are used under the <a href="https://openfontlicense.org/" target="_blank" rel="noopener">SIL Open Font License</a>.
+      Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+      contributors; tiles © <a href="https://carto.com/" target="_blank" rel="noopener">CARTO</a>.
+      Mapping library: <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>, BSD-2-Clause.
+      Ca’ Foscari and partner marks are used according to their respective institutional identities.
+      Programme content © the school and its contributors.</p>
+
+    <h2>Acknowledgements</h2>
+    <p>The VeDPH warmly thanks everyone whose work behind the scenes made the Summer School
+      possible: the administrative office of the Department of Humanities (DSU) — in particular
+      Alessandra Bertazzolo and Alessio Parpagiola; the teaching office — in particular
+      Francesca Cibin and Laura Principi; the Development and Promotion unit, in particular Piera
+      Bordignon; the events and administrative offices of the Department of Linguistics and
+      Comparative Cultural Studies (DSLCC); and Daniele Baglioni, Director of the Department of
+      Humanities. Thanks also to the EUTOPIA DigIn connected community, and to all the keynote
+      speakers and teachers who generously gave their time to the School. A special thank-you goes
+      to the VeDPH’s technologist and DH facilitator, Elisa Corrò.</p>
+
+  
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Venice Centre for Digital and Public Humanities</h3>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/program.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

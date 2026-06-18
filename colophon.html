@@ -48,21 +48,25 @@
       <a href="https://github.com/vedph/vessdph2026/blob/main/README.md" target="_blank" rel="noopener">project README</a>.</p>
 
     <h2>Method</h2>
-    <p>One structured data file holds the programme: from it the site generates the schedule, the per-session pages, venue information, calendar files, open data and machine-readable metadata, so they stay consistent with one another. The Journal and the community map each have their own small data file.</p>
+    <p>One structured data file holds the programme: from it the site generates the schedule, the
+      per-session pages, venue information, calendar files, open data and machine-readable
+      metadata, so they stay consistent with one another. The Journal — short reflections and
+      photographs contributed during the school — is a separate, live feature. The work was carried
+      out iteratively and reviewed at each stage.</p>
 
     <h2>Technical structure</h2>
     <p>The site is a buildless static website: no framework, no build step, only HTML, CSS and vanilla
       JavaScript, hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.
       The programme — its schedule, the dedicated per-session pages (<code>session.html?s=…</code>), the
       teacher listing and the aggregate figures — is rendered client-side from a canonical object in
-      <code>data/program.js</code>. The Journal and the community map are rendered from their own data
-      files, <code>data/journal.js</code> and <code>data/community-map.js</code>.</p>
+      <code>data/program.js</code>. The Journal is contributory and is served by a small backend
+      (described below) rather than from a static file.</p>
     <p>Typography uses <a href="https://fonts.google.com/specimen/EB+Garamond" target="_blank" rel="noopener">EB Garamond</a>
       and <a href="https://www.ibm.com/plex/" target="_blank" rel="noopener">IBM Plex Mono</a>, self-hosted under
       the <a href="https://openfontlicense.org/" target="_blank" rel="noopener">SIL Open Font License</a>.
       The visual identity follows the Ca’ Foscari institutional palette and logo system.</p>
-    <p>The venue list is available without external requests. Three interactive maps — the venue map on the
-      programme page, the aggregated community map on the people page, and the Journal map — share the same
+    <p>The venue list is available without external requests. Two interactive maps — the venue map on the
+      programme page and the Journal map — share the same
       self-hosted <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a> library with
       <a href="https://carto.com/basemaps/" target="_blank" rel="noopener">CARTO</a> tiles based on
       <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> data,
@@ -76,16 +80,23 @@
       the repository, a <a href="https://github.com/vedph/vessdph2026/actions" target="_blank" rel="noopener">GitHub
       Action</a> rebuilds it and commits the result back, so the JSON, JSON-LD and OKF formats always match the
       site with no manual step.</p>
-    <p>Two further sections extend the programme. The <a href="journal.html">Journal &amp; Field Notes</a> page
-      collects short reflections, field notes and photographs contributed during the week, with optional
-      geolocation; the community map shows an aggregated, counts-only view of the institutions represented,
-      without naming individuals. Teachers can also add or update their own session content — abstract, links and
-      reading — through a password-protected form. These submissions are handled by a small serverless function (a <a href="https://workers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Worker</a>) that checks the password, validates the input, and commits the materials to the repository through the <a href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub REST API</a>; from there they publish like any other change. The site itself stays static — this function is the only server-side component.</p>
+    <p>Two contributory features extend the programme, both handled by a single small serverless function — a
+      <a href="https://workers.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Worker</a>, the only
+      server-side component. Teachers add or update their own session content — abstract, links and reading —
+      through a personal login: the Worker checks the credentials, validates the input, and commits the materials
+      to the repository through the <a href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub
+      REST API</a>, from where they publish like any other change. The
+      <a href="journal.html">Journal &amp; Field Notes</a> page gathers short reflections, field notes and
+      photographs contributed during the school, with optional geolocation on a shared map. Journal entries use
+      the same personal login and are stored in a database (<a href="https://developers.cloudflare.com/d1/" target="_blank" rel="noopener">Cloudflare
+      D1</a>), so they appear immediately; a photograph is resized and stripped of its metadata in the browser
+      before upload, with consent confirmed for any recognizable people, and an entry can be removed at any time
+      by its author or an organiser. Everything else on the site remains static.</p>
 
     <h2>Accessibility and offline use</h2>
     <p>The site supports keyboard navigation and reduced-motion preferences, and degrades gracefully:
-      when a map cannot load, the underlying information stays accessible — the venue list, the Journal
-      timeline and the institutional figures remain readable without it. The site can also be installed as
+      when a map cannot load, the underlying information stays accessible — the venue list and the Journal
+      entries remain readable without it. The site can also be installed as
       a Progressive Web App and cached for offline reading.</p>
 
     <h2>Credits and licences</h2>

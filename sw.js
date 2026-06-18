@@ -3,13 +3,13 @@
    with the other static assets; only the map tiles are external. Maps load only on user
    request, so no tile request is made before the visitor opens a map. */
 
-const CACHE = 'vsdph-2026-v43';
+const CACHE = 'vsdph-2026-v46';
 
 const CORE = [
   'index.html', 'programme.html', 'people.html', 'partners.html', 'colophon.html', 'session.html', 'contribute.html',
   'journal.html', 'contribute-journal.html',
   'assets/style.css', 'assets/app.js', 'assets/editor.js', 'assets/journal.js', 'assets/journal-contribute.js',
-  'data/program.js', 'data/journal.js', 'data/community-map.js',
+  'data/program.js', 'data/journal.js',
   'assets/leaflet/leaflet.css', 'assets/leaflet/leaflet.js',
   'assets/cover.jpg',
   'manifest.webmanifest',
@@ -66,7 +66,7 @@ self.addEventListener('fetch', (e) => {
 
   // Dynamic data — programme, journal and per-session content: network first, so edits
   // and newly added entries/content appear promptly and a 404 is never cached.
-  if (url.pathname.endsWith('/data/program.js') || url.pathname.endsWith('/data/journal.js') || url.pathname.endsWith('/data/community-map.js') || url.pathname.includes('/content/')) {
+  if (url.pathname.endsWith('/data/program.js') || url.pathname.endsWith('/data/journal.js') || url.pathname.includes('/content/')) {
     e.respondWith(
       fetch(req).then((res) => {
         if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); }

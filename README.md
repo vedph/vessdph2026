@@ -148,7 +148,7 @@ Field notes:
   `materials/<session>/`. A legacy single `pdf` object is still accepted.
 - **`status`** — **a content file whose `status` is `"pending"` is never shown on the public
   site or included in the Open Knowledge Format bundle** — only files without that flag (or
-  with `status: "approved"`) are published.
+  with `status: "published"`) are shown.
 
 Faculty contributors prepare these files with the contribution page (next section), which
 also validates the structure; `tools/check-site.js` checks the same model in CI.
@@ -160,8 +160,9 @@ abstract, bio note, structured resources and bibliography, and files — without
 exchanges.
 
 **Live page:** https://vedph.github.io/vessdph2026/contribute.html — open it directly; it is
-intentionally **not** linked in the site navigation. A teacher picks their session and enters the
-shared password.
+intentionally **not** linked in the site navigation (it is reached from a "Teaching a session?"
+link on the programme page). A teacher picks their session and logs in with their personal
+credentials.
 
 ### Proposed-revision workflow
 
@@ -171,7 +172,8 @@ When a faculty member opens the page for a session, it loads the core metadata f
 banner makes clear the faculty member is updating already-published materials. They can edit the abstract and bio note, add bibliography and resource rows,
 reorder them with **Move up / Move down**, remove them, and **Keep / Replace / Remove** each
 existing file (default **Keep**). New items are added. When submitted through the online
-flow (below), the changes publish to the site directly; the shared password is the gate.
+flow (below), the changes publish to the site directly; the personal login (with the
+`teacher`/`admin` role) is the gate.
 
 **Preventing accidental deletion.** Because the form is pre-loaded, list rows and files
 change only on an explicit action (the row's ×, or a file's Replace/Remove), and existing
@@ -223,18 +225,21 @@ It works in two modes:
   the agreed review channel, or to apply directly on GitHub. No backend is needed; this is
   how the page behaves until the serverless function below is deployed.
 - **Online submission (optional).** With a small serverless function deployed and its public
-  URL set in `assets/editor.js` (`SUBMIT_ENDPOINT`), faculty enter a shared password and
-  submit directly. The function validates the package, embeds any new
+  URL set in `assets/editor.js` (`SUBMIT_ENDPOINT`), faculty log in with their personal
+  credentials and submit directly. The function validates the package, embeds any new
   file bytes, and writes it as **published** to the configured branch (e.g. `main`) — it goes
-  live immediately; the shared password is the only gate.
+  live immediately; the personal login (with the `teacher`/`admin` role) is the only gate.
 
-### Shared faculty password
+### Personal logins
 
-A single shared password gates online submission. It is **checked server-side** by the
-function and read from an environment secret (`FACULTY_UPLOAD_PASSWORD`). The password is
-**never** stored in the repository, in HTML, or in client-side JavaScript: the browser
-only sends it on submit. The "show the form after a password" behaviour is purely a UX
-convenience — the real check happens in the function.
+Online submission is gated by **per-person logins**, not a shared password. Each participant
+and teacher has a username and password, held server-side in the function's `CREDENTIALS`
+secret as a JSON map of `{ username: { password, role, name } }`, where `role` is `teacher`,
+`student` or `admin`. Credentials are **never** stored in the repository, in HTML or in
+client-side JavaScript: the browser only sends them on submit, and the function compares them
+in constant time. Materials submission requires the `teacher` (or `admin`) role; the Journal is
+open to any valid login. The "show the form after login" behaviour is a UX convenience — the
+real check happens in the function on every request.
 
 ### Serverless function
 
@@ -242,7 +247,8 @@ convenience — the real check happens in the function.
 `handleSubmit()` is platform-independent and adapts to Netlify Functions or Cloudflare
 Pages Functions with a thin wrapper change). On each submission it:
 
-1. verifies the shared password (constant-time compare);
+1. verifies the personal login and role (constant-time compare; materials require the
+   `teacher` or `admin` role);
 2. checks the session id format (`YYYY-MM-DD-HHMM`);
 3. sanitises and length-limits all text fields;
 4. validates files — allowed extensions only (`pdf, md, txt, jpg, jpeg, png, webp`),
@@ -258,12 +264,15 @@ the list lives in one place, and **`tools/check-site.js` fails the build if it e
 from `data/program.js`**, so a stale allowlist cannot ship unnoticed. No generated id file or
 sync script is needed.
 
+The **same Worker** also serves the Journal — creating, listing, photo-serving and removing
+entries, stored in Cloudflare D1. See **Journal & Field Notes** below for those routes.
+
 ### Required environment variables
 
 Set in the serverless deployment environment only — never in the repo:
 
 ```txt
-FACULTY_UPLOAD_PASSWORD   # secret: the shared faculty password
+CREDENTIALS               # secret: JSON map {username:{password,role,name}} of per-person logins
 GITHUB_TOKEN              # secret: fine-grained PAT, THIS repo only, Contents: R/W
 GITHUB_OWNER              # e.g. vedph
 GITHUB_REPO               # e.g. vessdph2026
@@ -271,19 +280,22 @@ GITHUB_BRANCH             # e.g. main  (the live branch — submissions publish 
 ALLOW_ORIGIN              # e.g. https://vedph.github.io
 ```
 
+The Journal also needs a **D1 database binding** named `DB` (declared in `wrangler.toml`),
+holding the `journal` table from `functions/schema.sql`.
+
 For Cloudflare: put the non-secret vars in `wrangler.toml` (see
-`functions/wrangler.toml.example`) and the two secrets via
-`wrangler secret put FACULTY_UPLOAD_PASSWORD` and `wrangler secret put GITHUB_TOKEN`,
-then `wrangler deploy`. Finally set the resulting Worker URL as `SUBMIT_ENDPOINT` in
-`assets/editor.js`.
+`functions/wrangler.toml.example`), add the `DB` D1 binding, and set the two secrets via
+`wrangler secret put CREDENTIALS` and `wrangler secret put GITHUB_TOKEN`, then `wrangler deploy`.
+Finally set the resulting Worker URL as `SUBMIT_ENDPOINT` in `assets/editor.js` — it is also the
+endpoint used by the Journal pages.
 
 ### Where submissions go
 
 Submissions are committed straight to the branch named in `GITHUB_BRANCH` (set it to `main`
 for live publishing) as `"status": "published"`, so they appear on the site within about a
-minute — there is **no separate review or merge step**. The safeguards are the shared
-password, the `KNOWN_SESSIONS` allowlist, the file-type and size limits, and the input
-sanitising in the function.
+minute — there is **no separate review or merge step**. The safeguards are the personal
+logins (with the `teacher`/`admin` role required for materials), the `KNOWN_SESSIONS` allowlist,
+the file-type and size limits, and the input sanitising in the function.
 
 **Want moderation instead?** Point `GITHUB_BRANCH` at a non-live branch (created once,
 manually — the Contents API cannot write to a missing branch) and merge it into `main`
@@ -303,13 +315,15 @@ deployed function.
 
 - Online submissions publish immediately and the repository is public, so anything sent
   through this flow is live and reachable at once — there is **no pre-publication review**.
-  Use it only for materials you are happy to publish, keep the shared password restricted,
-  and do not use this flow for sensitive files.
+  Use it only for materials you are happy to publish, keep logins restricted to the people who
+  need them, and do not use this flow for sensitive files.
 - Files are committed into Git, so they remain in history; keep them small and prefer
   external hosting for large assets. Removal on request requires editing the repo (and
-  history rewriting to fully purge).
-- A shared password can leak within a group; the moderation step and file validation are
-  the real safeguards. Consider Cloudflare rate-limiting on the Worker route.
+  history rewriting to fully purge). (Journal entries are different — they live in D1 and are
+  removed cleanly by their author or an organiser.)
+- Per-person logins are low-value credentials shared with the cohort; the input validation,
+  the role check (for materials) and the allowlist are the real safeguards. Consider Cloudflare
+  rate-limiting on the Worker route.
 - Image resizing/EXIF-stripping happens in the browser; the server re-validates type and
   size but does not re-encode images.
 
@@ -319,116 +333,74 @@ deployed function.
 
 ## Journal & Field Notes
 
-The Journal is a curated, community-memory record of the Summer School from participants and
-faculty, shown as a vertical timeline. Entries can be **photos, text notes, field notes,
-reflections (optionally linked to a session) or resource/link notes**, and may be
-**geolocated or not** — a photo is never required. It is intentionally **fully static** — there is no backend, no upload endpoint,
-no GitHub token and no serverless function at this stage. Contributions are prepared in the
-browser and published by a maintainer after review.
+The Journal is a **live, contributory** record of the Summer School from participants and
+faculty. Anyone with a personal login can post a short note, a reflection or a photograph; the
+entry appears on the public page immediately and can be removed at any time by its author or an
+organiser. This replaces the earlier "prepare a package, review, paste" workflow.
 
-- **Public page:** `journal.html` (linked as "Journal" in the main navigation). It renders
-  only entries with `status: "approved"` from `data/journal.js`, grouped by day, and offers
-  a **Journal map** of the geolocated entries.
-- **Contribution-preparation page:** `contribute-journal.html` (`noindex`). It uploads and
-  publishes nothing; it only helps a contributor assemble a clean package.
+- **Public page:** `journal.html` ("Journal" in the main navigation). It fetches the entries
+  from the site API and lays them out as the five chapters of a travel diary — *Before*, *On our
+  way*, *At the Summer school*, *Heading home*, *Afterwards* — each with a short description, so
+  the arc reads even when a chapter is still empty. Within *At the Summer school*, entries
+  attached to a programme session are grouped under that session (in programme order), with an
+  "Around the week" group for the rest. A **Journal map** shows the geolocated entries.
+- **Contribution page:** `contribute-journal.html` (`noindex`). Log in with a personal
+  username/password, choose a chapter (and, for the school, an optional related session), write
+  a title and note, optionally add a photo and a location, and post. The entry is published at
+  once.
 
-### How a contributor prepares a package
+### How an entry is written
 
-On `contribute-journal.html` the contributor optionally selects a photo (resized to 1600 px
-with a ~480 px thumbnail and **re-encoded on a canvas, which removes all EXIF including GPS**),
-fills in title, caption, an optional longer note, date and time, display name (or anonymous,
-by role), role, tags, an optional related session, and an optional location. Location is set
-**only if explicitly chosen** — from the known programme venues or by clicking a point on an
-on-demand map; GPS is never read from the photo. Pressing **Build my package** produces a
-`<id>.zip` containing:
+On `contribute-journal.html`, after logging in the contributor writes a note (and/or a title)
+and may:
 
-```txt
-entry.json
-README.txt
-assets/journal/photos/<date>/<id>.jpg   (if a photo was added)
-assets/journal/thumbs/<date>/<id>.jpg   (if a photo was added)
-```
+- **Add a photo** — resized to 1200 px and **re-encoded on a canvas, which removes all EXIF
+  including GPS**, then sent as base64. A **consent checkbox** must be confirmed whenever a photo
+  is attached (recognisable people must have agreed to be shown).
+- **Add a location** — by clicking a point on a small map (drag the pin to fine-tune), or with a
+  "use my current location" shortcut. A location is saved only if one is set; GPS is never read
+  from the photo.
 
-The zip is built without any dependency (a minimal STORE-method writer). If zip creation
-fails, the page falls back to downloading the JSON and images separately. Safe ids follow
-`<date>-<HHMM>-<title>`, e.g. `2026-07-09-1830-zattere-walk`.
+The login is remembered for the browser session and shared with `journal.html` (via
+`sessionStorage`), so after posting you arrive on the Journal already signed in and can remove
+your own entries there.
 
-### How a maintainer reviews and publishes an entry
+### Backend
 
-1. Receive and open the package; review the image(s) and text for content and for the consent
-   of anyone recognisable.
-2. If approved, copy the two image files into the repository **keeping their paths** (the zip
-   already mirrors them under `assets/journal/photos/<date>/` and
-   `assets/journal/thumbs/<date>/`).
-3. Paste the object from `entry.json` into the `window.JOURNAL = [ ... ]` array in
-   `data/journal.js`.
-4. Commit and push. The entry then appears on `journal.html`.
+The Journal and the teacher materials are served by a **single Cloudflare Worker**
+(`functions/submit-materials.js`) — the only server-side component. Journal routes:
 
-A small in-browser helper, **`journal-publish.html`** (organiser-only, `noindex`, not linked in
-the navigation), automates steps 2–3: drop the approved `.zip` into it and it produces the
-complete `data/journal.js` to paste and the renamed image files to upload into a single
-`assets/journal/photos/` folder (the thumbnail keeps a `.thumb.jpg` suffix so it sits in the same
-folder). Your review of content and consent in step 1 stays manual.
+- `POST /journal` — create an entry (any valid login). Text, metadata and the photo (base64) are
+  stored in **Cloudflare D1** (`functions/schema.sql`, table `journal`); **no R2 bucket** is
+  used. Consent is required when a photo is present.
+- `GET /journal` — public list of entries (oldest first; the heavy photo data is omitted).
+- `GET /journal/photo/<id>` — public; serves a single photo, decoded from D1.
+- `POST /journal/remove` — deletes an entry (its author, or an `admin`). Removal is a real
+  `DELETE`; the photo goes with the row.
+- `POST /whoami` — confirms a login and returns the display name and role, so the pages can show
+  the right controls.
 
-`README.txt` inside each package restates the manual steps.
-
-### Where things are stored
-
-- **Photos:** `assets/journal/photos/<date>/<id>.jpg`
-- **Thumbnails:** `assets/journal/thumbs/<date>/<id>.jpg`
-- **Metadata:** the entry object in `data/journal.js`
-
-### Why no upload endpoint, and no pending media in the repository
-
-A live self-service endpoint would require a backend, a write-scoped GitHub token and an
-always-on service to secure, and — because the repository is public — any "pending" media
-committed for moderation would be immediately reachable by its raw URL before any human
-review. To keep the public site static and avoid publishing unreviewed media, moderation
-happens **before** anything is committed: the contributor prepares a package, a maintainer
-reviews it, and only approved entries are added. The `status: "approved"` field is only the
-render gate, **not** the moderation mechanism.
+Logins are the per-person credentials described under **Personal logins** above; the Journal is
+open to any valid login (teacher, student or admin). Deployment is the same as for materials,
+with one D1 binding (`DB`) added — create the database, load `functions/schema.sql`, bind it in
+`wrangler.toml`, and `wrangler deploy`.
 
 ### Journal map
 
-`journal.html` shows a **Journal map** section for the geolocated entries. It initialises
-automatically when the page loads, like the venue and community maps; its third-party tiles
-(CARTO/OpenStreetMap) are fetched at that point, and the timeline is fully usable even if they
-do not load. The section is **always present** — when no approved entry has coordinates it
-shows an empty-state message ("Geolocated photos and notes will appear here…") instead of the
-map. Markers cover **both geolocated photos and geolocated text notes** (photo markers
-filled, note markers hollow); each popup shows the title, a short caption/body, the date and
-time and the attribution, and links back to the entry in the timeline. Entries without
-coordinates appear only in the timeline. If the visitor is offline or the map fails to load,
-the timeline remains available and a short message is shown.
+`journal.html` shows a **Journal map** of the geolocated entries. It uses the vendored Leaflet
+setup with CARTO/OpenStreetMap tiles, loaded on demand. The section shows an empty-state message
+until an entry has coordinates. Photo markers are filled, text-note markers hollow; each popup
+shows the title, a short excerpt, the date and time and the author, and links back to the entry.
+Entries without coordinates appear only in the chapters. If the visitor is offline or the tiles
+fail to load, the chapters remain available.
 
 ### Privacy and consent
 
-Contributions are reviewed before publication. Contributors are asked to submit only material
-they are willing to share publicly, to ensure recognisable people have agreed to publication,
-and may be credited by name, by role, or anonymously. Published contributions can be amended
-or removed on request. Photo metadata (including any GPS) is stripped during local processing,
-and coordinates are stored only when the contributor explicitly sets a location.
-
-> Pending or unreviewed images must not be committed to the public repository. Only reviewed
-> and approved journal entries should be added to the public site.
-
-## Community map
-
-`people.html` ends with an **aggregated community map** showing the institutions represented
-in the Summer School community.
-
-- **Data source:** `data/community-map.js` (`window.COMMUNITY_MAP`), a separate file of
-  **aggregated entries only** — one object per institution: `institution`, optional `city`
-  and `country`, required numeric `lat`/`lng`, and a positive-integer `count`.
-- **No individual data:** popups show only the institution, city/country and a headcount
-  (e.g. "6 people"). No names, roles, e-mail addresses or profiles appear on the map, and the
-  map is not derived automatically from participant records. Counts must be verified before
-  publication.
-- **Behaviour:** it reuses the vendored Leaflet setup and CARTO/OpenStreetMap tiles with
-  proportional circle markers; it opens automatically like the venue map. When
-  `data/community-map.js` is empty it shows an empty-state message and the section stays
-  visible. `tools/check-site.js` validates the entries (institution, numeric coordinates,
-  positive-integer count).
+Entries are public and attributed to the contributor's name. A photo is re-encoded locally so
+its metadata (including any GPS) is dropped before upload, and a consent checkbox must be
+confirmed for recognisable people. Coordinates are stored only when a location is explicitly
+set. An entry — text and photo together — can be removed at any time by its author or an
+organiser, which deletes it from the database.
 
 ## Local preview
 
@@ -506,7 +478,7 @@ The source of truth remains `data/program.js`.
 
 The site uses self-hosted fonts and a self-hosted copy of the Leaflet map library; no third-party scripts or styles are loaded on page load.
 
-The venue list is available without external requests. The interactive maps — the venue map, the aggregated community map and the Journal map — each initialise automatically when their page loads, fetching CARTO basemap tiles (based on OpenStreetMap data) at that point; Leaflet itself is self-hosted. If the user is offline, or the tiles cannot be loaded, the underlying lists and the Journal timeline remain visible and usable.
+The venue list is available without external requests. The two interactive maps — the venue map and the Journal map — each initialise automatically when their page loads, fetching CARTO basemap tiles (based on OpenStreetMap data) at that point; Leaflet itself is self-hosted. If the user is offline, or the tiles cannot be loaded, the underlying lists and the Journal entries remain visible and usable.
 
 The participant list is not published in the repository or on the public site.
 
@@ -518,7 +490,7 @@ The outputs of both systems were manually reviewed, tested against the local sou
 
 ## Credits
 
-The site was developed for the Venice Centre for Digital and Public Humanities under the responsibility of Emmanuela Carbé.
+The site was developed for the Venice Centre for Digital and Public Humanities under the responsibility of **Emmanuela Carbé**.
 
 The programme itself — including sessions, speakers and scholarly content — is the work of the Venice Centre for Digital and Public Humanities and its contributors.
 

@@ -28,7 +28,6 @@ fallback, rights/consent).
 ## 2. Maps and privacy (manual)
 
 - [ ] Open the programme page: confirm the venue map loads automatically and displays CARTO/OpenStreetMap attribution.
-- [ ] Open the People page: confirm the aggregated community map loads automatically and shows only institutional counts, not individual names.
 - [ ] Open the Journal: confirm the Journal map loads automatically and displays geolocated journal entries when available.
 - [ ] Confirm Leaflet is served locally (`assets/leaflet/…`), not from a CDN.
 
@@ -43,9 +42,9 @@ fallback, rights/consent).
 
 - [ ] Review `content/*.json`: no entry left with `"status": "pending"` that should be live;
       no test/placeholder content.
-- [ ] Review `data/journal.js`: only approved entries; correct dates and captions.
-- [ ] Confirm **no pending or unreviewed media** (faculty materials or journal photos) is
-      committed to the repository.
+- [ ] Review the live **Journal**: no test or inappropriate entries (an author or an organiser can remove any entry).
+- [ ] Confirm **no pending or unreviewed faculty materials** are committed to the repository
+      (journal photos live in the D1 database, not in the repo).
 
 ## 5. Rights and consent
 
@@ -57,5 +56,5 @@ fallback, rights/consent).
 
 - [ ] Push to `main`; confirm the **Site checks** workflow passes.
 - [ ] Confirm GitHub Pages has rebuilt and serves the new commit.
-- [ ] Verify the **live site**: navigation, a session page, the venue, community and Journal maps (all open automatically),
-      calendar export, and the contribution page.
+- [ ] Verify the **live site**: navigation, a session page, the venue and Journal maps (both open automatically),
+      calendar export, the materials contribution page, and posting then removing a Journal entry.

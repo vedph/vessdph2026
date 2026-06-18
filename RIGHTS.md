@@ -65,7 +65,7 @@ material submitted through `contribute.html`.
 
 ## Map data and tiles (CARTO / OpenStreetMap)
 
-All three maps — the venue map, the community map and the Journal map — load CARTO basemap
+Both maps — the venue map and the Journal map — load CARTO basemap
 tiles automatically when their page opens.
 
 - Map data © **OpenStreetMap** contributors, **ODbL**. Basemap tiles served by **CARTO**,

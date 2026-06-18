@@ -1,10 +1,10 @@
 /* editor.js — faculty materials form for contribute.html.
    Standalone (does NOT load app.js). Reads window.SCHOOL for the session list and
    fixed facts. When a session already has a published content/<id>.json, the form
-   PRELOADS it so the faculty member edits a *proposed revision* rather than a blank
+   PRELOADS it so the faculty member edits an *update* rather than a blank
    form: abstract, bio note, structured resources and bibliography, and existing files
    (Keep / Replace / Remove). The output is a revision package (see envelope() below)
-   that the organiser reviews and merges; nothing is published directly from here.
+   that is published directly to the live site (password-gated).
 
    SUBMIT_ENDPOINT is the PUBLIC URL of the deployed serverless function (NOT a secret).
    Leave it empty until the function is deployed: while empty, the online-submission UI
@@ -51,9 +51,9 @@
           "&value=" + encodeURIComponent(TEMPLATE);
       ghLink = '<a href="' + gh + '" target="_blank" rel="noopener">edit it on GitHub \u2192</a>';
     } else { ghLink = "edit the content file on GitHub"; }
-    return '<p><strong>More than one way to do this.</strong> Submit below for review; or edit your page ' +
-           'directly on GitHub \u2014 ' + ghLink + '; or fill in the form below and send the ' +
-           'package through the agreed review channel.</p>' +
+    return '<p><strong>More than one way to do this.</strong> Submit below to publish; or edit your page ' +
+           'directly on GitHub \u2014 ' + ghLink + '; or fill in the form below and download the ' +
+           'package to send through the agreed channel.</p>' +
            '<p class="ed-choose-see"><a href="session.html?s=' + encodeURIComponent(slug) +
            '" target="_blank" rel="noopener">Preview your page \u2192</a></p>';
   }
@@ -81,10 +81,10 @@
   var outNote = $("ed-out-note"), dlBtn = $("ed-download");
   if(SUBMIT_ENDPOINT){
     var sbx = $("ed-submit-box"); if(sbx) sbx.hidden = false;
-    if(outNote) outNote.textContent = "Or download the review package to keep a copy, or to submit it through the agreed review channel.";
+    if(outNote) outNote.textContent = "Submitting publishes your materials to the session page. You can also download a copy, or send it through the agreed channel.";
   } else {
     if(dlBtn) dlBtn.classList.add("solid");   // download is the primary action when online submission is off
-    if(outNote) outNote.textContent = "Online submission is not currently enabled. Please download the review package and send it through the agreed review channel.";
+    if(outNote) outNote.textContent = "Online submission is not currently enabled. Please download the package and send it through the agreed channel.";
   }
 
   /* explicit "Clear" controls for abstract / bio note (shown only for revisions):
@@ -438,7 +438,7 @@
       session: current.slug,
       mode: hadPublished ? "revision" : "new",
       basedOn: hadPublished ? "published" : "none",
-      status: "pending",
+      status: "published",
       changesSummary: (($("ed-changes")||{}).value||"").trim(),
       content: bc.content
     };
@@ -456,9 +456,9 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
     var hasNew = ATTACH.some(function(it){ return it.kind==="new"; });
-    note.innerHTML = 'Saved <code>' + esc(name) + '</code> \u2014 a <span class="ed-ok">proposed revision</span> for organiser review. ' +
-      'Send it through the agreed review channel' + (hasNew ? ', together with the new file(s) you attached' : '') +
-      '. The organiser reviews the package and merges it into <code>content/' + esc(current.slug) + '.json</code>.';
+    note.innerHTML = 'Saved <code>' + esc(name) + '</code> \u2014 a <span class="ed-ok">local copy</span> of your materials. ' +
+      'Submit them with the form above to publish' + (hasNew ? ', together with the new file(s) you attached' : '') +
+      '. You can also send this package through the agreed channel.';
   }
   function copy(){
     if(!current) return;
@@ -470,7 +470,7 @@
     } else { note.textContent = "Use Download instead."; }
   }
 
-  /* ---------- submit for review (serverless): same package + password ---------- */
+  /* ---------- submit (serverless): publishes the package + password ---------- */
   function submitPayload(){
     var env = envelope();
     env.content.files = submitFiles();              // embed base64 for new files
@@ -491,7 +491,7 @@
       .then(function(res){
         if(btn) btn.disabled = false;
         if(res.ok && res.j && res.j.ok){
-          setStatus("Thank you. Your proposed revision has been submitted for review and will appear on the session page after approval.", "ok");
+          setStatus("Thank you. Your materials are now live on the session page \u2014 it may take a minute to appear.", "ok");
           var p = $("ed-pass"); if(p) p.value = "";
         } else {
           setStatus((res.j && res.j.error) || "Submission failed. Please try again, or use Download below.", "err");

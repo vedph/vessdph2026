@@ -184,8 +184,7 @@ window.SCHOOL = {
      ------------------------------------------------------------------------ */
   types: {
     welcome:      { label: "Welcome",       siglum: "\u00b7", role: "muted"  },
-    lecture:      { label: "Lecture",       siglum: "L",      role: "plain"  },
-    workshop:     { label: "Workshop",      siglum: "W",      role: "plain"  },
+    session:      { label: "Lecture & workshop", siglum: "L/W",    role: "plain"  },
     keynote:      { label: "Keynote",       siglum: "K",      role: "key"    },
     tour:         { label: "Guided tour",   siglum: "T",      role: "plain"  },
     visit:        { label: "Visit",         siglum: "V",      role: "plain"  },
@@ -214,25 +213,25 @@ window.SCHOOL = {
       sessions: [
         { start: "09:30", end: "10:00", type: "welcome", venueId: "malcanton",
           title: "Welcome", speakers: [ { name: "Franz Fischer", affiliation: "Director, VeDPH" } ] },
-        { start: "10:00", end: "11:00", type: "lecture", venueId: "malcanton",
+        { start: "10:00", end: "11:00", type: "session", venueId: "malcanton",
           title: "Making Heritage from Absence: Digital Archaeology as a Shared Practice",
           speakers: [
             { name: "Diego Calaon", affiliation: "Ca\u2019 Foscari" },
             { name: "Elisa Corr\u00f2", affiliation: "Ca\u2019 Foscari" },
             { name: "Grazia Solenne", affiliation: "Ca\u2019 Foscari" }
           ] },
-        { start: "11:00", end: "11:30", type: "lecture", venueId: "malcanton",
+        { start: "11:00", end: "11:30", type: "session", venueId: "malcanton",
           title: "From Absence to Experience: Generative AI as a Narrative Device in Cultural Heritage",
           speakers: [
             { name: "Elisa Corr\u00f2", affiliation: "Ca\u2019 Foscari" },
             { name: "Stefano Bergonzini", affiliation: "Museyoum srl" }
           ] },
-        { start: "11:45", end: "13:00", type: "lecture", venueId: "malcanton",
+        { start: "11:45", end: "13:00", type: "session", venueId: "malcanton",
           title: "Ethics, Mediation, and Meaning: Participatory Approaches to Digital Heritage",
           speakers: [
             { name: "Francesca Dolcetti", affiliation: "University of Essex" }
           ] },
-        { start: "14:00", end: "16:30", type: "workshop", venueId: "malcanton",
+        { start: "14:00", end: "16:30", type: "session", venueId: "malcanton",
           title: "Designing Absence: A Values-Led Workshop on Digital Heritage",
           speakers: [
             { name: "Francesca Dolcetti", affiliation: "University of Essex" },
@@ -263,20 +262,20 @@ window.SCHOOL = {
         "modelling and linked open data (LOD). A visit to the State Archives grounds the day " +
         "in its material sources.",
       sessions: [
-        { start: "09:30", end: "11:00", type: "workshop", venueId: "berengo",
+        { start: "09:30", end: "11:00", type: "session", venueId: "berengo",
           title: "Encoding Marco Polo and Visual Manuscript Culture",
           speakers: [
             { name: "Marina Buzzoni", affiliation: "Ca\u2019 Foscari" },
             { name: "Chiara De Bastiani", affiliation: "Ca\u2019 Foscari" },
             { name: "Paola Peratello", affiliation: "\u00c9cole nationale des chartes \u2014 PSL, Paris" }
           ] },
-        { start: "11:30", end: "13:00", type: "workshop", venueId: "berengo",
+        { start: "11:30", end: "13:00", type: "session", venueId: "berengo",
           title: "Casanova in Context: Digital Approaches to Archival Documents and Early Prints",
           speakers: [
             { name: "Federico Boschetti", affiliation: "CNR-ILC" },
             { name: "Agnese Macchiarelli", affiliation: "Bergische Universit\u00e4t Wuppertal / Ca\u2019 Foscari" }
           ] },
-        { start: "14:00", end: "15:30", type: "workshop", venueId: "archivio",
+        { start: "14:00", end: "15:30", type: "session", venueId: "archivio",
           title: "Modelling Venetian Renaissance Writing: The Case of Veronica Franco",
           speakers: [
             { name: "Tiziana Mancinelli", affiliation: "Istituto Italiano di Studi Germanici" },
@@ -309,7 +308,7 @@ window.SCHOOL = {
         { start: "09:30", end: "12:00", type: "consultation", venueId: "malcanton",
           title: "Meet the Expert: individual consultation meetings",
           speakers: [ { name: "Franz Fischer", affiliation: "Director, VeDPH" } ] },
-        { start: "13:00", end: "14:30", type: "lecture", venueId: "biennale",
+        { start: "13:00", end: "14:30", type: "session", venueId: "biennale",
           title: "Horizons of Artificial Intelligence: Promises, Anxiety, and Planetary Climate",
           note: "Discussant: Paolo Berti (Ca\u2019 Foscari).",
           speakers: [
@@ -334,23 +333,23 @@ window.SCHOOL = {
         "present-day locations to past life. The day mixes outdoor and indoor activities, with time " +
         "to apply generative AI and virtual exhibitions to the history of Venice.",
       sessions: [
-        { start: "09:30", end: "11:30", type: "lecture", venueId: "malcanton",
+        { start: "09:30", end: "11:30", type: "session", venueId: "malcanton",
           title: "Mapping Violence in Early Modern Italy",
           speakers: [
             { name: "Amanda Madden", affiliation: "George Mason University" }
           ] },
-        { start: "11:45", end: "13:00", type: "lecture", venueId: "malcanton",
+        { start: "11:45", end: "13:00", type: "session", venueId: "malcanton",
           title: "Murder in Venice. Generative AI and Historical Sources",
           speakers: [
             { name: "Stefano Dall\u2019Aglio", affiliation: "Ca\u2019 Foscari" }
           ] },
-        { start: "14:00", end: "15:15", type: "workshop", venueId: "malcanton",
+        { start: "14:00", end: "15:15", type: "session", venueId: "malcanton",
           title: "From Sources to Exhibitions: Prototyping Public History Projects with Omeka Classic",
           speakers: [
             { name: "Emmanuela Carb\u00e9", affiliation: "Ca\u2019 Foscari" },
             { name: "Mariangela Giglio", affiliation: "University of Bologna" }
           ] },
-        { start: "15:30", end: "18:00", type: "workshop", venueId: "malcanton",
+        { start: "15:30", end: "18:00", type: "session", venueId: "malcanton",
           title: "Urban Space, Geolocated Apps and Digital Public History: a Practical Demonstration of Hidden Venice",
           speakers: [
             { name: "Fabrizio Nevola", affiliation: "University of Exeter" }
@@ -371,17 +370,17 @@ window.SCHOOL = {
         "situated datasets can disrupt dominant institutional frameworks, and how curatorial, " +
         "economic, or promotional priorities shape algorithmic narratives.",
       sessions: [
-        { start: "09:30", end: "10:00", type: "lecture", venueId: "malcanton",
+        { start: "09:30", end: "10:00", type: "session", venueId: "malcanton",
           title: "Introduction to generative AI and (co-)creative processes",
           speakers: [
             { name: "Irene Russo", affiliation: "ILC-CNR" }
           ] },
-        { start: "10:00", end: "10:30", type: "lecture", venueId: "malcanton",
+        { start: "10:00", end: "10:30", type: "session", venueId: "malcanton",
           title: "Emergent representations in AI latent spaces: an artistic and historical perspective",
           speakers: [
             { name: "Paolo Berti", affiliation: "Ca\u2019 Foscari" }
           ] },
-        { start: "10:30", end: "12:00", type: "workshop", venueId: "malcanton",
+        { start: "10:30", end: "12:00", type: "session", venueId: "malcanton",
           title: "Perception and biases from La Biennale di Venezia. Reading the artworks with generative algorithms",
           speakers: [
             { name: "Stefania De Vincentis", affiliation: "Ca\u2019 Foscari" }
@@ -389,7 +388,7 @@ window.SCHOOL = {
         { start: "12:00", end: "13:00", type: "discussion", venueId: "malcanton",
           title: "Discussion and round table",
           speakers: [] },
-        { start: "14:00", end: "17:30", type: "lecture", venueId: "malcanton",
+        { start: "14:00", end: "17:30", type: "session", venueId: "malcanton",
           title: "Awash with images: Collecting institutions in a digital world",
           speakers: [
             { name: "Vince Dziekan", affiliation: "Monash University" },

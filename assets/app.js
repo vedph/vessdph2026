@@ -516,7 +516,7 @@
   let query = "", activeType = "all";
   function buildChips(){
     const host = $("#chips"); if(!host) return;
-    const groups = [["all","All"],["lecture","Lectures"],["workshop","Workshops"],
+    const groups = [["all","All"],["session","Lectures & workshops"],
       ["keynote","Keynotes"],["tour","Tours & visits"]];
     const labelEl = el("span","kicker chips-label"); labelEl.textContent="Filter";
     host.appendChild(labelEl);

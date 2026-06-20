@@ -31,3 +31,9 @@ The lecture will also introduce Prodigi, a new journal dedicated to scholarly di
 
 Francesca Tomasi is Full Professor of Archival Science, Library Science and Bibliography at the University of Bologna, where she has taught Digital Humanities since 2006. Trained in Cultural Heritage Conservation, Archival Studies, Web Technologies and Italian Studies, her research focuses on the computational modelling and design of humanities data and documents, knowledge organization systems for archives and libraries, digital scholarly editing, Semantic Web technologies and Linked Open Data for cultural heritage. Her most recent book is Organizzare la conoscenza: Digital Humanities e Web semantico. Un percorso tra archivi, biblioteche e musei (Editrice Bibliografica, 2022), which brings together her work on Digital Humanities, knowledge organization and the Semantic Web for archives, libraries and museums.
 She has led and contributed to major Digital Humanities projects, including the digital edition of Vespasiano da Bisticci’s letters, Paolo Bufalini’s notebook, the Zeri & Lode Linked Open Data project, and the digital edition of Aldo Moro’s works. She has coordinated several national and international research projects, organized major DH conferences, and given keynote lectures at international venues including DHN, TEI and TPDL. She is co-founder of Umanistica Digitale, former President of AIUCD, founder and former coordinator of the MA in Digital Humanities and Digital Knowledge at the University of Bologna, Director of the Advanced Research Center for Digital Humanit
+
+# Resources
+
+- [Knot Catalogue](https://projects.dharc.unibo.it/knot/) — Scholarly Digital Objects and Activity
+- [Atlas](https://dh-atlas.github.io/index.html) — The Atlas of Italian Digital Cultural Heritage
+- [Pròdìgi (Digital Products)](https://prodigi.unibo.it/)

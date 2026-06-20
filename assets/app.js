@@ -798,9 +798,10 @@
      ====================================================================== */
   function sessionBody(c){
     if(!c || c.status === "pending") return ""; // pending submissions are never shown publicly
-    const abs = c.abstract ? `<p class="sp-abstract">${esc(c.abstract)}</p>` : "";
+    const nl2br = t => esc(t).replace(/\n/g, "<br>");
+    const abs = c.abstract ? `<p class="sp-abstract">${nl2br(c.abstract)}</p>` : "";
     const bioTxt = c.bioNote || c.bio || "";    // bioNote (current) or bio (legacy)
-    const bio = bioTxt ? `<p class="sp-bio">${esc(bioTxt)}</p>` : "";
+    const bio = bioTxt ? `<p class="sp-bio">${nl2br(bioTxt)}</p>` : "";
     const mats = [].concat(c.materials || [], c.files || []);
     const pdf = (c.pdf && c.pdf.href)
       ? `<div class="dm-sec"><a class="dm-pdf" href="${esc(c.pdf.href)}" target="_blank" rel="noopener">\u2b07 ${esc(c.pdf.label||"Download PDF")}</a></div>`

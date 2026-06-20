@@ -238,7 +238,7 @@ window.SCHOOL = {
             { name: "Elisa Corr\u00f2", affiliation: "Ca\u2019 Foscari" },
             { name: "Grazia Solenne", affiliation: "Ca\u2019 Foscari" }
           ] },
-        { start: "17:00", end: "19:00", type: "keynote", venueId: "baratto",
+        { start: "17:00", end: "19:00", type: "keynote", venueId: "baratto", area: "Opening keynote",
           title: "What Do We Mean by Scholarly Digital Culture?",
           note: "Opening keynote within the DIGITALIA Erasmus+ Project, introduced by Lorenzo Calvelli (Ca\u2019 Foscari).",
           speakers: [

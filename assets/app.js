@@ -846,7 +846,7 @@
     const next = idx < FLAT.length-1 ? FLAT[idx+1] : null;
     const linkTo = x => `session.html?s=${x.day.date}-${x.s.start.replace(":","")}`;
     host.innerHTML =
-      `<p class="sp-kicker kicker"><a href="programme.html#day-${dayN}">${esc(d.label)} \u00b7 ${esc(d.area)}</a></p>`+
+      `<p class="sp-kicker kicker"><a href="programme.html#day-${dayN}">${esc(d.label)} \u00b7 ${esc(s.area || d.area)}</a></p>`+
       `<h1 class="sp-title">${esc(s.title)}</h1>`+
       (s.note?`<p class="sp-note">${esc(s.note)}</p>`:"")+
       `<div class="sp-head">`+

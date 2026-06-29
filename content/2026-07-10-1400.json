@@ -1,0 +1,66 @@
+{
+  "session": "2026-07-10-1400",
+  "status": "published",
+  "bibliography": [
+    {
+      "citation": "Parry, R. (2023). ‘Digital’, in F. Mairesse (ed.) Dictionary of Museology (Routledge), pp. 127-131."
+    },
+    {
+      "citation": "K. Drotner, K., V. Dziekan, V., Parry, R. & Schrøder, K. (2019). 'Media, Mediatization and Museums: A New Ensemble', in Kirsten Drotner, Vince Dziekan, Ross Parry and Kim Schrøder, (eds), The Routledge Handbook of Museums, Media and Communication (Routledge), pp. 1-12."
+    },
+    {
+      "citation": "Parry, R. (2013), 'The End of the Beginning: Normativity in the Postdigital Museum', Museum Worlds, vol. 1, 24-39."
+    },
+    {
+      "citation": "Parry, R. & Dziekan, V. (2022). ‘Critical Digital: Museums and their Postdigital Circumstance’, in H. Barranha & J. S. Henriques (eds.) Art Museums and Digital Cultures: Rethinking Change (Universidade NOVA de Lisboa & Museum of Art, Architecture and Technology), pp. 9-19."
+    },
+    {
+      "citation": "Parry, R. (2023). ‘Code switching: Feeling the ‘emotional turn’ in digital cultural heritage’, in Giglitto, L. Ciolfi, E. Lockley & E. Kaldeli (eds) Digital Approaches to Inclusion and Participation in Cultural Heritage - A European perspective (Routledge), Chapter 12."
+    },
+    {
+      "citation": "Parry, R. (2019). ‘How Museums Made (and Re-Made) Their Digital User’, in T. Giannini & J.P. Bowen (eds.), Museums and Digital Culture, Springer Series on Cultural Computing (Springer), pp. 275-293."
+    },
+    {
+      "citation": "Dziekan, V. (2019). ‘Visual Essay’, in Kirsten Drotner, Vince Dziekan, Ross Parry and Kim Schrøder, (eds), The Routledge Handbook of Museums, Media and Communication (Routledge), pp. 1-12."
+    }
+  ],
+  "files": [
+    {
+      "label": "1_Digital.pdf",
+      "href": "materials/2026-07-10-1400/1_Digital.pdf",
+      "type": "pdf"
+    },
+    {
+      "label": "2_Mediatisation.pdf",
+      "href": "materials/2026-07-10-1400/2_Mediatisation.pdf",
+      "type": "pdf"
+    },
+    {
+      "label": "3_Postdigital.PDF",
+      "href": "materials/2026-07-10-1400/3_Postdigital.PDF",
+      "type": "pdf"
+    },
+    {
+      "label": "4_Circumstance.pdf",
+      "href": "materials/2026-07-10-1400/4_Circumstance.pdf",
+      "type": "pdf"
+    },
+    {
+      "label": "5_Emotional_Turn.pdf",
+      "href": "materials/2026-07-10-1400/5_Emotional_Turn.pdf",
+      "type": "pdf"
+    },
+    {
+      "label": "6_Users.pdf",
+      "href": "materials/2026-07-10-1400/6_Users.pdf",
+      "type": "pdf"
+    },
+    {
+      "label": "7_Practice.pdf",
+      "href": "materials/2026-07-10-1400/7_Practice.pdf",
+      "type": "pdf"
+    }
+  ],
+  "mode": "new",
+  "submittedAt": "2026-06-29T09:40:27.967Z"
+}

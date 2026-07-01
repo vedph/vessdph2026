@@ -169,6 +169,13 @@ window.SCHOOL = {
       address: "Giardini della Biennale, Sestiere Castello, Venezia",
       lat: 45.42870, lng: 12.35660
     },
+    archivio: {
+      name: "Bar L\u2019Archivio",
+      building: "",
+      detail: "",
+      address: "Fondamenta dei Frari 2565, San Polo, Venezia",
+      lat: 45.43727, lng: 12.32728
+    },
     tbc: {
       name: "Venue to be confirmed",
       building: "",
@@ -286,7 +293,7 @@ window.SCHOOL = {
           title: "Guided tour of the Venice State Archives",
           note: "Including documents related to Marco Polo, Veronica Franco, and Giacomo Casanova.",
           speakers: [] },
-        { start: "18:00", end: "19:00", type: "reception", venueId: "tbc",
+        { start: "18:00", end: "19:00", type: "reception", venueId: "archivio",
           title: "Wine reception and \u201cVery Special Sneak Preview\u201d",
           speakers: [
             { name: "Peter Robinson", affiliation: "University of Saskatchewan" }

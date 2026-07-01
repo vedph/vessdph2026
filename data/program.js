@@ -163,11 +163,11 @@ window.SCHOOL = {
       lat: 45.43683, lng: 12.32640
     },
     biennale: {
-      name: "Biennale Sessions Space",
-      building: "La Biennale di Venezia \u00b7 Arsenale",
+      name: "Giardini della Biennale",
+      building: "La Biennale di Venezia",
       detail: "61st International Art Exhibition, \u201cIn Minor Keys\u201d",
-      address: "Campo della Tana 2169/F, Castello, Venezia",
-      lat: 45.43470, lng: 12.35350
+      address: "Giardini della Biennale, Sestiere Castello, Venezia",
+      lat: 45.42870, lng: 12.35660
     },
     tbc: {
       name: "Venue to be confirmed",
@@ -308,13 +308,13 @@ window.SCHOOL = {
         { start: "09:30", end: "12:00", type: "consultation", venueId: "malcanton",
           title: "Meet the Expert: individual consultation meetings",
           speakers: [ { name: "Franz Fischer", affiliation: "Director, VeDPH" } ] },
-        { start: "13:00", end: "14:30", type: "session", venueId: "biennale",
+        { start: "13:00", end: "15:00", type: "session", venueId: "biennale",
           title: "Horizons of Artificial Intelligence: Promises, Anxiety, and Planetary Climate",
-          note: "Discussant: Paolo Berti (Ca\u2019 Foscari).",
+          note: "Discussant: Paolo Berti (Ca\u2019 Foscari). Sala F, Padiglione Centrale.",
           speakers: [
             { name: "Carolina Fern\u00e0ndez-Castrillo", affiliation: "Carlos III University of Madrid" }
           ] },
-        { start: "14:30", end: "18:30", type: "visit", venueId: "biennale",
+        { start: "15:00", end: "19:00", type: "visit", venueId: "biennale",
           title: "Visit to the 61st International Art Exhibition, \u201cIn Minor Keys\u201d",
           note: "Including \u201cphoto sampling\u201d for Day Five.",
           speakers: [] }

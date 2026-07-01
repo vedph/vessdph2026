@@ -11,4 +11,4 @@ Open Knowledge Format bundle for the programme of the Venice Summer School in Di
 * [Days](days/) - 5 days
 * [Sessions](sessions/) - 24 sessions
 * [People](people/) - 27 faculty
-* [Venues](venues/) - 7 venues
+* [Venues](venues/) - 6 venues

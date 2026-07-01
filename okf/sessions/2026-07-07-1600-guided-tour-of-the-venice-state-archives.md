@@ -12,7 +12,7 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 # When & where
 
 - **When:** Tuesday, 7 July 2026, 16:00–17:30
-- **Where:** [Venice State Archives, Archivio di Stato di Venezia](/venues/archivio.md) · former convent of the Frari
+- **Where:** [Bar L’Archivio](/venues/archivio.md)
 - **Format:** Guided tour
 
 # Speakers

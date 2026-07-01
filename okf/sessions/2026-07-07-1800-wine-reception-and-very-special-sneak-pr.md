@@ -12,7 +12,7 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 # When & where
 
 - **When:** Tuesday, 7 July 2026, 18:00–19:00
-- **Where:** [Venue to be confirmed](/venues/tbc.md)
+- **Where:** [Bar L’Archivio](/venues/archivio.md)
 - **Format:** Reception
 
 # Speakers

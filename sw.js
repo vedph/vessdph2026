@@ -3,7 +3,7 @@
    with the other static assets; only the map tiles are external. Maps load only on user
    request, so no tile request is made before the visitor opens a map. */
 
-const CACHE = 'vsdph-2026-v53';
+const CACHE = 'vsdph-2026-v54';
 
 const CORE = [
   'index.html', 'programme.html', 'people.html', 'partners.html', 'colophon.html', 'session.html', 'contribute.html',

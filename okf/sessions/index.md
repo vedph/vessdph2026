@@ -20,8 +20,8 @@
 # Day Three — Wednesday, 8 July 2026
 
 * [Meet the Expert: individual consultation meetings](2026-07-08-0930-meet-the-expert-individual-consultation.md) - Consultation, 09:30–12:00
-* [Horizons of Artificial Intelligence: Promises, Anxiety, and Planetary Climate](2026-07-08-1300-horizons-of-artificial-intelligence-prom.md) - Lecture & workshop, 13:00–14:30
-* [Visit to the 61st International Art Exhibition, “In Minor Keys”](2026-07-08-1430-visit-to-the-61st-international-art-exhi.md) - Visit, 14:30–18:30
+* [Horizons of Artificial Intelligence: Promises, Anxiety, and Planetary Climate](2026-07-08-1300-horizons-of-artificial-intelligence-prom.md) - Lecture & workshop, 13:00–15:00
+* [Visit to the 61st International Art Exhibition, “In Minor Keys”](2026-07-08-1500-visit-to-the-61st-international-art-exhi.md) - Visit, 15:00–19:00
 
 # Day Four — Thursday, 9 July 2026
 

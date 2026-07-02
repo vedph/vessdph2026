@@ -19,3 +19,7 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 
 - [Federico Boschetti](/people/federico-boschetti.md) — CNR-ILC
 - [Agnese Macchiarelli](/people/agnese-macchiarelli.md) — Bergische Universität Wuppertal / Ca’ Foscari
+
+# Resources
+
+- [Casanova_Reading_Texts.pdf](materials/2026-07-07-1130/Casanova_Reading_Texts.pdf)

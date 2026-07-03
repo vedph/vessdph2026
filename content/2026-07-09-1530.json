@@ -1,0 +1,29 @@
+{
+  "session": "2026-07-09-1530",
+  "status": "published",
+  "bioNote": "https://experts.exeter.ac.uk/22922-fabrizio-nevola",
+  "bibliography": [
+    {
+      "citation": "Readings included in the workshop activity document."
+    }
+  ],
+  "resources": [
+    {
+      "label": "Project Website HistoryCity apps",
+      "href": "https://historycityapps.org/"
+    },
+    {
+      "label": "Project Website HistoryScapes app with National Trust",
+      "href": "https://historyscapes.uk/"
+    }
+  ],
+  "files": [
+    {
+      "label": "VeSSDPH_Nevola_030726.pdf",
+      "href": "materials/2026-07-09-1530/VeSSDPH_Nevola_030726.pdf",
+      "type": "pdf"
+    }
+  ],
+  "mode": "new",
+  "submittedAt": "2026-07-03T14:54:30.450Z"
+}

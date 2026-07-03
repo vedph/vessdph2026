@@ -18,3 +18,17 @@ Part of [Day Four](/days/2026-07-09.md) — Area 3 · Digital and Public History
 # Speakers
 
 - [Fabrizio Nevola](/people/fabrizio-nevola.md) — University of Exeter
+
+# About the speaker
+
+https://experts.exeter.ac.uk/22922-fabrizio-nevola
+
+# Resources
+
+- [VeSSDPH_Nevola_030726.pdf](materials/2026-07-09-1530/VeSSDPH_Nevola_030726.pdf)
+- [Project Website HistoryCity apps](https://historycityapps.org/)
+- [Project Website HistoryScapes app with National Trust](https://historyscapes.uk/)
+
+# Recommended reading
+
+- Readings included in the workshop activity document.

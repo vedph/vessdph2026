@@ -20,3 +20,7 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 - [Marina Buzzoni](/people/marina-buzzoni.md) — Ca’ Foscari
 - [Chiara De Bastiani](/people/chiara-de-bastiani.md) — Ca’ Foscari
 - [Paola Peratello](/people/paola-peratello.md) — École nationale des chartes — PSL, Paris
+
+# Resources
+
+- [VeSSDPH26_Softwares_TextualScholarship.pdf](materials/2026-07-07-0930/VeSSDPH26_Softwares_TextualScholarship.pdf)

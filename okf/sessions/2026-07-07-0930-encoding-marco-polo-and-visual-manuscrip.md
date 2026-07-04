@@ -24,3 +24,4 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 # Resources
 
 - [VeSSDPH26_Softwares_TextualScholarship.pdf](materials/2026-07-07-0930/VeSSDPH26_Softwares_TextualScholarship.pdf)
+- [Steps_towards_visualization.pdf](materials/2026-07-07-0930/Steps_towards_visualization.pdf)

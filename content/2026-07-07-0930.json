@@ -6,8 +6,14 @@
       "label": "VeSSDPH26_Softwares_TextualScholarship.pdf",
       "href": "materials/2026-07-07-0930/VeSSDPH26_Softwares_TextualScholarship.pdf",
       "type": "pdf"
+    },
+    {
+      "label": "Steps_towards_visualization.pdf",
+      "href": "materials/2026-07-07-0930/Steps_towards_visualization.pdf",
+      "type": "pdf"
     }
   ],
-  "mode": "new",
-  "submittedAt": "2026-07-03T13:25:58.731Z"
+  "changesSummary": "Added two PDF files with instructions for the hands-on activities",
+  "mode": "revision",
+  "submittedAt": "2026-07-04T07:54:16.224Z"
 }

@@ -24,8 +24,10 @@
               <listPerson>
               </listPerson>
           </particDesc>
+          <settingDesc>
               <listPlace>
               </listPlace>
+          </settingDesc>
       </profileDesc>
    </teiHeader>
    

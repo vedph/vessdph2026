@@ -19,6 +19,14 @@
             </bibl>
          </sourceDesc>
       </fileDesc>
+      <profileDesc>
+          <particDesc>
+              <listPerson>
+              </listPerson>
+          </particDesc>
+              <listPlace>
+              </listPlace>
+      </profileDesc>
    </teiHeader>
    
    <text>

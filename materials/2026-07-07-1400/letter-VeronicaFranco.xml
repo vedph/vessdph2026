@@ -21,8 +21,9 @@
       </fileDesc>
       <profileDesc>
           <particDesc>
-              <listPerson> <!-- §020 Insert persons -->
-                  <person xml:id="ps_henryIII">
+              <listPerson> 
+
+                  <person xml:id="ps_henryIII"> <!-- §020 Insert person -->
                       <persName>
                           <name>Henry III</name>
                       </persName>
@@ -31,11 +32,27 @@
                       <idno type="VIAF">http://viaf.org/viaf/5774506</idno> <!-- Optional for the exercise -->
                       <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> <!-- Optional for the exercise -->
                   </person>
-                </listPerson>
+
               </listPerson>
           </particDesc>
           <settingDesc>
               <listPlace>
+                  
+                  <place xml:id="pl_france"> <!-- §030 Insert first place (France) -->
+                      <placeName>
+                          <name>France</name>
+                      </placeName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/France</idno>
+                          <!-- ...but there is also a http://dbpedia.org/resource/Kingdom_of_France -->
+                  </place>
+
+                  <place xml:id="pl_poland"> <!-- §040 Insert second place (Poland) -->
+                      <placeName>
+                          <name>Poland</name>
+                      </placeName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/Poland</idno>
+                  </place>
+
               </listPlace>
           </settingDesc>
       </profileDesc>
@@ -47,9 +64,13 @@
             <head>
                ALL'INVITTISSIMO ET CHRISTIANISSIMO
                <lb/>
-               RE HENRICO III
+
+                <!-- §050 Insert references to the xml:id of each 'person' and 'place' element of the TEI Header -->
+
+               RE <persName ref="#ps_henryIII">HENRICO III</persName>
                <lb/>
-               DI FRANCIA, ET I. DI POLONIA
+               DI <placeName ref="#pl_france">FRANCIA</placeName>,
+               ET I. DI <placeName ref="#pl_poland">POLONIA</placeName>
             </head>
             
             <opener>

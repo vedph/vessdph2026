@@ -21,7 +21,17 @@
       </fileDesc>
       <profileDesc>
           <particDesc>
-              <listPerson>
+              <listPerson> <!-- §020 Insert persons -->
+                  <person xml:id="ps_henryIII">
+                      <persName>
+                          <name>Henry III</name>
+                      </persName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
+                      <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> <!--Optional for the exerc.-->
+                      <idno type="VIAF">http://viaf.org/viaf/5774506</idno> <!-- Optional for the exercise -->
+                      <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> <!-- Optional for the exercise -->
+                  </person>
+                </listPerson>
               </listPerson>
           </particDesc>
           <settingDesc>

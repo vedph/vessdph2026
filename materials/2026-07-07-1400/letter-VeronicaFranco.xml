@@ -24,9 +24,7 @@
               <listPerson> 
 
                   <person xml:id="ps_henryIII"> <!-- §020 Insert person -->
-                      <persName>
-                          <name>Henry III</name>
-                      </persName>
+                      <persName>Henry III</persName>
                       <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
                       <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> <!--Optional for the exerc.-->
                       <idno type="VIAF">http://viaf.org/viaf/5774506</idno> <!-- Optional for the exercise -->
@@ -39,17 +37,13 @@
               <listPlace>
                   
                   <place xml:id="pl_france"> <!-- §030 Insert first place (France) -->
-                      <placeName>
-                          <name>France</name>
-                      </placeName>
+                      <placeName>France</placeName>
                       <idno type="dbpedia">http://dbpedia.org/resource/France</idno>
                           <!-- ...but there is also a http://dbpedia.org/resource/Kingdom_of_France -->
                   </place>
 
                   <place xml:id="pl_poland"> <!-- §040 Insert second place (Poland) -->
-                      <placeName>
-                          <name>Poland</name>
-                      </placeName>
+                      <placeName>Poland</placeName>
                       <idno type="dbpedia">http://dbpedia.org/resource/Poland</idno>
                   </place>
 

@@ -23,4 +23,4 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 
 # Resources
 
-- [letter-VeronicaFranco.xml](materials/2026-07-07-1400/letter-VeronicaFranco.xml)
+- [GitHub repository with materials](materials/2026-07-07-1400/)

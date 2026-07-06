@@ -77,7 +77,7 @@
       else other.push(p);
     });
     var html = "";
-    SESS.order.forEach(function (sid) {
+    SESS.order.slice().reverse().forEach(function (sid) {
       var ps = bySess[sid]; if (!ps || !ps.length) return;
       var s = SESS.idx[sid];
       html += '<div class="jr-moment"><p class="jr-moment-h"><span class="jr-moment-time">' +
@@ -95,7 +95,7 @@
 
   function render() {
     var root = $("journal-timeline"); if (!root) return;
-    posts.sort(function (a, b) { return String(b.createdAt || "").localeCompare(String(a.createdAt || "")); }); // newest first
+    posts.sort(function (a, b) { return String(b.createdAt || "").localeCompare(String(a.createdAt || "")); }); // newest first within each section
     var byChapter = {};
     posts.forEach(function (p) { (byChapter[p.chapter] = byChapter[p.chapter] || []).push(p); });
     var html = "";
@@ -103,13 +103,14 @@
       html += '<p class="jr-empty">The journal opens before the school and fills as the week unfolds. ' +
         'Taking part? <a href="contribute-journal.html">Add the first entry &rarr;</a></p>';
     }
-    CHAPTERS.forEach(function (ch) {
+    // sections in reverse order (latest phase first, "Before" last); empty/future sections stay hidden until they have posts
+    CHAPTERS.slice().reverse().forEach(function (ch) {
       var list = byChapter[ch.key] || [];
-      html += '<section class="jr-chapter' + (list.length ? '' : ' empty') + '">';
+      if (!list.length) return;
+      html += '<section class="jr-chapter">';
       html += '<h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>';
       html += '<p class="jr-chapter-desc">' + esc(ch.desc) + '</p>';
-      if (!list.length) html += '<p class="jr-chapter-empty">No entries yet.</p>';
-      else if (ch.key === "school") html += renderSchool(list);
+      if (ch.key === "school") html += renderSchool(list);
       else html += list.map(postHtml).join("");
       html += '</section>';
     });

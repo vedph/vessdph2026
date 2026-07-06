@@ -34,6 +34,7 @@ She has led and contributed to major Digital Humanities projects, including the 
 
 # Resources
 
+- [What-Do-We-Mean-by-Scholarly-Digital-Culture.pdf](materials/2026-07-06-1700/What-Do-We-Mean-by-Scholarly-Digital-Culture.pdf)
 - [Knot Catalogue](https://projects.dharc.unibo.it/knot/) — Scholarly Digital Objects and Activity
 - [Atlas](https://dh-atlas.github.io/index.html) — The Atlas of Italian Digital Cultural Heritage
 - [Pròdìgi (Digital Products)](https://prodigi.unibo.it/)

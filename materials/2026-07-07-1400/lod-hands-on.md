@@ -26,11 +26,11 @@ In the hand-son part of the lesson, with the help of a ['toy app'](https://summe
 
 ### Files to download
 
-Use the top-right 'download raw file' button ![download button](https://raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png) to download the files:
+Use the top-right 'download raw file' button ![download button](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png) to download the files:
 
 
-1. ['Incomplete' version](https://raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/XML/1.franco_incomplete.xml) of the TEI XML file
-2. ['Complete' version](https://raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/XML/2.franco_complete.xml)
+1. ['Incomplete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/1.franco_incomplete.xml) of the TEI XML file
+2. ['Complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml)
 
 
 
@@ -47,8 +47,8 @@ This is the base file that you will connect with LOD entities in the next steps.
 
 #### How to do it
 
-1. Download the ['incomplete' version](https://raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/XML/1.franco_incomplete.xml) of the TEI XML file
-    - Use the top-right 'download raw file' button ![download button](https://raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
+1. Download the ['incomplete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/1.franco_incomplete.xml) of the TEI XML file
+    - Use the top-right 'download raw file' button ![download button](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
 2. Save the file in a folder of your computer where you will be able to find it later
 3. Open it with your XML editor to check if the download worked
 4. Keep it open in your XML editor, for the next step

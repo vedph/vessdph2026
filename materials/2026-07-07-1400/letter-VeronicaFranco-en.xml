@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_lite.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_lite.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Dedication to Henry III of France and I of Poland</title>
+            <author>Veronica Franco</author>
+         </titleStmt>
+         <publicationStmt>
+            <p>English translation for VeDPH Summer School 2026</p>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <author>Veronica Franco</author>
+               <title level="m">Poems and Selected Letters</title>
+               <editor>Ann Rosalind Jones and Margaret F. Rosenthal</editor>
+               <pubPlace>Chicago</pubPlace>
+               <publisher>University of Chicago Press</publisher>
+               <date when="1998">1998</date>
+               <note>
+                  The English translations of the poems are taken from this edition.
+                  The translations of the remaining letters were prepared specifically for this digital edition with the assistance of AI and subsequently revised by the editor.
+               </note>
+            </bibl>
+         </sourceDesc>
+      <profileDesc>
+         <particDesc>
+            <listPerson> 
+               
+               <person xml:id="ps_henryIII"> 
+                  <!-- §020 Insert person -->
+                  <persName>Henry III</persName>
+                  <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
+                  <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> 
+                  <!--Optional for the exerc.-->
+                  <idno type="VIAF">http://viaf.org/viaf/5774506</idno> 
+                  <!-- Optional for the exercise -->
+                  <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> 
+                  <!-- Optional for the exercise -->
+               </person>
+               
+            </listPerson>
+            
+         <settingDesc>
+            <listPlace>
+               <place xml:id="pl_france">
+                  <placeName>France</placeName>
+                  <idno type="dbpedia">http://dbpedia.org/resource/France</idno>
+               </place>
+               
+               <place xml:id="pl_poland">
+                  <placeName>Poland</placeName>
+                  <idno type="dbpedia">http://dbpedia.org/resource/Poland</idno>
+               </place>
+            </listPlace>
+         </settingDesc>
+      </profileDesc>
+   </teiHeader>
+   
+   <text>
+      <body>
+         <div type="letter" xml:id="letter_dedication_henry_iii">
+            <head>
+               TO THE MOST INVINCIBLE AND MOST CHRISTIAN
+               <lb/>
+               KING <persName ref="#ps_henryIII">HENRY III</persName>
+               <lb/>
+               OF <placeName ref="#pl_france">FRANCE</placeName>,
+               AND FIRST OF <placeName ref="#pl_poland">POLAND</placeName>
+            </head>
+            
+            <opener>
+               <salute>To the supreme favor which Your Majesty has deigned to show me</salute>
+            </opener>
+            
+            <p>
+               by coming to my humble dwelling and carrying away with you my portrait,
+               in exchange for that living image of your heroic virtues and your divine worth
+               which you have left impressed within the very center of my heart; an exchange
+               for me both exceedingly fortunate and blessed: I am unable to respond,
+               not even in thought or in desire.
+            </p>
+            
+            <p>
+               For what could possibly come from me that might be worthy of the sublime
+               greatness of your heavenly spirit and your blessed fortune? Nor can I,
+               by any expression of gratitude, repay even in part the infinite merit
+               of the gracious and generous promises you made to me concerning the book
+               that I am preparing to dedicate to you, promises worthy of your greatness
+               and of your most serene royal splendor far more than of any quality of my own.
+            </p>
+            
+            <p>
+               Yet, just as the whole world may sometimes be depicted within the narrow
+               space of a single sheet of paper, so in these few verses, which I reverently
+               send to Your Majesty, I have attempted to sketch, however briefly and imperfectly,
+               my gratitude and my boundless and most ardent desire to celebrate, beyond every
+               limit of earthly hope, the innumerable and superhuman gifts that happily dwell
+               within your noble breast.
+            </p>
+            
+            <closer>
+               <salute>
+                  With devout and singular affection, I humbly bow before Your Majesty
+                  and reverently embrace your sacred knees.
+               </salute>
+               <signed>Your Majesty's most humble and most devoted servant, Veronica Franco.</signed>
+            </closer>
+         </div>
+         
+         <div type="poem" subtype="sonnet" xml:id="sonnet_1">
+            <head>Sonnet I</head>
+            <lg type="sonnet">
+               <l>As from heaven down to a humble roof</l>
+               <l>Beneficent Jove descends to us here below,</l>
+               <l>and to avoid blinding mortal eyes</l>
+               <l>with such a noble sight, takes human shape:</l>
+               <l>so to my poor dwelling came Henri,</l>
+               <l>without royal show, which blinds and dazzles,</l>
+               <l>Henri, whom fate chose for such an empire</l>
+               <l>that one world alone cannot contain it.</l>
+               <l>Even so disguised, into my heart</l>
+               <l>he shone such a ray of his divine virtue</l>
+               <l>that my innate strength completely failed me.</l>
+               <l>So, assured of the depth of my affection,</l>
+               <l>he took my image, in enamel and paint,</l>
+               <l>away with him in a gracious, open spirit.</l>
+            </lg>
+         </div>
+         
+         <div type="poem" subtype="sonnet" xml:id="sonnet_2">
+            <head>Sonnet II</head>
+            <lg type="sonnet">
+               <l>Take, king, sum of virtue and perfection,</l>
+               <l>what my hand reaches out to give you:</l>
+               <l>this carved and colored countenance,</l>
+               <l>in which my living, real self is represented.</l>
+               <l>And if such a lowly and imperfect image</l>
+               <l>is not what your blessed gaze expects,</l>
+               <l>consider my motive rather than the result.</l>
+               <l>A small spark can still kindle a great flame.</l>
+               <l>And because your undying, celestial valor,</l>
+               <l>tested by a thousand trials in war and peace,</l>
+               <l>filled my soul with noble wonder,</l>
+               <l>so the desire felt in a woman's heart</l>
+               <l>to raise you above heaven, beyond this world,</l>
+               <l>see, expressed and proved, in this likeness of me.</l>
+            </lg>
+         </div>
+      </body>
+   </text>
+</TEI>

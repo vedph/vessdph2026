@@ -23,4 +23,4 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 
 # Resources
 
-- [GitHub repository with materials](materials/2026-07-07-1400/)
+- [GitHub repository with materials](https://vedph.github.io/vessdph2026/materials/2026-07-07-1400/)

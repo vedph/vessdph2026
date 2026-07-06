@@ -5,8 +5,8 @@ In the hand-son part of the lesson, with the help of a ['toy app'](https://summe
 ## Software needed
 
 - An XML editor of your choice
-    - Examples include XML Copy Editor, Oxygen (with academic license) or Visual Studio Code (with extension Scholarly XML)
-    - In fact, any simple text editor can edit an XML file, but this software will give you additional functionalities useful when editing XML professionaly
+    - Examples include [XML Copy Editor](https://xml-copy-editor.sourceforge.io/), Oxygen (with academic license) or Visual Studio Code (with extension Scholarly XML)
+    - In fact, any simple text editor (such as Text Edit on a Mac) can edit an XML file, but this software will give you additional functionalities useful when editing XML professionaly
     - The instructions to download and install Oxygen or Visual Studio Code have been provided in the materials of the lesson taught by Marina Buzzoni, Chiara De Bastiani and Paola Peratello
 
 ## Resources

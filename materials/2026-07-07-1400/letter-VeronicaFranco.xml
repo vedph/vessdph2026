@@ -23,7 +23,7 @@
           <particDesc>
               <listPerson> 
 
-                  <person xml:id="ps_henryIII"> <!-- §020 Insert person -->
+                  <person xml:id="ps_henryIII"> <!-- §020 Insert persons -->
                       <persName>Henry III</persName>
                       <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
                       <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> <!--Optional for the exerc.-->

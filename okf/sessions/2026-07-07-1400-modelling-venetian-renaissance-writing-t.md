@@ -20,3 +20,7 @@ Part of [Day Two](/days/2026-07-07.md) — Area 2 · Digital and Public Textual 
 - [Tiziana Mancinelli](/people/tiziana-mancinelli.md) — Istituto Italiano di Studi Germanici
 - [Daniele Fusi](/people/daniele-fusi.md) — Stuttgart University / Ca’ Foscari
 - [Paolo Monella](/people/paolo-monella.md) — Kore University of Enna
+
+# Resources
+
+- [letter-VeronicaFranco.xml](materials/2026-07-07-1400/letter-VeronicaFranco.xml)

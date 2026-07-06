@@ -22,7 +22,7 @@ In the hand-son part of the lesson, with the help of a ['toy app'](https://summe
 
 
 
-## Exercise
+## Hands-on activity
 
 ### Files to download
 

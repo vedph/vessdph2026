@@ -36,9 +36,9 @@ Use the top-right 'download raw file' button ![download button](https://raw.gith
 
 ### Step 1
 
-#### What you are doing
+#### What to do
 
-You start from a TEI XML file of Veronica Franco's letter, in which Henry III, France and Poland are mentioned, but in which the semantic markup regarding places and people is incomplete. In step 1 we simply download and inspect this file.
+Start from a TEI XML file of Veronica Franco's letter, in which Henry III, France and Poland are mentioned, but in which the semantic markup regarding places and people is incomplete. In step 1 we simply download and inspect this file.
 
 
 #### Why you are doing it
@@ -69,9 +69,9 @@ No problem: in the worst case scenario, the website already has a working TEI XM
 
 ### Step 2
 
-#### What you are doing
+#### What to do
 
-You find out the LOD URIs for:
+Find out the LOD URIs for:
 
 Entity    | Italian       | Type   | URI to find | Optional additional URIs
 ---       | ---           | ---    | ---         | ---
@@ -79,7 +79,7 @@ Henry III | *Henrico III* | person | DBPedia     | Wikidata, VIAF, Katalog der D
 France    | *Francia*     | place  | DBPedia     |
 Poland    | *Polonia*     | place  | DBPedia     |
 
-
+...and save those URIS in a text file for later.
 
 #### Why you are doing it
 
@@ -108,13 +108,13 @@ filter(?label="Troy"@en)
 
 ##### 3. Recogito ('production' approach)
 
-1. Recogito
+1. Use Recogito
     - Use a NER (Named Entity Recognition) tool such as [Recogito](https://recogito.pelagios.org)
 2. Login
     - Register by creating a free account, then login
 3. Upload XML
     - Upload your TEI XML document: click on 'New' (top left) ![new](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/recogito1.jpg)
-4. Open it
+4. Open XML in Recogito
     - Double click on the file in the list to open it
 5. Click on words
     - Click on highlighted words/phrases to review/edit the semantic markup
@@ -131,7 +131,7 @@ filter(?label="Troy"@en)
 
 #### What to do if anything goes wrong
 
-Find the relevant URIs in the *How to do it* section of the next step and skip to it.
+Simply skip to the *How to do it* section of the next step and use the URIs listed there.
 
 
 
@@ -144,7 +144,7 @@ Find the relevant URIs in the *How to do it* section of the next step and skip t
 
 ### Step 3
 
-#### What you are doing
+#### What to do
 
 Add the relevant URIs to your TEI markup (`<place>` and `<person>` elements in the `<teiHeader>`).
 
@@ -156,34 +156,31 @@ So the semantic markup of your TEI XML file is actually linked to the Semantic W
 #### How to do it
 
 1. Find the `§020 Insert person`, the `§030 Insert first place` and the `§040 Insert second place` bookmarks in the 'incomplete' TEI XML file (`1.franco_incomplete.xml`)
-1.franco_incomplete.xml
-1.franco_incomplete.xml
-1.franco_incomplete.xml 1.franco_incomplete.xml
-§§§
-2. Replace the "§" placeholders (e. g the "§" in `<idno type="dbpedia">§</idno>`) with the relevant LOD URIs, i.e.:
+2. Replace the `"§"` placeholders (e. g the "§" in `<idno type="dbpedia">§</idno>`) with the relevant LOD URIs that you have found in the previous step. If you couldn't find them, here they are:
 
-Entity   | URI      | URI
----      | ---      | ---
-Iuno     | DBPedia  | <http://dbpedia.org/resource/Juno_(mythology)>
-Iuno     | Wikidata | <http://www.wikidata.org/entity/Q125046>
-Iuno     | VIAF     | <http://viaf.org/viaf/47558229>
-Iuno     | D-NB     | <http://d-nb.info/gnd/118800574>
-Troia    | DBPedia  | <http://dbpedia.org/resource/Troy>
-Troia    | VIAF     | <http://viaf.org/viaf/241435491>
-Lavinium | DBPedia  | <http://dbpedia.org/resource/Lavinium>
-Lavinium | VIAF     | <http://viaf.org/viaf/243024149>
-Italia   | DBPedia  | <http://dbpedia.org/resource/Italy>
-Italia   | VIAF     | <http://viaf.org/viaf/152361066>
 
-*Note*: DBPedia URIs should start with `http`, not with `https`, and include `resource`, not `page`. For example, <http://dbpedia.org/resource/Italy> is OK, but <https://dbpedia.org/page/Italy> is not.
+
+
+
+Entity              | URI      | URI
+---                 | ---      | ---
+Henry III of France | DBPedia  | http://dbpedia.org/resource/Henry_III_of_France
+Henry III of France | Wikidata | http://www.wikidata.org/entity/Q53448
+Henry III of France | VIAF     | http://viaf.org/viaf/5774506
+Henry III of France | D-NB     | http://d-nb.info/gnd/118773720
+France              | DBPedia  | http://dbpedia.org/resource/France
+Poland              | DBPedia  | http://dbpedia.org/resource/Poland
+
+*Note*: DBPedia URIs should start with `http`, not with `https`, and include `resource`, not `page`. For example, <http://dbpedia.org/resource/Italy> is OK, but <https://dbpedia.org/page/Italy> is not:
+<https://dbpedia.org/page/Italy>, instead, is the *URL* of the *textual webpage* (regular Web, not Semantic Web) that DBPedia automatically generates to display the content of the LOD resource to human readers.
 
 
 
 #### What to do if anything goes wrong
 
-- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps
+- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
     - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
-    - Please note in which folder you are downloading this file. You can replace the previous version and resume work from the 'complete' file for the next steps
+    - Please note in which folder you are downloading this file
 
 
 
@@ -191,7 +188,7 @@ Italia   | VIAF     | <http://viaf.org/viaf/152361066>
 
 ### Step 4
 
-#### What you are doing
+#### What to do
 
 Connect the `<personName>` and the `<placeName>` elements in the TEI `<text>` to the `<place>` and `<person>` elements in the TEI `<teiHeader>`.
 
@@ -200,18 +197,19 @@ Connect the `<personName>` and the `<placeName>` elements in the TEI `<text>` to
 
 Because this is the TEI Guidelines strategy: the `<text>` points to the to `<teiHeader>`, and the latter inlcudes the LOD URIs.
 
+
 #### How to do it
 
-1. Find the `§040` bookmark in the 'incomplete' TEI XML file (`1.franco_incomplete.xml`)
-2. Replace the "§" placeholders (e. g the "§" in `<placeName ref="§">Troiae</placeName`) with pointers to the `xml:id` of the relevant `<person>` or `<place>` in the `<teiHeader>` (e.g. `pl_troia` for Troy). Remember that in XML pointers start with `#`, so the result for Troy should look like `<placeName ref="#pl_troia">Troiae</placeName>`.
+1. Find the bookmark `§050 Insert references` in the 'incomplete' TEI XML file (`1.franco_incomplete.xml`)
+2. Replace the "§" placeholders (e. g the "§" in `<persName ref="§">HENRICO III</persName>`) with pointers to the `xml:id` of the relevant `<person>` or `<place>` in the `<teiHeader>` (e.g. `pl_poland` for Poland). Remember that in XML pointers start with `#`, so the result for Poland should look like `<placeName ref="#pl_poland">` etc.
 
 
 
 #### What to do if anything goes wrong
 
-- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all TEI markup has been completed, so you are ready for the next steps
+- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
     - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
-    - Please note in which folder you are downloading this file. You can replace the previous version and resume work from the 'complete' file for the next steps
+    - Please note in which folder you are downloading this file
 
 
 
@@ -224,27 +222,28 @@ Because this is the TEI Guidelines strategy: the `<text>` points to the to `<tei
 
 ### Step 5
 
-#### What you are doing
+#### What to do
 
-You upload the updated TEI XML file to the website <https://summer-lod.fusi-soft.com>, which includes software that will process it.
+Upload the updated TEI XML file to the [toy app https://summer-lod.fusi-soft.com](https://summer-lod.fusi-soft.com), which includes software that will process it.
 
 
 
 #### Why you are doing it
 
-The [website](https://summer-lod.fusi-soft.com/) already includes a default version of our TEI XML file, but you may provide it with your own version (thus mimicking a real-world workflow).
+The [toy app](https://summer-lod.fusi-soft.com/) already includes a default version of our TEI XML file, but you may provide it with your own version (thus mimicking a real-world workflow).
 
 #### How to do it
 
 1. Make sure that you have a working, valid and complete TEI XML file
 2. If you're not sure, or if anything is wrong or missing in your TEI XML file, download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/aen_complete.xml)
-3. Visit the website <https://summer-lod.fusi-soft.com> and locate the button bar, just behind the XML and XSLT code windows: ![button bar](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-all.jpg)
+3. Visit the [toy app](https://summer-lod.fusi-soft.com)
 4. Upload the updated TEI XML file by clicking on the *Load XML from file* button: ![load from XML button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-upload-xml.jpg)
+    - The button bar is located just behind the XML and XSLT code windows: ![button bar](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-all.jpg)
 
 
 #### What to do if anything goes wrong
 
-Not much: you need this starting file for the next steps.
+If you can't upload your own version of the XML file, you can simply refresh/reload the webpage of the [toy app](https://summer-lod.fusi-soft.com) and use the XML file pre-loaded there.
 
 
 
@@ -252,13 +251,13 @@ Not much: you need this starting file for the next steps.
 
 ### Step 6
 
-#### What you are doing
+#### What to do
 
-You generate the HTML visualization based on your updated XML, and the XSLT.
+Generate the HTML visualization based on your updated XML and the XSLT (the latter is pre-loaded in the [toy app](https://summer-lod.fusi-soft.com)).
 
 #### Why you are doing it
 
-To see the typical XML → XSLT → HTML pipeline in action.
+To see the typical XML → XSLT → HTML pipeline, commonly usedi to visualize XML data for humans, in action.
 
 #### How to do it
 
@@ -276,9 +275,9 @@ This step is not directly relevant to LOD: if things don't go your way, just ski
 
 ### Step 7
 
-#### What you are doing
+#### What to do
 
-You run the "Parse XML entities" function of the [website](https://summer-lod.fusi-soft.com/), which pulls data about our entities from the Semantic Web (namely, from DBPedia: this is why in our exercise only the DBPedia URI was mandatory, while other URIs were optional).
+Run the "Parse XML entities" function of the [toy app](https://summer-lod.fusi-soft.com/), which pulls data regarding our entities from the Semantic Web (namely from DBPedia: this is why only the DBPedia URIs were mandatory in previous steps, while other URIs were optional).
 
 #### Why you are doing it
 
@@ -288,11 +287,14 @@ So you can see the power of LOD in action!
 
 1. Click on the *Parse XML entities* button ![parse XML entities](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-parse.jpg)
 2. Check the entities list in the new window that has appeared just above the map
-3. Click on the *View details* button ![view details](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-info.jpg) for each entity and check the *Details* window that appears. Where does this information come from? Is it encoded in the TEI XML file?
+3. Click on the *View details* button ![view details](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-info.jpg) for each entity and check the *Details* window that appears
+    - Where does this information come from? Is it encoded in the TEI XML file?
 4. Switch the language of the abstract in the dropdown menu
-5. Click on the *Fly to this location* button ![fly to this location](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-fly.jpg) in the Lavinium row (or in any other row of a place) and check the map. Where does the geographical information (latitude, longitude) come from? Is it encoded in the TEI XML file?
-6. Does the system show any geographical information for people (Juno)? Why?
+5. For places, click on the *Fly to this location* button ![fly to this location](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-fly.jpg) and check the map
+    - Where does the geographical information (latitude, longitude) come from? Is it encoded in the TEI XML file?
+6. Does the system show any geographical information for people (Henrty III)?
+    - Why? (Sure, conceptually it doesn't make sense; but technically, why it doesn't happen?)
 
 #### What to do if anything goes wrong
 
-Not much, but please drop us a line to let us know that the LOD parsing didn't work for you.
+Not much, unfortunately, but please let us know if the LOD parsing didn't work for you, so Daniele Fusi can fix it.

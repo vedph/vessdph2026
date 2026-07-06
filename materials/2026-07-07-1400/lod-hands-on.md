@@ -158,10 +158,6 @@ So the semantic markup of your TEI XML file is actually linked to the Semantic W
 1. Find the `§020 Insert person`, the `§030 Insert first place` and the `§040 Insert second place` bookmarks in the 'incomplete' TEI XML file (`1.franco_incomplete.xml`)
 2. Replace the `"§"` placeholders (e. g the "§" in `<idno type="dbpedia">§</idno>`) with the relevant LOD URIs that you have found in the previous step. If you couldn't find them, here they are:
 
-
-
-
-
 Entity              | URI      | URI
 ---                 | ---      | ---
 Henry III of France | DBPedia  | http://dbpedia.org/resource/Henry_III_of_France

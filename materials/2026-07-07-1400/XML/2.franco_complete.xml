@@ -34,12 +34,9 @@
                   <!-- §020 Insert person -->
                   <persName>Henry III</persName>
                   <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
-                  <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> 
-                  <!--Optional for the exerc.-->
-                  <idno type="VIAF">http://viaf.org/viaf/5774506</idno> 
-                  <!-- Optional for the exercise -->
-                  <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> 
-                  <!-- Optional for the exercise -->
+                  <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> <!-- Optional for the exercise -->
+                  <idno type="VIAF">http://viaf.org/viaf/5774506</idno> <!-- Optional for the exercise -->
+                  <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> <!-- Optional for the exercise -->
                </person>
                
             </listPerson>
@@ -48,10 +45,12 @@
             <listPlace>
                <place xml:id="pl_france">
                   <placeName>France</placeName>
+                  <!-- §030 Insert first place (France) -->
                   <idno type="dbpedia">http://dbpedia.org/resource/France</idno>
                </place>
                
                <place xml:id="pl_poland">
+                  <!-- §040 Insert second place (Poland) -->
                   <placeName>Poland</placeName>
                   <idno type="dbpedia">http://dbpedia.org/resource/Poland</idno>
                </place>
@@ -63,13 +62,16 @@
    <text>
       <body>
          <div type="letter" xml:id="letter_dedication_henry_iii">
+
             <head>
+               <!-- §050 Insert references to the xml:id of each 'person' and 'place' element of the TEI Header -->
                TO THE MOST INVINCIBLE AND MOST CHRISTIAN
                <lb/>
                KING <persName ref="#ps_henryIII">HENRY III</persName>
                <lb/>
                OF <placeName ref="#pl_france">FRANCE</placeName>,
                AND FIRST OF <placeName ref="#pl_poland">POLAND</placeName>
+
             </head>
             
             <opener>

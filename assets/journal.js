@@ -18,11 +18,11 @@
   }
 
   var CHAPTERS = [
-    { key: "before", label: "Before" },
-    { key: "onway",  label: "On our way" },
-    { key: "school", label: "At the Summer school" },
-    { key: "home",   label: "Heading home" },
-    { key: "after",  label: "Afterwards" }
+    { key: "before", label: "Before", desc: "Getting ready \u2014 expectations, questions, the days before leaving." },
+    { key: "onway",  label: "On our way", desc: "The journey to Venice." },
+    { key: "school", label: "At the Summer school", desc: "The week itself \u2014 sessions, fieldwork, the city. Entries can be tied to moments in the programme." },
+    { key: "home",   label: "Heading home", desc: "The journey back." },
+    { key: "after",  label: "Afterwards", desc: "Second thoughts \u2014 what stayed with us once the school was over." }
   ];
 
   // programme sessions in chronological order, with labels (school timeline scaffold)
@@ -38,8 +38,12 @@
     return { idx: idx, order: order };
   })();
 
-  // login kept only in memory
+  // login, remembered for the browser session (shared with the contribute page)
   var me = null, creds = null, posts = [];
+  var STORE_KEY = "vss_journal_auth";
+  function saveAuth() { try { sessionStorage.setItem(STORE_KEY, JSON.stringify({ username: creds.username, password: creds.password, name: me.name, role: me.role })); } catch (e) {} }
+  function loadAuth() { try { var s = sessionStorage.getItem(STORE_KEY); if (s) { var a = JSON.parse(s); me = { username: a.username, role: a.role, name: a.name }; creds = { username: a.username, password: a.password }; } } catch (e) {} }
+  function clearAuth() { try { sessionStorage.removeItem(STORE_KEY); } catch (e) {} }
 
   function roleClass(r) { return r === "admin" ? "jr-role-organiser" : r === "teacher" ? "jr-role-faculty" : ""; }
   function roleLabel(r) { return r === "admin" ? "Organiser" : r === "teacher" ? "Teacher" : "Participant"; }
@@ -91,18 +95,22 @@
 
   function render() {
     var root = $("journal-timeline"); if (!root) return;
-    if (!posts.length) {
-      root.innerHTML = '<p class="jr-empty">The journal is empty so far. Taking part in the Summer School? ' +
-        '<a href="contribute-journal.html">Add the first entry &rarr;</a></p>';
-      return;
-    }
+    posts.sort(function (a, b) { return String(b.createdAt || "").localeCompare(String(a.createdAt || "")); }); // newest first
     var byChapter = {};
     posts.forEach(function (p) { (byChapter[p.chapter] = byChapter[p.chapter] || []).push(p); });
     var html = "";
+    if (!posts.length) {
+      html += '<p class="jr-empty">The journal opens before the school and fills as the week unfolds. ' +
+        'Taking part? <a href="contribute-journal.html">Add the first entry &rarr;</a></p>';
+    }
     CHAPTERS.forEach(function (ch) {
-      var list = byChapter[ch.key]; if (!list || !list.length) return;
-      html += '<section class="jr-chapter"><h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>';
-      html += (ch.key === "school") ? renderSchool(list) : list.map(postHtml).join("");
+      var list = byChapter[ch.key] || [];
+      html += '<section class="jr-chapter' + (list.length ? '' : ' empty') + '">';
+      html += '<h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>';
+      html += '<p class="jr-chapter-desc">' + esc(ch.desc) + '</p>';
+      if (!list.length) html += '<p class="jr-chapter-empty">No entries yet.</p>';
+      else if (ch.key === "school") html += renderSchool(list);
+      else html += list.map(postHtml).join("");
       html += '</section>';
     });
     root.innerHTML = html;
@@ -133,7 +141,7 @@
       box.innerHTML = 'Signed in as <b>' + esc(me.name) + '</b>' +
         (me.role === "admin" ? ' \u2014 organiser; you can remove any entry. ' : ' \u2014 you can remove your own entries. ') +
         '<button type="button" id="jr-logout" class="jr-linkbtn">Sign out</button>';
-      $("jr-logout").addEventListener("click", function () { me = null; creds = null; renderLogin(); render(); drawMap(); });
+      $("jr-logout").addEventListener("click", function () { me = null; creds = null; clearAuth(); renderLogin(); render(); drawMap(); });
       return;
     }
     box.innerHTML =
@@ -162,6 +170,7 @@
         if (res.ok && res.j && res.j.ok) {
           me = { username: res.j.username, role: res.j.role, name: res.j.name };
           creds = { username: u, password: p };
+          saveAuth();
           renderLogin(); render(); drawMap();
         } else { msg.textContent = (res.j && res.j.error) || "Login failed."; }
       }).catch(function () { msg.textContent = "Could not reach the server."; });
@@ -216,6 +225,7 @@
   }
 
   /* ----- load ----- */
+  loadAuth();
   renderLogin();
   fetch(ENDPOINT + "/journal").then(function (r) { return r.json(); })
     .then(function (j) { posts = (j && j.posts) || []; render(); drawMap(); })

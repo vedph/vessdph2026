@@ -201,6 +201,10 @@ h1.title em{display:block;font-style:italic;font-weight:400;color:var(--cf-red);
 .lemma.is-key .body .ttl{color:var(--cf-red-deep)}
 .body .note{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1rem;margin:.35rem 0 0;max-width:50ch}
 
+.pub{font-family:var(--mono);font-size:.78rem;margin:.4rem 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:.45rem}
+.pub-b{display:inline-block;background:var(--cf-red);color:#fff;font-size:.66rem;letter-spacing:.03em;padding:.13rem .42rem;border-radius:.22rem;white-space:nowrap}
+.pub a{text-decoration:underline;text-underline-offset:.16em}
+
 .app{margin-top:.55rem;display:flex;flex-direction:column;gap:.35rem}
 .auth{font-family:var(--sans);font-size:.98rem;line-height:1.35}
 .auth .nm{color:var(--ink);font-weight:500}

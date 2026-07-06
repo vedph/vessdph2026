@@ -16,7 +16,7 @@
   /* ---- configure after deploying the function (public URL, not secret) ---- */
   var SUBMIT_ENDPOINT = "https://vssdph-materials.emmavedph.workers.dev";  // deployed Cloudflare Worker (public URL, not a secret)
 
-  var ALLOWED = ["pdf","md","txt","jpg","jpeg","png","webp"];
+  var ALLOWED = ["pdf","md","txt","xml","csv","tsv","json","geojson","ttl","rdf","nt","bib","zip","jpg","jpeg","png","webp"];
   var IMG_EXT = ["jpg","jpeg","png","webp"];
   var MAX_BYTES = 10 * 1024 * 1024;  // 10 MB per file (mirrors the server limit)
   var MAX_FILES = 12;

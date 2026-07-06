@@ -111,6 +111,14 @@
       (v.detail ? ` \u00b7 ${esc(v.detail)}` : "");
     return `<div class="where">${inner}</div>`;
   }
+
+  function publicHTML(s){
+    const p = s.public; if(!p) return "";
+    const reg = p.register ? `<a href="${esc(p.register)}" target="_blank" rel="noopener">Register \u2197</a>` : "";
+    const pos = p.poster ? `<a href="${esc(p.poster)}" target="_blank" rel="noopener">Poster (PDF) \u2197</a>` : "";
+    const links = [reg, pos].filter(Boolean).join(" \u00b7 ");
+    return `<p class="pub"><span class="pub-b">Open to the public</span>${links?` ${links}`:""}</p>`;
+  }
   function chip(item, external){
     const ext = external || /^https?:/.test(item.href||"");
     const k = item.kind && KIND[item.kind] ? `<span class="k" aria-hidden="true">${KIND[item.kind]}</span>` : "";
@@ -182,6 +190,7 @@
       <div class="body">
         <h3 class="ttl">${esc(s.title)}</h3>
         ${s.note?`<p class="note">${esc(s.note)}</p>`:""}
+        ${publicHTML(s)}
         <div class="app">
           ${speakersHTML(s.speakers)}
           ${venueHTML(s)}
@@ -850,6 +859,7 @@
       `<p class="sp-kicker kicker"><a href="programme.html#day-${dayN}">${esc(d.label)} \u00b7 ${esc(s.area || d.area)}</a></p>`+
       `<h1 class="sp-title">${esc(s.title)}</h1>`+
       (s.note?`<p class="sp-note">${esc(s.note)}</p>`:"")+
+      publicHTML(s)+
       `<div class="sp-head">`+
         `<div class="sp-people">${ppl}</div>`+
         `<dl class="sp-facts">`+

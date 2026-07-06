@@ -1,9 +1,16 @@
 {
   "session": "2026-07-09-0930",
   "status": "published",
-  "abstract": "In this session, we will explore the history of Venetian space and place through the lens of early modeern violence. During this session, students will be introduced to the basics of spatial analysis with GIS while looking at the various components of this methodology including data collection and analysis. We will end our session with a crowdsourcing public history activity using GIS.",
-  "bioNote": "Amanda Madden is an assistant professor of history at George Mason University in Fairfax, Virginia. She is the author of the book Civil Blood: Vendetta Violence and the Civic Elites in Early Modern Italy and the project director of Mapping Violence in Early Modern Italy.",
-  "changesSummary": "Added info on session, bio and link to website",
+  "abstract": "This session will provide an introduction to one of the important tools and methodologies of spatial analysis, namely GIS. In this workshop, we will cover the components of the methodology and students will learn how to turn humanities data into a GIS project. The session will end with a crowd-sourcing activity in the streets of Venice.",
+  "bioNote": "Amanda Madden is an assistant professor of history at George Mason University in Fairfax, Virginia and affiliate faculty at the Roy Rosenzweig Center for History and New Media. She is the author of Civil Blood: Vendetta Violence and the Civic Elites in Early Modern Italy and the project director of Mapping Violence in Early Modern Italy.",
+  "resources": [
+    {
+      "label": "Project website",
+      "href": "https://earlymodernviolence.org/",
+      "type": "website and dataset"
+    }
+  ],
+  "changesSummary": "bio, website update",
   "mode": "new",
-  "submittedAt": "2026-07-06T15:37:42.810Z"
+  "submittedAt": "2026-07-06T15:54:41.957Z"
 }

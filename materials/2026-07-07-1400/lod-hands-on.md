@@ -113,7 +113,7 @@ filter(?label="Troy"@en)
 2. Login
     - Register by creating a free account, then login
 3. Upload XML
-    - Upload your TEI XML document: click on 'New' (top left) ![new](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/recogito1.jpg)
+    - Upload your TEI XML document: click on 'New' (top left) ![new](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/recogito1.jpg)
 4. Open XML in Recogito
     - Double click on the file in the list to open it
 5. Click on words

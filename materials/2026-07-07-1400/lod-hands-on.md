@@ -1,6 +1,6 @@
 ## Abstract
 
-In the practical part of the workshop, with the help of a ['toy app'](https://summer-lod.fusi-soft.com) developed by Daniele Fusi, attendants enrich a TEI XML file of a letter by Veronica Franco by including references to LOD entities representing people and places, a typical real-world application scenario for LOD technologies. Course attendants find out the LOD URIs for entities *Enrico III* (Henry III), *Francia* (France) and *Polonia* (Poland) on DBPedia and mark their names in Veronica Franco's text with the relevant TEI markup, pointing to those URIs. Then they use the toy app to generate its HTML visualization, to pull data about those entities from the Semantic Web (namely, from DBPedia) and to visualize that data.
+In the hand-son part of the lesson, with the help of a ['toy app'](https://summer-lod.fusi-soft.com) developed by Daniele Fusi, attendants enrich a TEI XML file of a letter by Veronica Franco by including references to LOD entities representing people and places, a typical real-world application scenario for LOD technologies. Course attendants find out the LOD URIs for entities *Enrico III* (Henry III), *Francia* (France) and *Polonia* (Poland) on DBPedia and mark their names in Veronica Franco's text with the relevant TEI markup, pointing to those URIs. Then they use the toy app to generate its HTML visualization, to pull data about those entities from the Semantic Web (namely, from DBPedia) and to visualize that data.
 
 ## Software needed
 

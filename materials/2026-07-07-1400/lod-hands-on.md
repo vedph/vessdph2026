@@ -178,7 +178,7 @@ Poland              | DBPedia  | http://dbpedia.org/resource/Poland
 
 #### What to do if anything goes wrong
 
-- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
+- Download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
     - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
     - Please note in which folder you are downloading this file
 
@@ -207,7 +207,7 @@ Because this is the TEI Guidelines strategy: the `<text>` points to the to `<tei
 
 #### What to do if anything goes wrong
 
-- Download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
+- Download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
     - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
     - Please note in which folder you are downloading this file
 
@@ -235,7 +235,7 @@ The [toy app](https://summer-lod.fusi-soft.com/) already includes a default vers
 #### How to do it
 
 1. Make sure that you have a working, valid and complete TEI XML file
-2. If you're not sure, or if anything is wrong or missing in your TEI XML file, download the ['complete' version](https://github.com/SunoikisisDC/SunoikisisDC-2025-2026/blob/main/data/Summer-2026-Session-4/XML/aen_complete.xml)
+2. If you're not sure, or if anything is wrong or missing in your TEI XML file, download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml)
 3. Visit the [toy app](https://summer-lod.fusi-soft.com)
 4. Upload the updated TEI XML file by clicking on the *Load XML from file* button: ![load from XML button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-upload-xml.jpg)
     - The button bar is located just behind the XML and XSLT code windows: ![button bar](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-all.jpg)

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_lite.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_lite.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="it">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Lettera/dedica a Enrico III di Francia e I di Polonia</title>
+            <author>Veronica Franco</author>
+         </titleStmt>
+         <publicationStmt>
+            <p>Trascrizione normalizzata per VeDPH Summer School 2026</p>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <author>Veronica Franco</author>
+               <title>Lettere familiari a diversi</title>
+               <biblScope unit="page">pp. 6-9</biblScope>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+      <profileDesc>
+          <particDesc>
+              <listPerson> 
+
+                  <person xml:id="ps_henryIII"> <!-- §020 Insert person -->
+                      <persName>Henry III</persName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/Henry_III_of_France</idno>
+                      <idno type="wikidata">http://www.wikidata.org/entity/Q53448</idno> <!--Optional for the exerc.-->
+                      <idno type="VIAF">http://viaf.org/viaf/5774506</idno> <!-- Optional for the exercise -->
+                      <idno type="d-nb">http://d-nb.info/gnd/118773720</idno> <!-- Optional for the exercise -->
+                  </person>
+
+              </listPerson>
+          </particDesc>
+          <settingDesc>
+              <listPlace>
+                  
+                  <place xml:id="pl_france"> <!-- §030 Insert first place (France) -->
+                      <placeName>France</placeName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/France</idno>
+                          <!-- ...but there is also a http://dbpedia.org/resource/Kingdom_of_France -->
+                  </place>
+
+                  <place xml:id="pl_poland"> <!-- §040 Insert second place (Poland) -->
+                      <placeName>Poland</placeName>
+                      <idno type="dbpedia">http://dbpedia.org/resource/Poland</idno>
+                  </place>
+
+              </listPlace>
+          </settingDesc>
+      </profileDesc>
+   </teiHeader>
+   
+   <text>
+      <body>
+         <div type="letter" xml:id="lettera_dedica_henrico_iii">
+            <head>
+               ALL'INVITTISSIMO ET CHRISTIANISSIMO
+               <lb/>
+
+                <!-- §050 Insert references to the xml:id of each 'person' and 'place' element of the TEI Header -->
+
+               RE <persName ref="#ps_henryIII">HENRICO III</persName>
+               <lb/>
+               DI <placeName ref="#pl_france">FRANCIA</placeName>,
+               ET I. DI <placeName ref="#pl_poland">POLONIA</placeName>
+            </head>
+            
+            <opener>
+               <salute>All'altissimo favor, che la Vostra Maestà s'è degnata di farmi</salute>
+            </opener>
+            
+            <p>
+               venendo all'humile habitatione mia di portarne seco il mio ritratto,
+               in cambio di quella viva imagine, che nel mezzo del mio cuore ella hà
+               lasciato delle sue virtù heroiche, &amp; del suo divino valore; cambio
+               per me troppo aventuroso, &amp; felice: io non sono bastevole di
+               corrispondere, ne pur col pensiero, ne col desiderio.
+            </p>
+            
+            <p>
+               Imperoche qual cosa può nascer da me che sia degna della suprema
+               altezza dell'animo suo celeste, &amp; della sua beata fortuna; né posso
+               con alcuna maniera di ringratiamento supplire in parte all'infinito
+               merito delle sue benigne, &amp; gratiose offerte fattemi nel proposito
+               del libro, ch'io sono per dedicarle, convenienti alla sua grandezza,
+               &amp; al suo Serenissimo splendor Regale più che ad alcuna mia qualità.
+            </p>
+            
+            <p>
+               &amp; nondimeno sì come nel breve spatio d'alcuna angustissima carta
+               soglia talvolta disegnarsi tutto il mondo intiero; ho fatto in questi
+               pochi versi, che riverentemente mando alla Vostra Maestà, il disegno,
+               benche ristretto, &amp; rozo della mia gratitudine &amp; della mia
+               immensa, &amp; ardentissima volontà di celebrar sopra il termine
+               d'ogni mondana speranza le innumerabili, &amp; soprahumane doti, che
+               dentro del suo generoso petto albergano felicemente.
+            </p>
+            
+            <closer>
+               <salute>
+                  &amp; con devoto, &amp; singulare affetto reverentemente m'inchino
+                  ad abbracciarle le Sacre ginocchia.
+               </salute>
+               <signed>Humiliss. &amp; devotiss. serva della Maestà vostra, Veronica Franca.</signed>
+            </closer>
+         </div>
+         
+         <div type="poem" subtype="sonnet" xml:id="sonetto_1">
+            <head>Sonetto I</head>
+            <lg type="sonnet">
+               <l>Come talhor dal Ciel sotto humil tetto</l>
+               <l>Giove tra noi quaggiù benigno scende,</l>
+               <l>Et perché occhio terren dall'alto oggetto</l>
+               <l>Non resti vinto, humana forma prende:</l>
+               <l>Così venne al mio povero ricetto,</l>
+               <l>Senza pompa real, ch'abbaglia, e splende,</l>
+               <l>Dal fato Henrico a tal dominio eletto,</l>
+               <l>Ch'un sol mondo no'l cape, &amp; no'l comprende.</l>
+               <l>Benché sì sconosciuto, anch'al mio core</l>
+               <l>Tal raggio impresse del divin suo merto,</l>
+               <l>Che 'n me s'estinse il natural vigore.</l>
+               <l>Di ch'ei di tant'affetto non incerto,</l>
+               <l>L'imagin mia di smalt', e di colore</l>
+               <l>Prese al partir con grat'animo aperto.</l>
+            </lg>
+         </div>
+         
+         <div type="poem" subtype="sonnet" xml:id="sonetto_2">
+            <head>Sonetto II</head>
+            <lg type="sonnet">
+               <l>Rendi, Re per virtù sommo, &amp; perfetto,</l>
+               <l>Quel che la mano a porgerti si stende:</l>
+               <l>Questo scolpito, &amp; colorato aspetto,</l>
+               <l>In cui 'l mio vivo, &amp; natural s'intende.</l>
+               <l>E, s'a essempio sì basso, &amp; sì imperfetto</l>
+               <l>La tua vista beata non s'attende;</l>
+               <l>Risguarda a la cagion, non a l'effetto.</l>
+               <l>Poca favilla ancor gran fiamma accende.</l>
+               <l>E come 'l tuo immortal divin valore,</l>
+               <l>In armi, e in pace, a mille prove esperto,</l>
+               <l>M'empìo l'alma di nobile stupore,</l>
+               <l>Così 'l desio di donna in cor sofferto</l>
+               <l>D'alzarti sopra 'l Ciel dal mondo fore</l>
+               <l>Mira in quel mio sembiante espresso, &amp; certo.</l>
+            </lg>
+         </div>
+         <div type="translation">
+            <head></head>
+            <p></p>
+         </div>
+      </body>
+   </text>
+</TEI>

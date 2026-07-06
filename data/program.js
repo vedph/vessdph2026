@@ -142,7 +142,7 @@ window.SCHOOL = {
       lat: 45.43508, lng: 12.32360
     },
     baratto: {
-      name: "Aula Baratto",
+      name: "Aula Mario Baratto",
       building: "Ca\u2019 Foscari, main building",
       detail: "2nd floor",
       address: "Dorsoduro 3246, Venezia",
@@ -169,7 +169,7 @@ window.SCHOOL = {
       address: "Giardini della Biennale, Sestiere Castello, Venezia",
       lat: 45.42870, lng: 12.35660
     },
-    archivio: {
+    barlarchivio: {
       name: "Bar L\u2019Archivio",
       building: "",
       detail: "",
@@ -248,6 +248,8 @@ window.SCHOOL = {
         { start: "17:00", end: "19:00", type: "keynote", venueId: "baratto", area: "Opening keynote",
           title: "What Do We Mean by Scholarly Digital Culture?",
           note: "Opening keynote within the DIGITALIA Erasmus+ Project, introduced by Lorenzo Calvelli (Ca\u2019 Foscari).",
+          public: { register: "https://unive.zoom.us/meeting/register/UHVdBSyGSpmDb4gEox0Q7w",
+                    poster: "https://apps.unive.it/server/eventi/113775/Digitalia_Tomasi_06-07-2026%20(1).pdf" },
           speakers: [
             { name: "Francesca Tomasi", affiliation: "University of Bologna" }
           ] }
@@ -293,7 +295,7 @@ window.SCHOOL = {
           title: "Guided tour of the Venice State Archives",
           note: "Including documents related to Marco Polo, Veronica Franco, and Giacomo Casanova.",
           speakers: [] },
-        { start: "18:00", end: "19:00", type: "reception", venueId: "archivio",
+        { start: "18:00", end: "19:00", type: "reception", venueId: "barlarchivio",
           title: "Wine reception and \u201cVery Special Sneak Preview\u201d",
           speakers: [
             { name: "Peter Robinson", affiliation: "University of Saskatchewan" }
@@ -404,6 +406,8 @@ window.SCHOOL = {
         { start: "18:00", end: "19:00", type: "keynote", venueId: "morelli",
           title: "Museums and Datafication: Renegotiating museums and their digital interfaces",
           note: "Closing keynote.",
+          public: { register: "https://unive.zoom.us/meeting/register/UHVdBSyGSpmDb4gEox0Q7w",
+                    poster: "https://apps.unive.it/server/eventi/113777/summer_school_DPH_10-07-2026.pdf" },
           speakers: [
             { name: "Ross Parry", affiliation: "University of Leicester" },
             { name: "Vince Dziekan", affiliation: "Monash University" }

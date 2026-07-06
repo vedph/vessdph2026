@@ -12,7 +12,7 @@ Part of [Day One](/days/2026-07-06.md) — Area 1 · Digital Archaeology and Pub
 # When & where
 
 - **When:** Monday, 6 July 2026, 17:00–19:00
-- **Where:** [Aula Baratto, Ca’ Foscari, main building](/venues/baratto.md) · 2nd floor
+- **Where:** [Aula Mario Baratto, Ca’ Foscari, main building](/venues/baratto.md) · 2nd floor
 - **Format:** Keynote
 
 # Speakers

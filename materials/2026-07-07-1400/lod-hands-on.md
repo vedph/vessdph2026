@@ -179,7 +179,7 @@ Poland              | DBPedia  | http://dbpedia.org/resource/Poland
 #### What to do if anything goes wrong
 
 - Download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
-    - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
+    - Use the top-right 'download raw file' button ![download button](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
     - Please note in which folder you are downloading this file
 
 
@@ -208,7 +208,7 @@ Because this is the TEI Guidelines strategy: the `<text>` points to the to `<tei
 #### What to do if anything goes wrong
 
 - Download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml) of the TEI XML file, in which all URIs have been included, so you are ready for the next steps. To download it:
-    - Use the top-right 'download raw file' button ![download button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
+    - Use the top-right 'download raw file' button ![download button](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/gitbhub-download-detail.png)
     - Please note in which folder you are downloading this file
 
 
@@ -237,8 +237,8 @@ The [toy app](https://summer-lod.fusi-soft.com/) already includes a default vers
 1. Make sure that you have a working, valid and complete TEI XML file
 2. If you're not sure, or if anything is wrong or missing in your TEI XML file, download the ['complete' version](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/XML/2.franco_complete.xml)
 3. Visit the [toy app](https://summer-lod.fusi-soft.com)
-4. Upload the updated TEI XML file by clicking on the *Load XML from file* button: ![load from XML button](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-upload-xml.jpg)
-    - The button bar is located just behind the XML and XSLT code windows: ![button bar](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-all.jpg)
+4. Upload the updated TEI XML file by clicking on the *Load XML from file* button: ![load from XML button](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-upload-xml.jpg)
+    - The button bar is located just behind the XML and XSLT code windows: ![button bar](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-all.jpg)
 
 
 #### What to do if anything goes wrong
@@ -261,8 +261,8 @@ To see the typical XML → XSLT → HTML pipeline, commonly usedi to visualize X
 
 #### How to do it
 
-1. Click on the *Transform XML with XSLT* button: ![transform XML with XSLT](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-transform.jpg)
-2. Check the visualization that appears in the *HTML* box of the [website](https://summer-lod.fusi-soft.com/), behind the source code and the ![button bar](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-all.jpg)
+1. Click on the *Transform XML with XSLT* button: ![transform XML with XSLT](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-transform.jpg)
+2. Check the visualization that appears in the *HTML* box of the [website](https://summer-lod.fusi-soft.com/), behind the source code and the ![button bar](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-all.jpg)
 
 #### What to do if anything goes wrong
 
@@ -285,12 +285,12 @@ So you can see the power of LOD in action!
 
 #### How to do it
 
-1. Click on the *Parse XML entities* button ![parse XML entities](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-parse.jpg)
+1. Click on the *Parse XML entities* button ![parse XML entities](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-parse.jpg)
 2. Check the entities list in the new window that has appeared just above the map
-3. Click on the *View details* button ![view details](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-info.jpg) for each entity and check the *Details* window that appears
+3. Click on the *View details* button ![view details](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-info.jpg) for each entity and check the *Details* window that appears
     - Where does this information come from? Is it encoded in the TEI XML file?
 4. Switch the language of the abstract in the dropdown menu
-5. For places, click on the *Fly to this location* button ![fly to this location](raw.githubusercontent.com/vedph/vessdph2026/main/materials/2026-07-07-1400/button_images/button-fly.jpg) and check the map
+5. For places, click on the *Fly to this location* button ![fly to this location](https://github.com/vedph/vessdph2026/raw/refs/heads/main/materials/2026-07-07-1400/button_images/button-fly.jpg) and check the map
     - Where does the geographical information (latitude, longitude) come from? Is it encoded in the TEI XML file?
 6. Does the system show any geographical information for people (Henrty III)?
     - Why? (Sure, conceptually it doesn't make sense; but technically, why it doesn't happen?)

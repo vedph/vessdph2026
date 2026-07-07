@@ -1,6 +1,8 @@
 {
   "session": "2026-07-07-1130",
   "status": "published",
+  "abstract": "This summer school activity combines close reading with hands-on work on primary sources: Venetian archival documents and a curated selection of manuscript and printed materials preserved in European libraries. The goal is to move beyond the familiar cliché of Casanova as the “most famous lover” and to investigate the intellectual purpose that emerges from his writings and the documentary record: interests, networks, argumentative habits, and the shifting boundary between lived experience and self-fashioning.\nCasanova travelled widely across 18th-century Europe as a witness, a participant, and a narrator, but he also travelled through other worlds in a textual and conceptual sense. One is the world of epic, approached through his translations of the Iliad as acts of cultural mediation and modern reworking. Another is the world of utopia and speculative imagination, especially in the Icosaméron, where an elsewhere becomes a device for probing societies, knowledge, and customs from a displaced vantage point.\nParticipants will work with Automated Text Recognition (ATR) techniques on three kinds of sources: archival documents, handwritten texts, and first printed editions, using eScriptorium through the CLARIN-IT/H2IOSC infrastructure and Transkribus. They will combine automatic recognition with manual correction, export results as PAGE XML, and convert them into TEI XML.",
+  "bioNote": "Agnese Macchiarelli is a researcher in Digital Textual Scholarship and a member of the Venice Centre for Digital and Public Humanities (VeDPH), affiliated with Bergische Universität Wuppertal and Ca’ Foscari University of Venice. Her research focuses on medieval Latin and Romance philology, textual transmission, manuscript studies, and digital scholarly editing, with particular attention to the modelling, representation, and visualisation of complex medieval texts.\n\nFederico Boschetti is a researcher at the Institute for Computational Linguistics “Antonio Zampolli” of the Italian National Research Council (CNR-ILC), an adjunct lecturer at Ca’ Foscari University of Venice, and a member of the Venice Centre for Digital and Public Humanities (VeDPH). He coordinates DiPText-KC, the CLARIN Knowledge Centre for Digital and Public Textual Scholarship. His research focuses on computational and collaborative philology, digital scholarly editing, linguistic annotation, and tools for analysing historical and literary texts.",
   "files": [
     {
       "label": "Casanova_Reading_Texts.pdf",
@@ -8,6 +10,6 @@
       "type": "pdf"
     }
   ],
-  "mode": "new",
-  "submittedAt": "2026-07-02T14:07:47.990Z"
+  "mode": "revision",
+  "submittedAt": "2026-07-07T09:44:22.029Z"
 }

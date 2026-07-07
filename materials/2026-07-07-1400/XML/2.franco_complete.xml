@@ -26,6 +26,7 @@
                </note>
             </bibl>
          </sourceDesc>
+    </fileDesc>
       <profileDesc>
          <particDesc>
             <listPerson> 
@@ -40,6 +41,7 @@
                </person>
                
             </listPerson>
+        </particDesc>
             
          <settingDesc>
             <listPlace>
@@ -56,9 +58,7 @@
                </place>
             </listPlace>
          </settingDesc>
-        </particDesc>
       </profileDesc>
-    </fileDesc>
    </teiHeader>
    
    <text>

@@ -1,11 +1,7 @@
 {
   "session": "2026-07-07-1400",
   "status": "published",
-  "files": [
-    {
-      "label": "GitHub repository with materials",
-      "href": "https://github.com/vedph/vessdph2026/tree/main/materials/2026-07-07-1400",
-      "type": "repo"
-    }
+  "resources": [
+    { "label": "GitHub repository with materials", "href": "https://github.com/vedph/vessdph2026/tree/main/materials/2026-07-07-1400" }
   ]
 }

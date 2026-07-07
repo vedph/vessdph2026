@@ -21,6 +21,80 @@
       "href": "https://edizionicafoscari.it/it/edizioni4/presentation/marvels/",
       "type": "Research portal",
       "notes": "A gateway to digital research resources on Marco Polo and the Devisement dou monde, including DEDM, BiblioDEDM, and the Jacobilli manuscript edition."
+    },
+    {
+      "label": "TEI P5 Guidelines",
+      "href": "https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html",
+      "type": "Encoding guidelines",
+      "notes": "The official reference guidelines for encoding electronic texts in TEI/XML."
+    },
+    {
+      "label": "TEI Guidelines, Chapter 14: Names, Dates, People, and Places",
+      "href": "https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html",
+      "type": "Encoding guidelines",
+      "notes": "The TEI chapter devoted to the encoding of named entities, including people, places, organisations, and dates."
+    },
+    {
+      "label": "Manus Online",
+      "href": "https://manus.iccu.sbn.it/",
+      "type": "Manuscript database",
+      "notes": "The Italian national portal for manuscript descriptions and digital reproductions held by ICCU."
+    },
+    {
+      "label": "AIUCD, Italian Association for Digital Humanities and Digital Culture",
+      "href": "https://www.aiucd.it/",
+      "type": "Scientific association",
+      "notes": "The Italian scholarly association promoting research, collaboration, shared practices, and resources in Digital Humanities."
+    },
+    {
+      "label": "EVT 2 – Edition Visualization Technology",
+      "href": "https://github.com/evt-project/evt-viewer/",
+      "type": "Open-source software",
+      "notes": "The version of EVT used during the hands-on session to visualise TEI-encoded scholarly editions."
+    },
+    {
+      "label": "Visual Studio Code",
+      "href": "https://code.visualstudio.com/download",
+      "type": "Code editor",
+      "notes": "The code editor used during the EVT visualisation exercise."
+    },
+    {
+      "label": "Live Server for Visual Studio Code",
+      "href": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer",
+      "type": "Visual Studio Code extension",
+      "notes": "An extension for launching a local server and opening the EVT edition in a web browser."
+    }
+  ],
+  "bibliography": [
+    {
+      "citation": "Sahle, Patrick. “What Is a Scholarly Digital Edition?” In Digital Scholarly Editing: Theories and Practices, edited by Matthew James Driscoll and Elena Pierazzo, 19-40. Cambridge: Open Book Publishers, 2016.",
+      "doi": "10.11647/OBP.0095.02",
+      "url": "https://www.openbookpublishers.com/books/10.11647/obp.0095/chapters/10.11647/obp.0095.02",
+      "notes": "A foundational discussion of what distinguishes a born-digital scholarly edition from a digitised print edition."
+    },
+    {
+      "citation": "Buzzoni, Marina. “A Protocol for Scholarly Digital Editions? The Italian Point of View.” In Digital Scholarly Editing: Theories and Practices, edited by Matthew James Driscoll and Elena Pierazzo, 59-82. Cambridge: Open Book Publishers, 2016.",
+      "doi": "10.11647/OBP.0095.04",
+      "url": "https://www.openbookpublishers.com/books/10.11647/obp.0095/chapters/10.11647/obp.0095.04",
+      "notes": "Examines the defining features and scholarly added value of digital editions, including interconnected data, multimedia content, critical apparatuses, and interoperability."
+    },
+    {
+      "citation": "Pierazzo, Elena. “Modelling Digital Scholarly Editing: From Plato to Heraclitus.” In Digital Scholarly Editing: Theories and Practices, edited by Matthew James Driscoll and Elena Pierazzo, 41.58. Cambridge: Open Book Publishers, 2016.",
+      "doi": "10.11647/OBP.0095.03",
+      "url": "https://www.openbookpublishers.com/books/10.11647/obp.0095/chapters/10.11647/obp.0095.03",
+      "notes": "Introduces digital editing as a modelling process and discusses the relationship between documents, texts, interpretation, and scholarly representation."
+    },
+    {
+      "citation": "Burgio, Eugenio, Marina Buzzoni, and Samuela Simion, eds. Digital Edition of the Devisement dou monde: A Comprehensive Digital Scholarly Edition. Critical Translation and Commentary. Venice: Edizioni Ca’ Foscari, 2024.",
+      "doi": "10.30687/978-88-6969-872-9",
+      "url": "https://edizionicafoscari.unive.it/en/edizioni4/libri/978-88-6969-872-9/",
+      "notes": "The principal case study discussed during the session: a multilingual digital critical edition combining the textual tradition, critical translation, variants, commentary, semantic annotation, and EVT visualisation."
+    },
+    {
+      "citation": "Grieves, Michael, and John Vickers. “Digital Twin: Mitigating Unpredictable, Undesirable Emergent Behavior in Complex Systems.” In Transdisciplinary Perspectives on Complex Systems: New Findings and Approaches, edited by Franz-Josef Kahlen, Shannon Flumerfelt, and Anabela Alves, 85-113. Cham: Springer, 2017.",
+      "doi": "10.1007/978-3-319-38756-7_4",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-38756-7_4",
+      "notes": "The original theoretical reference used during the lecture to introduce the concept of the digital twin and the relationship between a physical object and its evolving digital representation."
     }
   ],
   "files": [

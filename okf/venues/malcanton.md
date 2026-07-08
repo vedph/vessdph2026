@@ -21,8 +21,8 @@ Coordinates: 45.43508, 12.3236
 - [Murder in Venice. Generative AI and Historical Sources](/sessions/2026-07-09-1145-murder-in-venice-generative-ai-and-histo.md) — Thursday, 9 July 2026, 11:45
 - [From Sources to Exhibitions: Prototyping Public History Projects with Omeka Classic](/sessions/2026-07-09-1400-from-sources-to-exhibitions-prototyping.md) — Thursday, 9 July 2026, 14:00
 - [Urban Space, Geolocated Apps and Digital Public History: a Practical Demonstration of Hidden Venice](/sessions/2026-07-09-1530-urban-space-geolocated-apps-and-digital.md) — Thursday, 9 July 2026, 15:30
-- [Introduction to generative AI and (co-)creative processes](/sessions/2026-07-10-0930-introduction-to-generative-ai-and-co-cre.md) — Friday, 10 July 2026, 09:30
-- [Emergent representations in AI latent spaces: an artistic and historical perspective](/sessions/2026-07-10-1000-emergent-representations-in-ai-latent-sp.md) — Friday, 10 July 2026, 10:00
+- [Emergent representations in AI latent spaces: an artistic and historical perspective](/sessions/2026-07-10-0930-emergent-representations-in-ai-latent-sp.md) — Friday, 10 July 2026, 09:30
+- [Introduction to generative AI and (co-)creative processes](/sessions/2026-07-10-1000-introduction-to-generative-ai-and-co-cre.md) — Friday, 10 July 2026, 10:00
 - [Perception and biases from La Biennale di Venezia. Reading the artworks with generative algorithms](/sessions/2026-07-10-1030-perception-and-biases-from-la-biennale-d.md) — Friday, 10 July 2026, 10:30
 - [Discussion and round table](/sessions/2026-07-10-1200-discussion-and-round-table.md) — Friday, 10 July 2026, 12:00
 - [Awash with images: Collecting institutions in a digital world](/sessions/2026-07-10-1400-awash-with-images-collecting-institution.md) — Friday, 10 July 2026, 14:00

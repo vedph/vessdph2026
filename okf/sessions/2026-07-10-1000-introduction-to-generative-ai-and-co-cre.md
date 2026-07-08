@@ -1,6 +1,6 @@
 ---
 type: "Session"
-title: "Emergent representations in AI latent spaces: an artistic and historical perspective"
+title: "Introduction to generative AI and (co-)creative processes"
 description: "AI-generated imagery looks like a sudden novelty, but it belongs to a much longer history connecting machine learning, statistics, and visual culture."
 resource: "https://vedph.github.io/vessdph2026/session.html?s=2026-07-10-1000"
 tags: ["Art History", "Lecture & workshop"]
@@ -17,7 +17,7 @@ Part of [Day Five](/days/2026-07-10.md) — Area 4 · Digital and Public Art His
 
 # Speakers
 
-- [Paolo Berti](/people/paolo-berti.md) — Ca’ Foscari
+- [Irene Russo](/people/irene-russo.md) — ILC-CNR
 
 # Abstract
 

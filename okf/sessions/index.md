@@ -32,8 +32,8 @@
 
 # Day Five — Friday, 10 July 2026
 
-* [Introduction to generative AI and (co-)creative processes](2026-07-10-0930-introduction-to-generative-ai-and-co-cre.md) - Lecture & workshop, 09:30–10:00
-* [Emergent representations in AI latent spaces: an artistic and historical perspective](2026-07-10-1000-emergent-representations-in-ai-latent-sp.md) - Lecture & workshop, 10:00–10:30
+* [Emergent representations in AI latent spaces: an artistic and historical perspective](2026-07-10-0930-emergent-representations-in-ai-latent-sp.md) - Lecture & workshop, 09:30–10:00
+* [Introduction to generative AI and (co-)creative processes](2026-07-10-1000-introduction-to-generative-ai-and-co-cre.md) - Lecture & workshop, 10:00–10:30
 * [Perception and biases from La Biennale di Venezia. Reading the artworks with generative algorithms](2026-07-10-1030-perception-and-biases-from-la-biennale-d.md) - Lecture & workshop, 10:30–12:00
 * [Discussion and round table](2026-07-10-1200-discussion-and-round-table.md) - Round table, 12:00–13:00
 * [Awash with images: Collecting institutions in a digital world](2026-07-10-1400-awash-with-images-collecting-institution.md) - Lecture & workshop, 14:00–17:30

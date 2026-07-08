@@ -9,4 +9,4 @@ ILC-CNR
 
 # Sessions
 
-- [Introduction to generative AI and (co-)creative processes](/sessions/2026-07-10-0930-introduction-to-generative-ai-and-co-cre.md)
+- [Introduction to generative AI and (co-)creative processes](/sessions/2026-07-10-1000-introduction-to-generative-ai-and-co-cre.md)

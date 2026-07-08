@@ -9,4 +9,4 @@ Ca’ Foscari
 
 # Sessions
 
-- [Emergent representations in AI latent spaces: an artistic and historical perspective](/sessions/2026-07-10-1000-emergent-representations-in-ai-latent-sp.md)
+- [Emergent representations in AI latent spaces: an artistic and historical perspective](/sessions/2026-07-10-0930-emergent-representations-in-ai-latent-sp.md)

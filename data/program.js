@@ -380,14 +380,16 @@ window.SCHOOL = {
         "economic, or promotional priorities shape algorithmic narratives.",
       sessions: [
         { start: "09:30", end: "10:00", type: "session", venueId: "malcanton",
-          title: "Introduction to generative AI and (co-)creative processes",
-          speakers: [
-            { name: "Irene Russo", affiliation: "ILC-CNR" }
-          ] },
-        { start: "10:00", end: "10:30", type: "session", venueId: "malcanton",
           title: "Emergent representations in AI latent spaces: an artistic and historical perspective",
+          note: "[rescheduled]",
           speakers: [
             { name: "Paolo Berti", affiliation: "Ca\u2019 Foscari" }
+          ] },
+        { start: "10:00", end: "10:30", type: "session", venueId: "malcanton",
+          title: "Introduction to generative AI and (co-)creative processes",
+          note: "[rescheduled]",
+          speakers: [
+            { name: "Irene Russo", affiliation: "ILC-CNR" }
           ] },
         { start: "10:30", end: "12:00", type: "session", venueId: "malcanton",
           title: "Perception and biases from La Biennale di Venezia. Reading the artworks with generative algorithms",

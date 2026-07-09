@@ -7,8 +7,12 @@
     {
       "label": "Omeka Classic",
       "href": "https://omeka.org/classic/"
+    },
+    {
+      "label": "Project Omeka",
+      "href": "https://www.vedphlab.it/venice/admin/"
     }
   ],
   "mode": "revision",
-  "submittedAt": "2026-06-20T16:33:32.879Z"
+  "submittedAt": "2026-07-09T11:58:53.983Z"
 }

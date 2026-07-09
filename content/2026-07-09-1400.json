@@ -5,8 +5,8 @@
   "bioNote": "Emmanuela Carbé is Associate Professor of Contemporary Italian Literature at Ca’ Foscari University of Venice and a member of the Venice Centre for Digital and Public Humanities. Her research combines authorial philology and digital humanities. For nine years, she taught Digital Libraries and has led several workshops on Omeka. She coordinated the BiGraFo project, dedicated to Franco Fortini’s bibliography and based, for its user interface, on Omeka S. On born-digital archives, she published \"Digitale d’autore. Macchine, archivi, letterature\" (FUP-USiena Press, 2023) and coordinates ALDiNa – Archivi Letterari Digitali Nativi.\n\nMariangela Giglio is a PhD candidate in Cultural Heritage in the Digital Ecosystem at the University of Bologna. Her research project, devoted to the application of forensic methodologies to hybrid literary archives, takes Franco Fortini’s archive as its case study. She was also part of the BiGraFo project and is a member of the ALDiNa research group.",
   "resources": [
     {
-      "label": "Omeka Classic",
-      "href": "https://omeka.org/classic/"
+      "label": "Omeka",
+      "href": "https://www.vedphlab.it/venice/admin/"
     },
     {
       "label": "Material",
@@ -14,5 +14,5 @@
     }
   ],
   "mode": "revision",
-  "submittedAt": "2026-07-09T12:08:55.856Z"
+  "submittedAt": "2026-07-09T12:10:45.696Z"
 }

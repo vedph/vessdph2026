@@ -33,3 +33,4 @@ Mariangela Giglio is a PhD candidate in Cultural Heritage in the Digital Ecosyst
 # Resources
 
 - [Omeka Classic](https://omeka.org/classic/)
+- [Material](https://emmcarbe.github.io/summerschool/)

@@ -16,17 +16,21 @@
       "type": "Materials"
     },
     {
-      "label": "Omeka",
+      "label": "Website created on Omeka",
       "href": "https://www.vedphlab.it/venice/admin/",
       "type": "Materials"
     },
     {
-      "label": "Index",
-      "href": "https://www.vedphlab.it/venice/admin/",
+      "label": "Omeka admin",
+      "href": "https://www.vedphlab.it/venice/items/browse",
       "type": "Materials"
+    },
+    {
+      "label": "DARIAH-DE Geo-Browser und Datasheet-Editor",
+      "href": "https://geobrowser.de.dariah.eu/",
+      "notes": "documentation: https://geobrowser.de.dariah.eu/doc/geobrowser.html"
     }
   ],
-  "changesSummary": "sources",
   "mode": "revision",
-  "submittedAt": "2026-07-09T12:15:54.267Z"
+  "submittedAt": "2026-07-10T16:28:52.848Z"
 }

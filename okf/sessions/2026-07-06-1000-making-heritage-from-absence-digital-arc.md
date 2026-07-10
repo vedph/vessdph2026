@@ -27,7 +27,11 @@ Making Heritage from Absence explores how archaeological archives can become act
 
 # About the speaker
 
+Diego Calaon is Associate Professor of Ancient Topography at Ca’ Foscari University of Venice. His research lies at the intersection of archaeology, environmental humanities, and critical heritage studies, with a particular focus on landscape archaeology, coastal environments, and the historical transformations of settlements in the Upper Adriatic and the Mediterranean. He combines archaeological fieldwork, GIS-based spatial analysis, public archaeology, and participatory approaches to explore the relationships between communities, environments, and cultural heritage.
+
 Grazia Solenne is a Research Fellow at Ca' Foscari University of Venice, working in the fields of Digital Archaeology, Digital Heritage, and Public Archaeology. Her research focuses on archaeological archives, digital mediation, and the integration of archival documentation, museum collections, and digital technologies to reconstruct and communicate archaeological knowledge.
+
+Elisa Corrò is a Research Facilitator at the Venice Centre for Digital and Public Humanities at Ca’ Foscari University of Venice. Her work focuses on Digital Humanities, cultural heritage, and cultural diplomacy, with particular attention to community-centred approaches, public engagement, and the mediation of cultural knowledge. She is also involved in the design and management of interdisciplinary projects connecting academic research, heritage institutions, creative industries, and participatory practices
 
 # Resources
 

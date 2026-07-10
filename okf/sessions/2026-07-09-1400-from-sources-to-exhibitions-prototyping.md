@@ -36,6 +36,8 @@ Mariangela Giglio is a PhD candidate in Cultural Heritage in the Digital Ecosyst
 - [Website created on Omeka](https://www.vedphlab.it/venice/admin/)
 - [Omeka admin](https://www.vedphlab.it/venice/items/browse)
 - [DARIAH-DE Geo-Browser und Datasheet-Editor](https://geobrowser.de.dariah.eu/) — documentation: https://geobrowser.de.dariah.eu/doc/geobrowser.html
+- [Kepler.gl](https://kepler.gl/) — pen source geospatial analysis tool for large-scale data sets
+- [Omeka-neatline](https://omeka.org/classic/plugins/Neatline/) — interactive editions of visual materials [last release 2021]
 
 # Recommended reading
 

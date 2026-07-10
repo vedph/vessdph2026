@@ -29,8 +29,18 @@
       "label": "DARIAH-DE Geo-Browser und Datasheet-Editor",
       "href": "https://geobrowser.de.dariah.eu/",
       "notes": "documentation: https://geobrowser.de.dariah.eu/doc/geobrowser.html"
+    },
+    {
+      "label": "Kepler.gl",
+      "href": "https://kepler.gl/",
+      "notes": "pen source geospatial analysis tool for large-scale data sets"
+    },
+    {
+      "label": "Omeka-neatline",
+      "href": "https://omeka.org/classic/plugins/Neatline/",
+      "notes": "interactive editions of visual materials [last release 2021]"
     }
   ],
   "mode": "revision",
-  "submittedAt": "2026-07-10T16:29:01.964Z"
+  "submittedAt": "2026-07-10T16:35:45.316Z"
 }

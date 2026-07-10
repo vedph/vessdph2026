@@ -33,8 +33,9 @@ Mariangela Giglio is a PhD candidate in Cultural Heritage in the Digital Ecosyst
 # Resources
 
 - [Materials](https://emmcarbe.github.io/summerschool/)
-- [Omeka](https://www.vedphlab.it/venice/admin/)
-- [Index](https://www.vedphlab.it/venice/admin/)
+- [Website created on Omeka](https://www.vedphlab.it/venice/admin/)
+- [Omeka admin](https://www.vedphlab.it/venice/items/browse)
+- [DARIAH-DE Geo-Browser und Datasheet-Editor](https://geobrowser.de.dariah.eu/) — documentation: https://geobrowser.de.dariah.eu/doc/geobrowser.html
 
 # Recommended reading
 

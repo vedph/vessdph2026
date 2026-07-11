@@ -77,12 +77,32 @@
     });
   }
 
+  // Admin only: re-attach an entry to a session (its original date is kept).
+  function moveSelect(p) {
+    var cur = p.related || "", lastDay = null;
+    var h = '<select class="jr-move" data-id="' + esc(p.id) + '" title="Move this entry to a session">';
+    h += '<option value="__none__"' + (cur ? "" : " selected") + '>\u2014 no session \u2014</option>';
+    SESS.order.forEach(function (sid) {
+      var s = SESS.idx[sid];
+      if (s.dayLabel !== lastDay) {
+        if (lastDay !== null) h += "</optgroup>";
+        h += '<optgroup label="' + esc(s.dayLabel) + '">';
+        lastDay = s.dayLabel;
+      }
+      h += '<option value="' + esc(sid) + '"' + (sid === cur ? " selected" : "") + '>' +
+        esc(s.start + " \u00b7 " + s.title) + "</option>";
+    });
+    if (lastDay !== null) h += "</optgroup>";
+    return h + "</select>";
+  }
+
   function postHtml(p) {
     var h = '<article class="jr-entry" id="jr-' + esc(p.id) + '" data-id="' + esc(p.id) + '">';
     h += '<div class="jr-meta"><span class="jr-time">' + esc(fmtWhen(p.createdAt)) + '</span>';
     h += '<span class="jr-role ' + roleClass(p.role) + '">' + esc(roleLabel(p.role)) + '</span>';
     h += '<span class="jr-who">' + esc(p.author) + '</span>';
     if (canRemove(p)) h += '<button type="button" class="jr-remove" data-id="' + esc(p.id) + '">Remove</button>';
+    if (me && me.role === "admin") h += moveSelect(p);
     h += '</div>';
     if (p.title) h += '<h3 class="jr-title">' + esc(p.title) + '</h3>';
     if (p.photo) h += '<span class="jr-photo"><img loading="lazy" src="' + ENDPOINT + '/' + esc(p.photo.path) +
@@ -203,6 +223,33 @@
     }
     root.innerHTML = html;
     wireRemove();
+    wireMove();
+  }
+
+  function wireMove() {
+    Array.prototype.forEach.call(document.querySelectorAll(".jr-move"), function (sel) {
+      sel.addEventListener("change", function () {
+        if (!creds) return;
+        var id = sel.dataset.id;
+        var val = sel.value === "__none__" ? "" : sel.value;
+        sel.disabled = true;
+        fetch(ENDPOINT + "/journal/move", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: creds.username, password: creds.password, id: id, related: val })
+        }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }, function () { return { ok: r.ok, j: null }; }); })
+          .then(function (res) {
+            if (res.ok && res.j && res.j.ok) {
+              posts.forEach(function (p) {
+                if (p.id === id) { p.related = val || null; if (val) p.chapter = "school"; }
+              });
+              render(); drawMap();
+            } else {
+              sel.disabled = false;
+              window.alert((res.j && res.j.error) || "Could not move this entry.");
+            }
+          }).catch(function () { sel.disabled = false; window.alert("Could not reach the server."); });
+      });
+    });
   }
 
   function wireRemove() {

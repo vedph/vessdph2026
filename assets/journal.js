@@ -56,6 +56,18 @@
   }
   function canRemove(p) { return !!(me && (me.role === "admin" || me.username === p.authorUsername)); }
 
+  // Turn plain URLs into links. Runs AFTER esc(), so the post text is already escaped:
+  // we only match http/https, and trailing punctuation is left outside the link.
+  function linkify(escaped) {
+    return escaped.replace(/https?:\/\/[^\s<]+/g, function (m) {
+      var tail = "";
+      while (/[.,;:!?)\]]$/.test(m)) { tail = m.slice(-1) + tail; m = m.slice(0, -1); }
+      var text = m.replace(/^https?:\/\//, "").replace(/\/$/, "");
+      if (text.length > 60) text = text.slice(0, 57) + "\u2026";
+      return '<a href="' + m + '" target="_blank" rel="noopener nofollow">' + text + "</a>" + tail;
+    });
+  }
+
   function postHtml(p) {
     var h = '<article class="jr-entry" id="jr-' + esc(p.id) + '" data-id="' + esc(p.id) + '">';
     h += '<div class="jr-meta"><span class="jr-time">' + esc(fmtWhen(p.createdAt)) + '</span>';
@@ -66,7 +78,7 @@
     if (p.title) h += '<h3 class="jr-title">' + esc(p.title) + '</h3>';
     if (p.photo) h += '<span class="jr-photo"><img loading="lazy" src="' + ENDPOINT + '/' + esc(p.photo.path) +
       '" alt="' + esc(p.title || "Journal photograph") + '"></span>';
-    if (p.body) h += '<p class="jr-body">' + esc(p.body).replace(/\n{2,}/g, "<br><br>").replace(/\n/g, "<br>") + '</p>';
+    if (p.body) h += '<p class="jr-body">' + linkify(esc(p.body).replace(/\n{2,}/g, "<br><br>").replace(/\n/g, "<br>")) + '</p>';
     return h + '</article>';
   }
 
@@ -76,21 +88,67 @@
       if (p.related && SESS.idx[p.related]) (bySess[p.related] = bySess[p.related] || []).push(p);
       else other.push(p);
     });
-    var html = "";
+    var html = "", lastDay = null;
     SESS.order.slice().reverse().forEach(function (sid) {
       var ps = bySess[sid]; if (!ps || !ps.length) return;
       var s = SESS.idx[sid];
+      if (s.dayLabel !== lastDay) {
+        if (lastDay !== null) html += '</div>';
+        html += '<div class="jr-day" id="jd-' + esc(s.dayLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-")) + '">' +
+          '<h3 class="jr-day-h">' + esc(s.dayLabel) + '</h3>';
+        lastDay = s.dayLabel;
+      }
       html += '<div class="jr-moment"><p class="jr-moment-h"><span class="jr-moment-time">' +
-        esc(s.dayLabel + " · " + s.start) + '</span> ' + esc(s.title) + '</p>';
+        esc(s.dayLabel + " · " + s.start) + '</span> <a class="jr-moment-link" href="session.html?s=' +
+        encodeURIComponent(sid) + '">' + esc(s.title) + '</a></p>';
       ps.forEach(function (p) { html += postHtml(p); });
       html += '</div>';
     });
+    if (lastDay !== null) html += '</div>';
     if (other.length) {
-      html += '<div class="jr-moment"><p class="jr-moment-h"><span class="jr-moment-time">Around the week</span></p>';
+      html += '<div class="jr-moment" id="jc-around"><p class="jr-moment-h"><span class="jr-moment-time">Around the Summer school</span></p>';
       other.forEach(function (p) { html += postHtml(p); });
       html += '</div>';
     }
     return html;
+  }
+
+  // Navigation timeline: four stops with live counts. "At the Summer school" expands
+  // into the days that actually have entries, so nothing is buried at the bottom.
+  function navHTML(byChapter, schoolList) {
+    var nBefore = (byChapter.before || []).length + (byChapter.onway || []).length;
+    var nAfter  = (byChapter.after  || []).length + (byChapter.home  || []).length;
+
+    // split the school chapter: tied to a session (grouped by day) vs. loose thoughts
+    var byDay = {}, dayOrder = [], nLoose = 0;
+    (schoolList || []).forEach(function (p) {
+      var s = p.related && SESS.idx[p.related];
+      if (!s) { nLoose++; return; }
+      if (!byDay[s.dayLabel]) { byDay[s.dayLabel] = 0; dayOrder.push(s.dayLabel); }
+      byDay[s.dayLabel]++;
+    });
+    var nSchool = (schoolList || []).length - nLoose;
+
+    function stop(href, label, n) {
+      return '<a class="jn-stop' + (n ? '' : ' jn-0') + '" href="' + href + '">' +
+        '<span class="jn-label">' + esc(label) + '</span>' +
+        '<span class="jn-n">' + n + '</span></a>';
+    }
+    var h = '<nav class="jn" aria-label="Journal sections"><div class="jn-row">';
+    h += stop("#jc-before", "Before \u00b7 On our way", nBefore);
+    h += stop("#jc-school", "At the Summer school", nSchool);
+    h += stop("#jc-around", "Around the Summer school", nLoose);
+    h += stop("#jc-after", "Afterwards", nAfter);
+    h += '</div>';
+    if (dayOrder.length) {
+      h += '<div class="jn-days">';
+      dayOrder.forEach(function (d) {
+        h += '<a class="jn-day" href="#jd-' + esc(d.toLowerCase().replace(/[^a-z0-9]+/g, "-")) + '">' +
+          esc(d) + ' <span class="jn-n">' + byDay[d] + '</span></a>';
+      });
+      h += '</div>';
+    }
+    return h + '</nav>';
   }
 
   function render() {
@@ -100,20 +158,36 @@
     posts.forEach(function (p) { (byChapter[p.chapter] = byChapter[p.chapter] || []).push(p); });
     var html = "";
     if (!posts.length) {
+      // no entries yet: show the full arc (all sections, in order) so the journal reads as "ready", not empty
       html += '<p class="jr-empty">The journal opens before the school and fills as the week unfolds. ' +
         'Taking part? <a href="contribute-journal.html">Add the first entry &rarr;</a></p>';
+      CHAPTERS.forEach(function (ch) {
+        html += '<section class="jr-chapter empty"><h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>' +
+          '<p class="jr-chapter-desc">' + esc(ch.desc) + '</p>' +
+          '<p class="jr-chapter-empty">No entries yet.</p></section>';
+      });
+    } else {
+      html += navHTML(byChapter, byChapter.school || []);
+      // "Before · On our way" and "Afterwards" each cover two chapters: anchor the nav link
+      // to whichever of the pair renders first (order is reversed, so onway precedes before).
+      var firstOfPair = {
+        before: (byChapter.onway || []).length ? "onway" : "before",
+        after:  (byChapter.after || []).length ? "after" : "home"
+      };
+      // entries exist: latest phase first ("Before" last), newest first within each section; empty/future sections stay hidden
+      CHAPTERS.slice().reverse().forEach(function (ch) {
+        var list = byChapter[ch.key] || [];
+        if (!list.length) return;
+        var anchor = ch.key === firstOfPair.before ? ' id="jc-before"'
+                   : ch.key === "school" ? ' id="jc-school"'
+                   : ch.key === firstOfPair.after ? ' id="jc-after"' : '';
+        html += '<section class="jr-chapter"' + anchor + '><h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>' +
+          '<p class="jr-chapter-desc">' + esc(ch.desc) + '</p>';
+        if (ch.key === "school") html += renderSchool(list);
+        else html += list.map(postHtml).join("");
+        html += '</section>';
+      });
     }
-    // sections in reverse order (latest phase first, "Before" last); empty/future sections stay hidden until they have posts
-    CHAPTERS.slice().reverse().forEach(function (ch) {
-      var list = byChapter[ch.key] || [];
-      if (!list.length) return;
-      html += '<section class="jr-chapter">';
-      html += '<h2 class="jr-chapter-h">' + esc(ch.label) + '</h2>';
-      html += '<p class="jr-chapter-desc">' + esc(ch.desc) + '</p>';
-      if (ch.key === "school") html += renderSchool(list);
-      else html += list.map(postHtml).join("");
-      html += '</section>';
-    });
     root.innerHTML = html;
     wireRemove();
   }

@@ -38,6 +38,15 @@
     return { idx: idx, order: order };
   })();
 
+  // all five days of the school, whether or not they already have entries
+  var DAYS = (S.days || []).map(function (d) {
+    return {
+      label: d.label,
+      key: String(d.label || "").toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      date: d.date
+    };
+  });
+
   // login, remembered for the browser session (shared with the contribute page)
   var me = null, creds = null, posts = [];
   var STORE_KEY = "vss_journal_auth";
@@ -119,13 +128,12 @@
     var nBefore = (byChapter.before || []).length + (byChapter.onway || []).length;
     var nAfter  = (byChapter.after  || []).length + (byChapter.home  || []).length;
 
-    // split the school chapter: tied to a session (grouped by day) vs. loose thoughts
-    var byDay = {}, dayOrder = [], nLoose = 0;
+    // split the school chapter: tied to a session (counted per day) vs. loose thoughts
+    var byDay = {}, nLoose = 0;
     (schoolList || []).forEach(function (p) {
       var s = p.related && SESS.idx[p.related];
       if (!s) { nLoose++; return; }
-      if (!byDay[s.dayLabel]) { byDay[s.dayLabel] = 0; dayOrder.push(s.dayLabel); }
-      byDay[s.dayLabel]++;
+      byDay[s.dayLabel] = (byDay[s.dayLabel] || 0) + 1;
     });
     var nSchool = (schoolList || []).length - nLoose;
 
@@ -134,21 +142,26 @@
         '<span class="jn-label">' + esc(label) + '</span>' +
         '<span class="jn-n">' + n + '</span></a>';
     }
+    // row 1: the phases around the week
     var h = '<nav class="jn" aria-label="Journal sections"><div class="jn-row">';
     h += stop("#jc-before", "Before \u00b7 On our way", nBefore);
-    h += stop("#jc-school", "At the Summer school", nSchool);
     h += stop("#jc-around", "Around the Summer school", nLoose);
     h += stop("#jc-after", "Afterwards", nAfter);
     h += '</div>';
-    if (dayOrder.length) {
-      h += '<div class="jn-days">';
-      dayOrder.forEach(function (d) {
-        h += '<a class="jn-day" href="#jd-' + esc(d.toLowerCase().replace(/[^a-z0-9]+/g, "-")) + '">' +
-          esc(d) + ' <span class="jn-n">' + byDay[d] + '</span></a>';
-      });
-      h += '</div>';
-    }
-    return h + '</nav>';
+    // row 2: the week itself, day by day
+    h += '<div class="jn-row jn-week">';
+    h += '<a class="jn-lead' + (nSchool ? '' : ' jn-0') + '" href="#jc-school">During the lessons</a>';
+    DAYS.forEach(function (d, i) {
+      var n = byDay[d.label] || 0;
+      var label = "Day " + (i + 1);
+      h += n
+        ? '<a class="jn-day" href="#jd-' + esc(d.key) + '"><span class="jn-day-l">' + esc(label) +
+          '</span><span class="jn-n">' + n + '</span></a>'
+        : '<span class="jn-day jn-0"><span class="jn-day-l">' + esc(label) +
+          '</span><span class="jn-n">0</span></span>';
+    });
+    h += '</div></nav>';
+    return h;
   }
 
   function render() {

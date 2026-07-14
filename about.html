@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Venice Summer School in Digital and Public Humanities 2026</title>
+<meta name="description" content="Institutional framework of the Venice Summer School in Digital and Public Humanities: the role of the VeDPH and of Ca' Foscari University of Venice.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .ab-logo{margin:1.6rem 0 1.4rem}
+  .ab-logo img{max-width:280px;height:auto;display:block}
+  .ab-note{border-left:3px solid var(--cf-red);padding:.1rem 0 .1rem 1.1rem;margin:1.4rem 0;max-width:62ch}
+  .ab-note p{margin:.5rem 0}
+  .ab-note .it{color:var(--muted);font-size:.96rem}
+  .ab-sep{border:0;border-top:1px solid rgba(0,0,0,.1);margin:2.2rem 0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a class="on" aria-current="page" href="about.html">About</a>
+    <a href="colophon.html">Colophon</a>
+  </nav>
+</div></header>
+
+<main id="main" class="wrap page">
+
+  <h1 class="title">About<em>institutional framework</em></h1>
+
+  <p class="lede">The Venice Summer School in Digital and Public Humanities is organised by the
+    Venice Centre for Digital and Public Humanities (VeDPH) at the Department of Humanities,
+    Ca’ Foscari University of Venice, with the Department of Linguistics and Comparative Cultural
+    Studies, within the framework of the Erasmus+ DIGITALIA project.</p>
+
+  <p>This website was built as part of the school itself: it hosts the programme, the teaching
+    materials contributed by the lecturers, and a shared Journal written by the participants during
+    the week. It is a working artefact of the school, not a communication channel of the University:
+    the institutional information about the Summer School is published on the Ca’ Foscari website.</p>
+
+  <hr class="ab-sep">
+
+  <h2>Ca’ Foscari University of Venice</h2>
+
+  <div class="ab-logo">
+    <img src="assets/logos/ca-foscari-humanities.png"
+         alt="Università Ca’ Foscari Venezia — Dipartimento di Studi Umanistici">
+  </div>
+
+  <div class="ab-note">
+    <p>This is not an institutional website of Ca’ Foscari University of Venice. It was designed and
+      developed as part of a project of the Venice Centre for Digital and Public Humanities (VeDPH)
+      and the Department of Humanities, outside the web services of the University. Responsibility
+      for its content lies with the Centre and with the curators of the project.</p>
+    <p class="it">Questo non è un sito istituzionale dell’Università Ca’ Foscari Venezia. È stato
+      progettato e realizzato nell’ambito di un progetto del Venice Centre for Digital and Public
+      Humanities (VeDPH) e del Dipartimento di Studi Umanistici, al di fuori dei servizi web di
+      Ateneo. La responsabilità dei contenuti è del Centro e dei curatori del progetto.</p>
+  </div>
+
+  <hr class="ab-sep">
+
+  <h2>The role of the Centre and the Departments</h2>
+
+  <p>The <strong>VeDPH</strong> conceived and ran the Summer School, coordinated its academic
+    programme, and curated this site and its Journal. The <strong>Department of Humanities</strong>
+    hosts the Centre and the school. The <strong>Department of Linguistics and Comparative Cultural
+    Studies</strong> contributed to its funding. The school is part of the Erasmus+ DIGITALIA
+    project.</p>
+
+  <p>A full account of how the site was made, of the people who built it, and of the licences that
+    apply to its contents is given in the <a href="colophon.html">Colophon</a>. The institutions and
+    projects supporting the school are listed under <a href="partners.html">Partners</a>.</p>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Venice Centre for Digital and Public Humanities</h3>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/program.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

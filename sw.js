@@ -3,10 +3,11 @@
    with the other static assets; only the map tiles are external. Maps load only on user
    request, so no tile request is made before the visitor opens a map. */
 
-const CACHE = 'vsdph-2026-v65';
+const CACHE = 'vsdph-2026-v66';
 
 const CORE = [
-  'index.html', 'programme.html', 'people.html', 'partners.html', 'colophon.html', 'session.html', 'contribute.html',
+  'index.html', 'programme.html', 'people.html', 'partners.html', 'about.html',
+  'colophon.html', 'session.html', 'contribute.html',
   'journal.html', 'contribute-journal.html',
   'assets/style.css', 'assets/app.js', 'assets/editor.js', 'assets/journal.js', 'assets/journal-contribute.js',
   'data/program.js', 'data/journal.js',

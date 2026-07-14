@@ -106,7 +106,7 @@
     h += '</div>';
     if (p.title) h += '<h3 class="jr-title">' + esc(p.title) + '</h3>';
     if (p.photo) h += '<span class="jr-photo"><img loading="lazy" src="' + ENDPOINT + '/' + esc(p.photo.path) +
-      '" alt="' + esc(p.title || "Journal photograph") + '"></span>';
+      '" alt="' + esc(p.title || ("Photograph shared by " + (p.author || "a participant"))) + '"></span>';
     if (p.body) h += '<p class="jr-body">' + linkify(esc(p.body).replace(/\n{2,}/g, "<br><br>").replace(/\n/g, "<br>")) + '</p>';
     return h + '</article>';
   }
@@ -346,7 +346,8 @@
         var m = L.circleMarker([p.lat, p.lng], { radius: hasImg ? 9 : 7, color: RED, weight: 2,
           fillColor: hasImg ? RED : "#fff", fillOpacity: hasImg ? .82 : 1 }).addTo(theMap);
         var html = '<div class="jr-pop">' +
-          (p.photo ? '<img src="' + ENDPOINT + '/' + esc(p.photo.path) + '" alt="">' : '') +
+          (p.photo ? '<img src="' + ENDPOINT + '/' + esc(p.photo.path) + '" alt="' +
+            esc(p.title || ("Photograph shared by " + (p.author || "a participant"))) + '">' : '') +
           (p.title ? '<b>' + esc(p.title) + '</b>' : '') +
           (p.body ? '<span>' + esc(p.body.slice(0, 140)) + '</span>' : '') +
           '<time>' + esc(fmtWhen(p.createdAt)) + '</time>' +

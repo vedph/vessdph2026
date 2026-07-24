@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photographs — Venice Summer School in Digital and Public Humanities 2026</title>
+<meta name="description" content="Photographs from the Venice Summer School in Digital and Public Humanities 2026, including the Biennale Sessions visit.">
+<meta name="theme-color" content="#b01e28">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .gl-set{margin:0 0 3rem}
+  .gl-head{margin:0 0 1.2rem}
+  .gl-sub{font-family:var(--serif);font-size:1.12rem;color:var(--ink);margin:.15rem 0 .5rem}
+  .gl-note{font-family:var(--serif);font-size:1.02rem;line-height:1.55;color:var(--ink-soft);max-width:var(--measure);margin:0 0 .7rem}
+  .gl-credit{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin:0 0 1.2rem}
+  .gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.55rem}
+  .gl-cell{padding:0;border:0;background:var(--rule);cursor:pointer;overflow:hidden;aspect-ratio:3/2;display:block}
+  .gl-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+  .gl-cell:hover img,.gl-cell:focus-visible img{transform:scale(1.04)}
+  .gl-cell:focus-visible{outline:3px solid var(--cf-red);outline-offset:2px}
+  .gl-empty{font-family:var(--serif);font-size:1.05rem;color:var(--muted);border-left:3px solid var(--rule-strong);padding-left:1rem;max-width:var(--measure)}
+
+  /* enlarged view */
+  .gl-box{position:fixed;inset:0;z-index:100;background:rgba(20,20,22,.94);display:none;
+    flex-direction:column;align-items:center;justify-content:center;padding:1rem}
+  .gl-box[open],.gl-box.on{display:flex}
+  .gl-box img{max-width:min(1200px,94vw);max-height:78vh;object-fit:contain;background:#111}
+  .gl-cap{color:#f2f2f0;font-family:var(--serif);font-size:1rem;max-width:min(1200px,94vw);margin:.8rem 0 .2rem;text-align:center}
+  .gl-boxcredit{color:#b9b9b5;font-family:var(--mono);font-size:.7rem;margin:.35rem 0 0;text-align:center}
+  .gl-btn{position:absolute;background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff;
+    font-family:var(--mono);font-size:1.1rem;line-height:1;padding:.5rem .7rem;cursor:pointer;border-radius:2rem}
+  .gl-btn:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+  .gl-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .gl-close{top:1rem;right:1rem}
+  .gl-prev{left:1rem;top:50%;transform:translateY(-50%)}
+  .gl-next{right:1rem;top:50%;transform:translateY(-50%)}
+  .gl-count{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
+    color:#b9b9b5;font-family:var(--mono);font-size:.7rem}
+  @media (prefers-reduced-motion: reduce){ .gl-cell img{transition:none} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<div class="topbar"></div>
+<header class="sitehead"><div class="wrap">
+  <a class="brandlock" href="index.html"><img src="assets/logos/site-lockup.png" alt="Venice Centre for Digital and Public Humanities"></a>
+  <nav class="sitenav" aria-label="Site">
+    <a href="index.html">Home</a>
+    <a href="programme.html">Programme</a>
+    <a href="people.html">People</a>
+    <a href="journal.html">Journal</a>
+    <a href="partners.html">Partners</a>
+    <a href="colophon.html">Colophon</a>
+    <a href="about.html">About</a>
+  </nav>
+</div></header>
+
+<main id="main" class="wrap page">
+  <h1 class="title">Photographs<em>from the school</em></h1>
+  <div id="gl-sets"></div>
+</main>
+
+<div class="gl-box" id="gl-box" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+  <button type="button" class="gl-btn gl-close" id="gl-close" aria-label="Close">&#10005;</button>
+  <button type="button" class="gl-btn gl-prev" id="gl-prev" aria-label="Previous photograph">&#8249;</button>
+  <button type="button" class="gl-btn gl-next" id="gl-next" aria-label="Next photograph">&#8250;</button>
+  <img id="gl-img" src="" alt="">
+  <p class="gl-cap" id="gl-cap"></p>
+  <p class="gl-boxcredit" id="gl-boxcredit"></p>
+  <p class="gl-count" id="gl-count"></p>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2>Venice Centre for Digital and Public Humanities</h2>
+    <p>Organised by the VeDPH at the Department of Humanities, Ca’ Foscari University of Venice,
+       with the Department of Linguistics and Comparative Cultural Studies.</p>
+    <p class="foot-link"><a href="partners.html">Partners &amp; funders →</a></p>
+    <p class="addr">Ca’ Foscari University of Venice · Dorsoduro 3246, 30123 Venice (Italy)<br>
+      VeDPH · Malcanton Marcorà, Dorsoduro 3484/D · vedph@unive.it</p>
+  </div>
+</footer>
+
+<script src="data/gallery.js"></script>
+<script>
+(function () {
+  "use strict";
+  function $(id) { return document.getElementById(id); }
+  function esc(v) {
+    return String(v == null ? "" : v).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  var G = (window.GALLERY && window.GALLERY.sets) || [];
+  var shown = [];          // every photograph actually on the page, in order
+  var at = 0;
+
+  function altFor(set, n, caption) {
+    if (caption) return caption;
+    return "Photograph from " + set.title + ", " + set.subtitle + " (" + n + ")";
+  }
+
+  function build() {
+    var host = $("gl-sets"), html = "";
+    G.forEach(function (set) {
+      html += '<section class="gl-set"><div class="gl-head">' +
+        '<h2>' + esc(set.title) + '</h2>' +
+        (set.subtitle ? '<p class="gl-sub">' + esc(set.subtitle) + '</p>' : '') +
+        (set.note ? '<p class="gl-note">' + esc(set.note) + '</p>' : '') +
+        (set.credit ? '<p class="gl-credit">' + esc(set.credit) + '</p>' : '') +
+        '</div>';
+      var n = Math.max(0, parseInt(set.count, 10) || 0);
+      if (!n) {
+        html += '<p class="gl-empty">The photographs of this set are not published yet.</p></section>';
+        return;
+      }
+      html += '<div class="gl-grid">';
+      for (var i = 1; i <= n; i++) {
+        var src = set.dir + set.prefix + i + set.ext;
+        var cap = (set.captions && set.captions[i]) || "";
+        html += '<button type="button" class="gl-cell" data-src="' + esc(src) + '">' +
+          '<img loading="lazy" src="' + esc(src) + '" alt="' + esc(altFor(set, i, cap)) + '">' +
+          '</button>';
+      }
+      html += '</div></section>';
+    });
+    host.innerHTML = html;
+
+    // Drop any tile whose file is not there: an approximate count does no harm.
+    Array.prototype.forEach.call(host.querySelectorAll(".gl-cell"), function (btn) {
+      var img = btn.querySelector("img");
+      img.addEventListener("error", function () {
+        btn.parentNode && btn.parentNode.removeChild(btn);
+        index();
+      });
+    });
+    index();
+    wire();
+  }
+
+  function index() {
+    shown = [];
+    G.forEach(function (set) {
+      Array.prototype.forEach.call(document.querySelectorAll(".gl-cell"), function (btn) {
+        var img = btn.querySelector("img");
+        if (img && img.getAttribute("src").indexOf(set.dir) === 0) {
+          if (shown.indexOf(btn) === -1) shown.push({ btn: btn, src: img.getAttribute("src"), alt: img.getAttribute("alt"), credit: set.credit || "" });
+        }
+      });
+    });
+  }
+
+  var opener = null;
+  function open(i) {
+    if (!shown.length) return;
+    at = (i + shown.length) % shown.length;
+    var p = shown[at];
+    $("gl-img").src = p.src;
+    $("gl-img").alt = p.alt;
+    $("gl-cap").textContent = p.alt;
+    $("gl-boxcredit").textContent = p.credit;
+    $("gl-count").textContent = (at + 1) + " / " + shown.length;
+    $("gl-box").classList.add("on");
+    $("gl-close").focus();
+  }
+  function close() {
+    $("gl-box").classList.remove("on");
+    $("gl-img").src = "";
+    if (opener && document.contains(opener)) opener.focus();
+  }
+
+  function wire() {
+    Array.prototype.forEach.call(document.querySelectorAll(".gl-cell"), function (btn) {
+      btn.addEventListener("click", function () {
+        opener = btn;
+        for (var i = 0; i < shown.length; i++) if (shown[i].btn === btn) return open(i);
+      });
+    });
+  }
+
+  $("gl-close").addEventListener("click", close);
+  $("gl-prev").addEventListener("click", function () { open(at - 1); });
+  $("gl-next").addEventListener("click", function () { open(at + 1); });
+  $("gl-box").addEventListener("click", function (e) { if (e.target === $("gl-box")) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!$("gl-box").classList.contains("on")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft") open(at - 1);
+    else if (e.key === "ArrowRight") open(at + 1);
+  });
+
+  build();
+})();
+</script>
+<script>
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+</script>
+</body>
+</html>

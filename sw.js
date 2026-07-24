@@ -3,7 +3,7 @@
    with the other static assets; only the map tiles are external. Maps load only on user
    request, so no tile request is made before the visitor opens a map. */
 
-const CACHE = 'vsdph-2026-v75';
+const CACHE = 'vsdph-2026-v76';
 
 const CORE = [
   'index.html', 'programme.html', 'people.html', 'partners.html', 'about.html',
@@ -67,7 +67,9 @@ self.addEventListener('fetch', (e) => {
 
   // Dynamic data — programme, journal and per-session content: network first, so edits
   // and newly added entries/content appear promptly and a 404 is never cached.
-  if (url.pathname.endsWith('/data/program.js') || url.pathname.endsWith('/data/journal.js') || url.pathname.endsWith('/data/gallery.js') || url.pathname.includes('/content/')) {
+  // Stylesheets and scripts follow the same rule: a cached-first copy of these would keep
+  // serving an old build until the cache version changes, which has caused real confusion.
+  if (url.pathname.endsWith('/data/program.js') || url.pathname.endsWith('/data/journal.js') || url.pathname.endsWith('/data/gallery.js') || url.pathname.includes('/content/') || url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
     e.respondWith(
       fetch(req).then((res) => {
         if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); }

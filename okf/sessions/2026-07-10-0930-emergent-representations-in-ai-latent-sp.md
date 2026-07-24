@@ -27,6 +27,10 @@ AI-generated imagery looks like a sudden novelty, but it belongs to a much longe
 
 Paolo Berti teaches Digital Art at the Department of Humanities of Ca' Foscari University of Venice, where he is also a member of the Venice Centre for Digital and Public Humanities (VeDPH). Within the centre, he curates projects in the fields of art history and digital culture and sits on the editorial board of the journal magazén. International Journal for Digital and Public Humanities. His research has focused primarily on the relationship between artistic practices and new media, while extending into adjacent fields such as critical theory and STS. He has published essays in academic journals and catalogues and has curated editorial and translation projects. He is the author of the volume "Estetiche della geolocalizzazione. Pratiche artistiche e media locativi" (Sapienza University Press, 2025).
 
+# Resources
+
+- [Presentation.pdf](materials/2026-07-10-0930/Presentation.pdf)
+
 # Recommended reading
 
 - Audry, Sofian. "Art in the Age of Machine Learning". Cambridge, MA: MIT Press, 2021.
